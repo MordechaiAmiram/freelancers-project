@@ -1,0 +1,51 @@
+*{
+    box-sizing: border-box;
+}
+h2 {
+    padding-top: 3%;
+    margin-right: 5%;
+}
+.profile-container {
+    display: flex;
+    display: block;
+    flex-direction: column;
+    width: 50%;
+    margin-right: 5%;
+    background-color: antiquewhite;
+    text-align: right;
+}
+
+.profile-picture {
+    height: 180px;
+    width: 180px;
+    margin-right: 5%;
+    border: solid 1px;
+    border-radius: 50%;
+    background-color: aqua;
+}
+
+.profile-inner {
+    padding: 3%;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
+    margin-bottom: 1%;
+}
+.profile-inner * {
+    width: fit-content;
+    display: inline-block;
+    padding: 3%;
+}
+
+.portfolio {
+    width: 50%;
+    margin-right: 5%;
+    background-color: aqua;
+    margin-bottom: 1%;
+}
+
+.reviews {
+    width: 50%;
+    margin-right: 5%;
+    background-color: aqua;
+}

@@ -1,0 +1,27 @@
+.up-bar {
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    line-height: 40px;
+    display: flex;
+    justify-content: right;
+}
+
+.categories-navbar {
+    width: 100%;
+    background-color: lightgray;
+    line-height: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.link {
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 480px) {
+    .categories-navbar {
+        visibility: hidden;
+    }
+}
