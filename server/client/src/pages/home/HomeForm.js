@@ -6,12 +6,12 @@ import Categories from '../../components/mainCategories/MainCategories'
 import './home.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 
-function Home() {
+function HomeForm() {
     return (
         <>
             <Navbar />
             <CategoriesNavbar />
-            <h1>היימיש פרילנס</h1>
+            <h1>Freeלאנ"ש</h1>
             <Button>חפש</Button>
             <InputField label={'חפש'} sx={{ width: '30%' }} />
             <Categories />
@@ -19,4 +19,4 @@ function Home() {
     )
 }
 
-export default Home
+export default HomeForm

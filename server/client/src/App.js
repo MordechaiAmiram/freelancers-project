@@ -1,26 +1,28 @@
 import './App.css';
-import PrimarySearchAppBar from './components/navbar/PrimarySearchAppBar';
+// import PrimarySearchAppBar from './components/navbar/PrimarySearchAppBar';
 // import SideBarForm from './components/sideBar/SideBarForm';
 // import PrivateUserProfileForm from './pages/PrivateUserProfileForm/PrivateUserProfileForm';
 // import ProfileCardForm from './components/profileCard/ProfileCardForm';
 // import PublicUserProfileForm from './pages/publicUserProfile/PublicUserProfileForm';
-// import Home from './pages/home/Home';
+// import HomeForm from './pages/home/HomeForm';
 // import LogInForm from './pages/logIn/LogInForm';
 // import SignUpForm from './pages/signUp/SignUpForm';
 // import SignUpFreelanceForm from './pages/signUp/SignUpFreelanceForm';
+import AppRouting from './components/AppRouting';
 
 function App() {
   return (
     <div className="App">
-      {/* <Home /> */}
-      {/* <PublicUserProfileForm /> */}
-      {/* <ProfileCardForm /> */}
-      {/* <LogInForm /> */}
-      {/* <SignUpForm /> */}
-      {/* <SignUpFreelanceForm /> */}
-      {/* <PrivateUserProfileForm /> */}
-      {/* <SideBarForm /> */}
-      <PrimarySearchAppBar />
+    <AppRouting />
+      {/* <HomeForm />
+      <PublicUserProfileForm />
+      <ProfileCardForm />
+      <LogInForm />
+      <SignUpForm />
+      <SignUpFreelanceForm />
+      <PrivateUserProfileForm /> */}
+      {/* {/* <SideBarForm /> */}
+      {/* <PrimarySearchAppBar /> */}
     </div>
   );
 }

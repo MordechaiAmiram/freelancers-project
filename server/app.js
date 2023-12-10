@@ -6,6 +6,7 @@ const cors = require('cors')
 
 const usersRouter = require('./routes/usersRouter')
 const categoriesRouter = require('./routes/categoriesRouter')
+const reviewsRouter = require('./routes/reviewsRouter')
 
 app.use(express.json())
 app.use(cors())
@@ -14,6 +15,7 @@ app.use(express.static(path.join(__dirname, 'client', 'build')))
 
 app.use('/api/users', usersRouter)
 app.use('/api/categories', categoriesRouter)
+app.use('/api/reviews', reviewsRouter)
 
 app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', "index.html"))
