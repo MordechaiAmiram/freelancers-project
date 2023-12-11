@@ -19,6 +19,7 @@ function SignUpForm() {
                         // id='firstname'
                         className='sign-up-input'
                         type="text"
+                        name='firstname'
                         placeholder="שם פרטי" />
                 </label>
 
@@ -26,30 +27,35 @@ function SignUpForm() {
                     <input className='sign-up-input'
                         // id='lastname'
                         type="text"
+                        name='lastname'
                         placeholder="שם משפחה" />
                 </label>
 
                 <label for="username">שם משתמש
                     <input className='sign-up-input'
                         type="text"
+                        name='username'
                         placeholder="שם משתמש" />
                 </label>
 
                 <label for="phone">טלפון
                     <input className='sign-up-input'
                         type="text"
+                        name='phone'
                         placeholder="טלפון" />
                 </label>
 
                 <label for="email">דואר אלקטרוני
                     <input className='sign-up-input'
                         type="text"
+                        name='email'
                         placeholder="מייל" />
                 </label>
 
                 <label for="password">סיסמה
                     <input className='sign-up-input'
                         type="password"
+                        name='password'
                         placeholder="סיסמה" />
                 </label>
 

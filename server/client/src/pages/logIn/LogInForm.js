@@ -17,12 +17,16 @@ function LogInForm() {
                     sx={{ width: '100%' }} /> */}
 
                 <label for="username">שם משתמש
-                    <input type="text"
+                    <input
+                        type="text"
+                        name='username'
                         placeholder="שם משתמש" />
                 </label>
 
                 <label for="password">סיסמה
-                    <input type="password"
+                    <input
+                        type="password"
+                        name='passo=word'
                         placeholder="סיסמה" />
                 </label>
 
