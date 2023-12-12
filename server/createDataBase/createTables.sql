@@ -41,7 +41,7 @@ CREATE TABLE `addresses`(
 CREATE TABLE `categories`(
     `category_id` BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `category_name` VARCHAR(255) NOT NULL UNIQUE,
-    `parent_id` BIGINT NOT NULL
+    `parent_id` BIGINT
 );
 
 CREATE TABLE `reviews`(
