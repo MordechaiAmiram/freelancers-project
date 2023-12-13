@@ -1,5 +1,5 @@
 
-INSERT INTO users (first_name, last_name, username, email, phone, password, registeretion_date)
+INSERT INTO users (first_name, last_name, username, email, phone, password, registration_date)
 VALUES
 ('אביגדור', 'לוין', 'avi12', 'avi12@gmail.com', '052-3456789', 'u387ESd', CURDATE()), 
 ('בן ציון', 'כהן', 'bentzion1', 'bcohen@gmail.com', '050-7234567', 't6LasDj3', CURDATE()),
