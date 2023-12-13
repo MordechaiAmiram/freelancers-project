@@ -1,6 +1,6 @@
 const { pool } = require('../db')
 
-function updateData(freelanceId, title, about, serviceLocation, type) {
+function updateFreelance(freelanceId, title, about, serviceLocation, type) {
     const newTitle = title? title: getTitle(freelanceId)
     const newAbout = about? about: getAbout(freelanceId)
     const newSrviceLoaction = serviceLocation? serviceLocation: getServiceLoaction(freelanceId)
