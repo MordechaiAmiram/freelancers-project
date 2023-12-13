@@ -53,8 +53,8 @@ CREATE TABLE `reviews`(
     `freelance_id` BIGINT NOT NULL
 );
 
-CREATE TABLE `raing_data`(
-    `ave_rating_id` BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+CREATE TABLE `rating_data`(
+    `rating_data_id` BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `freelance_id` BIGINT NOT NULL UNIQUE,
     `number_of_ratings` BIGINT NOT NULL,
     `cumulative_rating` BIGINT NOT NULL
