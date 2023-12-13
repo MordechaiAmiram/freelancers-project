@@ -50,13 +50,15 @@ function getFreelancersByCategory(categoryId) {
 
 function addUserGate(isFreelance, firstName, lastName, username, email, phone, password,
     city, street, building, suite, zipCode,
-    about, title, accountType, serviceLocation) {
-    const [{ insertId }] = addUser(firstName, lastName, username, email, phone, password)
+    about, title, accountType, serviceLocation, 
+    categoryId) {
+    const userId = addUser(firstName, lastName, username, email, phone, password)
     if (isFreelance) {
-        addAddress(insertId, city, street, building, suite, zipCode)
-        addFreelance(insertId, about, title, accountType, serviceLocation)
+        addAddress(userId, city, street, building, suite, zipCode)
+        const freelanceId = addFreelance(userId, about, title, accountType, serviceLocation)
+        addfreelanceToCategory(freelanceId, categoryId)
     }
-    return insertId
+    return userId
 }
 
 function addUser(firstName, lastName, username, email, phone, password) {
@@ -82,8 +84,23 @@ function addFreelance(userId, about, title, accountType, serviceLocation) {
     INSERT INTO freelancers(user_id, about, title, accountType, serviceLocation)
     VALUES (?, ?, ?, ?, ?)
     `
-    const [{ affectedRows }] = pool.query(sql, [userId, about, title, accountType, serviceLocation])
+    const [{ insertId }] = pool.query(sql, [userId, about, title, accountType, serviceLocation])
+    return insertId
+}
+
+function addfreelanceToCategory(freelanceId, categoryId) {
+    const sql = `
+    INSERT INTO freelance_category_enrollment(freelance_id, category_id)
+    VALUSE(?, ?)
+    `
+    const [{ affectedRows }] = pool.query(sql, [freelanceId, categoryId])
     return affectedRows
 }
 
-
+module.exports = {
+    getClient,
+    getFreelance,
+    getAllUsers,
+    getFreelancersByCategory,
+    addUserGate
+}
