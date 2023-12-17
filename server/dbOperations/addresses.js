@@ -1,28 +1,75 @@
 const { pool } = require('../db')
 
-function updateAddress(userId, city, street, building, suite, zipCode){
-    const newCity = city? city: getCity(userId)
-    const newStreet = street? street: getStreet(userId)
-    const newBuilding = building? building: getBuilding(userId)
-    const newSuite = suite? suite: getSuite(userId)
-    const newZipCode = zipCode? zipCode: getZipCode(userId)
+async function updateAddress(userId, city, street, building, suite, zipCode) {
+    const newCity = city || await getCity(userId)
+    const newStreet = street || await getStreet(userId)
+    const newBuilding = building || await getBuilding(userId)
+    const newSuite = suite || await getSuite(userId)
+    const newZipCode = zipCode || await getZipCode(userId)
+
+    const sql = `
+        UPDATE addresses
+        SET city = ?, street = ?, building = ?, suite = ?, zip_code = ?
+        WHERE user_id = ?  
+    `
+    const [{ affectedRows }] = await pool.query(sql, [newCity, newStreet, newBuilding, newSuite, newZipCode, userId])
+    return affectedRows
 }
 
-function getCity(userId){
-
+async function getCity(userId) {
+    const sql = `
+    SELECT city 
+    FROM addresses
+    WHERE user_id = ?
+    `
+    const [[ city ]] = await pool.query(sql, [userId])
+    return city?.city 
 }
 
-function getStreet(userId){
-
+async function getStreet(userId) {
+    const sql = `
+    SELECT street 
+    FROM addresses
+    WHERE user_id = ?
+    `
+    const [[street]] = await pool.query(sql, [userId])
+    return street?.street
 }
-function getBuilding(userId){
-
+async function getBuilding(userId) {
+    const sql = `
+    SELECT building 
+    FROM addresses
+    WHERE user_id = ?
+    `
+    const [[building]] = await pool.query(sql, [userId])
+    return building?.building
 }
 
-function getSuite(userId){
-
+async function getSuite(userId) {
+    const sql = `
+    SELECT suite 
+    FROM addresses
+    WHERE user_id = ?
+    `
+    const [[suite]] = await pool.query(sql, [userId])
+    return suite?.suite
 }
 
-function getZipCode(userId){
+async function getZipCode(userId) {
+    const sql = `
+    SELECT zip_code zipCode
+    FROM addresses
+    WHERE user_id = ?
+    `
+    const [[zipCode]] = await pool.query(sql, [userId])
+    return zipCode?.zipCode
+}
 
+module.exports = {
+    getCity,
+    getStreet,
+    getBuilding,
+    getSuite,
+    getZipCode,
+    updateAddress
 }

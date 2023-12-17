@@ -1,63 +1,79 @@
 const { pool } = require('../db')
 
-function updateFreelance(freelanceId, title, about, serviceLocation, type) {
-    const newTitle = title? title: getTitle(freelanceId)
-    const newAbout = about? about: getAbout(freelanceId)
-    const newSrviceLoaction = serviceLocation? serviceLocation: getServiceLoaction(freelanceId)
-    const newType = type? type: getType(freelanceId)
+async function updateFreelance(freelanceId, title, about, serviceLocation, type) {
+    const newTitle = title || await getTitle(freelanceId)
+    const newAbout = about || await getAbout(freelanceId)
+    const newSrviceLoaction = serviceLocation || await getServiceLoaction(freelanceId)
+    const newType = type || await getType(freelanceId)
 
     const sql = `
     UPDATE freelancers
     SET title = ?, about = ?, serviceLocation = ?, accountType = ?
     WHERE freelance_id = ?
     `
-    const [{ affectedRows }] = pool.query(sql, [newTitle, newAbout, newSrviceLoaction, newType, freelanceId])
+    const [{ affectedRows }] = await pool.query(sql, [newTitle, newAbout, newSrviceLoaction, newType, freelanceId])
     return affectedRows
 }
 
-function getTitle(freelanceId) {
+async function getTitle(freelanceId) {
     const sql = `
     SELECT title 
     FROM freelancers
     WHERE freelance_id = ?
     `
-    const [title] = pool.query(sql, [freelanceId])
-    return title
+    const [[ title ]] = await pool.query(sql, [freelanceId])
+    return title?.title
 }
 
 
-function getAbout(freelanceId) {
+async function getAbout(freelanceId) {
     const sql = `
     SELECT about 
     FROM freelancers
     WHERE freelance_id = ?
     `
-    const [about] = pool.query(sql, [freelanceId])
-    return about
+    const [[ about ]] = await pool.query(sql, [freelanceId])
+    return about?.about
 }
 
 
-function getType(freelanceId) {
+async function getType(freelanceId) {
     const sql = `
-    SELECT account_type 
+    SELECT account_type type
     FROM freelancers
     WHERE freelance_id = ?
     `
-    const [type] = pool.query(sql, [freelanceId])
-    return type
+    const [[ type ]] = await pool.query(sql, [freelanceId])
+    return type?.type
 }
 
 
-function getServiceLoaction(freelanceId) {
+async function getServiceLoaction(freelanceId) {
     const sql = `
-    SELECT service_loaction 
+    SELECT service_location serviceLocation
     FROM freelancers
     WHERE freelance_id = ?
     `
-    const [serviceLocation] = pool.query(sql, [freelanceId])
-    return serviceLocation
+    const [[ serviceLocation ]] = await pool.query(sql, [freelanceId])
+    return serviceLocation?.serviceLocation
+}
+
+async function getFreelancersByCategory(categoryId){
+    const sql = `
+    SELECT * FROM freelancers
+        JOIN freelance_category_enrollment
+	USING(freelance_id)
+    WHERE freelance_category_enrollment.category_id = ?
+    `
+    const [freelancers] = pool.query(sql, [categoryId])
+    return freelancers
 }
 
 module.exports = {
-    updateData
+    getTitle,
+    getAbout,
+    getType,
+    getServiceLoaction,
+    updateFreelance,
+    getFreelancersByCategory
 }

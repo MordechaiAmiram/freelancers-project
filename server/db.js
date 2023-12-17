@@ -1,6 +1,5 @@
 const sql = require('mysql2/promise')
 require('dotenv').config()
-
 const pool = sql.createPool(
     {
         host: 'localhost',
