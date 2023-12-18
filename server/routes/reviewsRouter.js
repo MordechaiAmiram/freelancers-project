@@ -1,5 +1,5 @@
 const express = require('express')
-const { getFreelanceReviews, getReviewerReviews, addReview } = require('../dbOperations/reviews')
+const { getFreelanceReviews, getReviewerReviews, addReview, updateReview } = require('../dbOperations/reviews')
 const router = express.Router()
 
 router
@@ -63,8 +63,15 @@ router
     .route('/')
     .put(async (req, res) => {
         try {
-            res.status(201)
-                .send('Hi')
+            const { text, rating, reviewId } = req.body
+            const isUpdated = await updateReview(reviewId, text, rating)
+            if (isUpdated) {
+                res.status(201)
+                    .send('Succeeded!')
+            } else {
+                res.status(400)
+                    .send('Bad request')
+            }
         } catch (err) {
             res.status(400)
                 .send(err.message)
