@@ -1,7 +1,7 @@
 const express = require('express')
 const signUpRouter = require('./signUpRouter')
 const logInRouter = require('./logInRouter')
-const { getAllUsers, getClient, addUserGate } = require('../dbOperations/users')
+const { getAllUsers, getClient, addUserGate, updateUserDetails } = require('../dbOperations/users')
 const router = express.Router()
 
 router
@@ -33,18 +33,6 @@ router
 
 router
     .route('/')
-    .post(async (req, res) => {
-        try {
-            res.status(200)
-                .send('Hi')
-        } catch (err) {
-            res.status(400)
-                .send(err.message)
-        }
-    })
-
-router
-    .route('/')
     .delete(async (req, res) => {
         try {
             res.status(200)
@@ -59,8 +47,14 @@ router
     .route('/')
     .put(async (req, res) => {
         try {
-            res.status(200)
-                .send('Hi')
+            const { firstName, lastName, email, phone, password } = req.body
+            const isUpdated = await updateUserDetails(firstName, lastName, email, phone, password)
+            if (isUpdated) {
+                res.status(200)
+                    .send('Hi')
+            } else {
+
+            }
         } catch (err) {
             res.status(400)
                 .send(err.message)

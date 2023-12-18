@@ -28,7 +28,7 @@ router
 async function validation(username, pass) {
     const users = await getAllUsers()
     const user = await users.find(user => user.username === username)
-    if (user.password === pass) {
+    if (user?.password === pass) {
         return ['log in', false]
     }
     else if (user) {

@@ -97,10 +97,82 @@ async function addfreelanceToCategory(freelanceId, categoryId) {
     return affectedRows
 }
 
+async function updateUserDetails(userId, firstName, lastName, email, phone, password){
+
+    const newFirstName = firstName || await getFirstName(userId)
+    const newLastName = lastName || await getLastName(userId)
+    const newEmail = email || await getEmail(userId)
+    const newPhone = phone || await getPhone(userId)
+    const newPassword = password || await getPassword(userId)
+
+    const sql = `
+    UPDATE users
+    SET first_name = ?, last_name = ?, email = ?, phone = ?, password = ? 
+    WHERE user_id = ?
+    `
+    const [{affectedRows }] = await pool.query(sql, [newFirstName, newLastName, newEmail, newPhone, newPassword, userId])
+    return affectedRows
+}
+
+async function getFirstName(userId){
+    const sql = `
+    SELECT first_name as firstName
+    FROM users
+    WHERE user_id = ?
+    `
+    const [[firstName]] = await pool.query(sql, [userId])
+    return firstName?.firstName
+}
+
+async function getLastName(userId){
+    const sql = `
+    SELECT last_name as lastName
+    FROM users
+    WHERE user_id = ?
+    `
+    const [[lastName]] = await pool.query(sql, [userId])
+    return lastName?.lastName
+}
+
+async function getEmail(userId){
+    const sql = `
+    SELECT email
+    FROM users
+    WHERE user_id = ?
+    `
+    const [[email]] = await pool.query(sql, [userId])
+    return email?.email
+}
+
+async function getPhone(userId){
+    const sql = `
+    SELECT phone
+    FROM users
+    WHERE user_id = ?
+    `
+    const [[phone]] = await pool.query(sql, [userId])
+    return phone?.phone
+}
+
+async function getPassword(userId){
+    const sql = `
+    SELECT password
+    FROM users
+    WHERE user_id = ?
+    `
+    const [[password]] = await pool.query(sql, [userId])
+    return password?.password
+}
 module.exports = {
     getClient,
     getFreelance,
     getAllUsers,
     getFreelancersByCategory,
-    addUserGate
+    addUserGate,
+    getFirstName,
+    getLastName,
+    getEmail,
+    getPhone,
+    getPassword,
+    updateUserDetails
 }
