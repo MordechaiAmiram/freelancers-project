@@ -1,5 +1,6 @@
 const express = require('express')
 const { getFreelancersByCategory } = require('../dbOperations/users')
+const { updateFreelance, getAbout } = require('../dbOperations/freelancers')
 const router = express.Router()
 
 router
@@ -43,8 +44,15 @@ router
     .route('/')
     .put(async (req, res) => {
         try {
-            res.status(201)
-                .send('Hi')
+            const { freelanceId, title, about, serviceLocation } = req.body
+            const isEdited = await updateFreelance(freelanceId, title, about, serviceLocation)
+            if (isEdited) {
+                res.status(201)
+                    .send('Succedded!')
+            } else {
+                res.status(400)
+                    .send('Bad request')
+            }
         } catch (err) {
             res.status(400)
                 .send(err.message)

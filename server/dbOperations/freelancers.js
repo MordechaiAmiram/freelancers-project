@@ -3,15 +3,14 @@ const { pool } = require('../db')
 async function updateFreelance(freelanceId, title, about, serviceLocation, type) {
     const newTitle = title || await getTitle(freelanceId)
     const newAbout = about || await getAbout(freelanceId)
-    const newSrviceLoaction = serviceLocation || await getServiceLoaction(freelanceId)
+    const newServiceLocation = serviceLocation || await getServiceLocation(freelanceId)
     const newType = type || await getType(freelanceId)
-
     const sql = `
     UPDATE freelancers
-    SET title = ?, about = ?, serviceLocation = ?, accountType = ?
+    SET title = ?, about = ?, service_location = ?, account_type = ?
     WHERE freelance_id = ?
     `
-    const [{ affectedRows }] = await pool.query(sql, [newTitle, newAbout, newSrviceLoaction, newType, freelanceId])
+    const [{ affectedRows }] = await pool.query(sql, [newTitle, newAbout, newServiceLocation, newType, freelanceId])
     return affectedRows
 }
 
@@ -48,7 +47,7 @@ async function getType(freelanceId) {
 }
 
 
-async function getServiceLoaction(freelanceId) {
+async function getServiceLocation(freelanceId) {
     const sql = `
     SELECT service_location serviceLocation
     FROM freelancers
@@ -73,7 +72,7 @@ module.exports = {
     getTitle,
     getAbout,
     getType,
-    getServiceLoaction,
+    getServiceLocation,
     updateFreelance,
     getFreelancersByCategory
 }
