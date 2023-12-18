@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../../services/BaseURL'
 import HomeForm from './HomeForm'
-function Home() {
 
+function Home() {
+    const [categories, setCategories] = useState([])
     useEffect(() => {
         async function getCategories() {
             try {
@@ -16,7 +17,7 @@ function Home() {
     }, [])
 
     return (
-        <HomeForm />
+        <HomeForm categories={categories}/>
     )
 }
 

@@ -6,7 +6,7 @@ import Categories from '../../components/mainCategories/MainCategories'
 import './home.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 
-function HomeForm() {
+function HomeForm({categories}) {
     return (
         <>
             <Navbar />
