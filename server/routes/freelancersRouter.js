@@ -1,12 +1,14 @@
 const express = require('express')
+const { getFreelancersByCategory } = require('../dbOperations/users')
 const router = express.Router()
 
 router
-    .route('/')
+    .route('/:categoryId')
     .get(async (req, res) => {
         try {
+            const freelancers = await getFreelancersByCategory(req.params.categoryId)
             res.status(200)
-                .send('Hi')
+                .send(freelancers)
         } catch (err) {
             res.status(400)
                 .send(err.message)

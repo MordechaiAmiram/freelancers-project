@@ -50,7 +50,7 @@ async function getFreelancersByCategory(categoryId) {
 
 async function addUserGate(isFreelance, firstName, lastName, username, email, phone, password,
     city, street, building, suite, zipCode,
-    about, title, accountType, serviceLocation, 
+    about, title, accountType, serviceLocation,
     categoryId) {
     const userId = await addUser(firstName, lastName, username, email, phone, password)
     if (isFreelance) {
@@ -97,7 +97,7 @@ async function addfreelanceToCategory(freelanceId, categoryId) {
     return affectedRows
 }
 
-async function updateUserDetails(userId, firstName, lastName, email, phone, password){
+async function updateUserDetails(userId, firstName, lastName, email, phone, password) {
 
     const newFirstName = firstName || await getFirstName(userId)
     const newLastName = lastName || await getLastName(userId)
@@ -110,11 +110,11 @@ async function updateUserDetails(userId, firstName, lastName, email, phone, pass
     SET first_name = ?, last_name = ?, email = ?, phone = ?, password = ? 
     WHERE user_id = ?
     `
-    const [{affectedRows }] = await pool.query(sql, [newFirstName, newLastName, newEmail, newPhone, newPassword, userId])
+    const [{ affectedRows }] = await pool.query(sql, [newFirstName, newLastName, newEmail, newPhone, newPassword, userId])
     return affectedRows
 }
 
-async function getFirstName(userId){
+async function getFirstName(userId) {
     const sql = `
     SELECT first_name as firstName
     FROM users
@@ -124,7 +124,7 @@ async function getFirstName(userId){
     return firstName?.firstName
 }
 
-async function getLastName(userId){
+async function getLastName(userId) {
     const sql = `
     SELECT last_name as lastName
     FROM users
@@ -134,7 +134,7 @@ async function getLastName(userId){
     return lastName?.lastName
 }
 
-async function getEmail(userId){
+async function getEmail(userId) {
     const sql = `
     SELECT email
     FROM users
@@ -144,7 +144,7 @@ async function getEmail(userId){
     return email?.email
 }
 
-async function getPhone(userId){
+async function getPhone(userId) {
     const sql = `
     SELECT phone
     FROM users
@@ -154,7 +154,7 @@ async function getPhone(userId){
     return phone?.phone
 }
 
-async function getPassword(userId){
+async function getPassword(userId) {
     const sql = `
     SELECT password
     FROM users
@@ -163,6 +163,16 @@ async function getPassword(userId){
     const [[password]] = await pool.query(sql, [userId])
     return password?.password
 }
+
+async function deleteUserAccount(userId) {
+    const sql = ` 
+    DELETE FROM users
+    WHERE user_id = ?;
+    `
+    const [{affectedRows }] = await pool.query(sql, [userId, userId, userId])
+    return affectedRows
+}
+
 module.exports = {
     getClient,
     getFreelance,
@@ -174,5 +184,6 @@ module.exports = {
     getEmail,
     getPhone,
     getPassword,
-    updateUserDetails
+    updateUserDetails,
+    deleteUserAccount
 }

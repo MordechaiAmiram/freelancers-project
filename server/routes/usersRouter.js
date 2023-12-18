@@ -47,13 +47,14 @@ router
     .route('/')
     .put(async (req, res) => {
         try {
-            const { firstName, lastName, email, phone, password } = req.body
-            const isUpdated = await updateUserDetails(firstName, lastName, email, phone, password)
+            const { userId, firstName, lastName, email, phone, password } = req.body
+            const isUpdated = await updateUserDetails(userId, firstName, lastName, email, phone, password)
             if (isUpdated) {
-                res.status(200)
-                    .send('Hi')
+                res.status(201)
+                    .send('Succeeded!')
             } else {
-
+                res.status(400)
+                    .send('Bad request')
             }
         } catch (err) {
             res.status(400)
