@@ -7,6 +7,7 @@ const cors = require('cors')
 const usersRouter = require('./routes/usersRouter')
 const categoriesRouter = require('./routes/categoriesRouter')
 const reviewsRouter = require('./routes/reviewsRouter')
+const freelacersRouter = require('./routes/freelancersRouter')
 
 app.use(express.json())
 app.use(cors())
@@ -14,6 +15,7 @@ app.use(cors())
 app.use(express.static(path.join(__dirname, 'client', 'build')))
 
 app.use('/api/users', usersRouter)
+app.use('/api/freelancers', freelacersRouter)
 app.use('/api/categories', categoriesRouter)
 app.use('/api/reviews', reviewsRouter)
 
