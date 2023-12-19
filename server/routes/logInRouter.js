@@ -6,7 +6,6 @@ router
     .route('/')
     .post(async (req, res) => {
         try {
-            console.log(req.body);
             const user = await validation(req.body.username, req.body.password)
             if (!user[1]) {
                 res.status(400)

@@ -11,6 +11,8 @@ function Navbar() {
                 component={RouterLink} to={'/'}>הרשמה</Link>
                 <Link className='link'
                 component={RouterLink} to={'/'}>כניסה</Link>
+                 <Link className='link'
+                component={RouterLink} to={'/'}>הפרופיל שלי</Link>
             </div>
         </>
     )
