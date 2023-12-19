@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+.back-button{
+  position: absolute;
+  margin-right: 0px;
+  cursor: pointer;
+}
+
 /* #firstname {
   width: 40%;
   display: 'inline-block';

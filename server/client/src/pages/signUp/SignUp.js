@@ -46,12 +46,16 @@ function SignUp() {
         serviceLocation: serviceLocation,
         categoryId: subcategory
       }
-      console.log(user);
       const { data } = await api.post('/users/sign-up', user)
       console.log(data);
     } catch (err) {
       console.log(err);
     }
+  }
+
+  const handleBack = (e) => {
+    e.preventDefault()
+    setIsFreelance(false)
   }
 
   const continueAsFreelance = async (e) => {
@@ -160,6 +164,7 @@ function SignUp() {
           subcategory={subcategory}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          handleBack={handleBack}
         />
       </div>
     </>

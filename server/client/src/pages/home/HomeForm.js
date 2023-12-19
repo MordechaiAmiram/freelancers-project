@@ -5,14 +5,16 @@ import Navbar from '../../components/navbar/Navbar'
 import Categories from '../../components/mainCategories/MainCategories'
 import './home.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
+import SearchIcon from '@mui/icons-material/Search';
 
-function HomeForm({categories}) {
+
+function HomeForm({ categories }) {
     return (
         <>
             <Navbar />
             <CategoriesNavbar />
             <h1>Freeלאנ"ש</h1>
-            <Button>חפש</Button>
+            <Button><SearchIcon /></Button>
             <InputField label={'חפש'} sx={{ width: '30%' }} />
             <Categories />
         </>

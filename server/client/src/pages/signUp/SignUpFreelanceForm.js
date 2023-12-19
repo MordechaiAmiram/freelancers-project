@@ -2,13 +2,15 @@ import React from 'react'
 import './signUp.css'
 import Select from '@mui/material/Select';
 import { FormControl, InputLabel, MenuItem } from '@mui/material';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 
-function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, about, serviceLocation, categoriesList, subcategoryList, subcategory, handleChange, handleSubmit }) {
+
+function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, about, serviceLocation, categoriesList, subcategoryList, subcategory, handleChange, handleSubmit, handleBack }) {
     return (
         <div>
             <form className='sign-up-form'>
-
+                <div className='back-button' onClick={handleBack}> <ArrowCircleRightIcon /></div>
                 <h3>הרשמה לפרילנס</h3>
 
                 {/* <label htmlFor='country'>מדינה
@@ -119,10 +121,10 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     >
                         {categoriesList.length > 0 &&
                             categoriesList.map(category => (
-                            <MenuItem key={category.id} value={category.id}>
-                                {category.name}
-                            </MenuItem>)
-                        )}
+                                <MenuItem key={category.id} value={category.id}>
+                                    {category.name}
+                                </MenuItem>)
+                            )}
                     </Select>
                 </FormControl>
 
@@ -136,10 +138,10 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     >
                         {subcategoryList.length > 0 &&
                             subcategoryList.map(category => (
-                            <MenuItem key={category.id} value={category.id}>
-                                {category.name}
-                            </MenuItem>)
-                        )}
+                                <MenuItem key={category.id} value={category.id}>
+                                    {category.name}
+                                </MenuItem>)
+                            )}
                     </Select>
                 </FormControl>
 
