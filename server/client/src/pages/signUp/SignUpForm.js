@@ -1,6 +1,6 @@
 import React from 'react'
 import './signUp.css'
-function SignUpForm({ firstName, lastName, username, email, phone, password, handleChange, handleSubmitAsClient, handleSubmitAsFreelance }) {
+function SignUpForm({ firstName, lastName, username, email, phone, password, handleChange, handleSubmit, continueAsFreelance }) {
     return (
         <div>
             <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -14,7 +14,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
             label={'Email or Phone'}
             sx={{ width: '100%' }} /> */}
 
-                <label id='firstName' for="firstName">שם פרטי
+                <label id='firstName' htmlFor="firstName">שם פרטי
                     <input
                         // id='firstname'
                         className='sign-up-input'
@@ -25,7 +25,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                         placeholder="שם פרטי" />
                 </label>
 
-                <label id='lastName' for="lastName">שם משפחה
+                <label id='lastName' htmlFor="lastName">שם משפחה
                     <input className='sign-up-input'
                         // id='lastname'
                         type="text"
@@ -35,7 +35,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                         placeholder="שם משפחה" />
                 </label>
 
-                <label for="username">שם משתמש
+                <label htmlFor="username">שם משתמש
                     <input className='sign-up-input'
                         type="text"
                         name='username'
@@ -44,7 +44,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                         placeholder="שם משתמש" />
                 </label>
 
-                <label for="phone">טלפון
+                <label htmlFor="phone">טלפון
                     <input className='sign-up-input'
                         type="text"
                         name='phone'
@@ -53,7 +53,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                         placeholder="טלפון" />
                 </label>
 
-                <label for="email">דואר אלקטרוני
+                <label htmlFor="email">דואר אלקטרוני
                     <input className='sign-up-input'
                         type="text"
                         name='email'
@@ -62,7 +62,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                         placeholder="מייל" />
                 </label>
 
-                <label for="password">סיסמה
+                <label htmlFor="password">סיסמה
                     <input className='sign-up-input'
                         type="password"
                         name='password'
@@ -72,8 +72,8 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                 </label>
 
                 <div className='submit-btns'>
-                    <button className='sign-up-submit' onClick={handleSubmitAsClient}>הרשמה כלקוח</button>
-                    <button className='sign-up-submit' onClick={handleSubmitAsFreelance}>הרשמה כפרילנס</button>
+                    <button className='sign-up-submit' onClick={handleSubmit}>הרשמה כלקוח</button>
+                    <button className='sign-up-submit' onClick={continueAsFreelance}>הרשמה כפרילנס</button>
                 </div>
                 {/* <div className="social">
                     <div className="go"><i className="fab fa-google"></i>  Google</div>
