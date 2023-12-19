@@ -2,7 +2,7 @@ import React from 'react'
 import './logIn.css'
 // import InputField from '../../components/form/InputField'
 // import { Button } from '@mui/material'
-function LogInForm() {
+function LogInForm({ username, password, handleChange, handleSubmit }) {
     return (
         <div>
             <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -16,21 +16,25 @@ function LogInForm() {
                     label={'Email or Phone'}
                     sx={{ width: '100%' }} /> */}
 
-                <label for="username">שם משתמש
+                <label htmlFor="username">שם משתמש
                     <input
                         type="text"
                         name='username'
+                        value={username}
+                        onChange={handleChange}
                         placeholder="שם משתמש" />
                 </label>
 
-                <label for="password">סיסמה
+                <label htmlFor="password">סיסמה
                     <input
                         type="password"
-                        name='passo=word'
+                        name='password'
+                        value={password}
+                        onChange={handleChange}
                         placeholder="סיסמה" />
                 </label>
 
-                <button>היכנס</button>
+                <button onClick={handleSubmit}>היכנס</button>
                 <div className="social">
                     <div className="go"><i className="fab fa-google"></i>  Google</div>
                     <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>

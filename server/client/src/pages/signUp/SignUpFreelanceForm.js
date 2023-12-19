@@ -103,11 +103,11 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                         label="serviceLocation"
                         onChange={handleChange}
                     >
-                        <MenuItem value={'unlimited'}>ללא הגבלת אזור</MenuItem>
-                        <MenuItem value={'jerusalem'}>ירושלים והסביבה</MenuItem>
-                        <MenuItem value={'center'}>אזור המרכז</MenuItem>
-                        <MenuItem value={'north'}>אזור הצפון</MenuItem>
-                        <MenuItem value={'south'}>אזור הדרום</MenuItem>
+                        <MenuItem value={'ללא הגבלה'}>ללא הגבלת אזור</MenuItem>
+                        <MenuItem value={'ירושלים והסביבה'}>ירושלים והסביבה</MenuItem>
+                        <MenuItem value={'אזור המרכז'}>אזור המרכז</MenuItem>
+                        <MenuItem value={'אזור הצפון'}>אזור הצפון</MenuItem>
+                        <MenuItem value={'אזור הדרום'}>אזור הדרום</MenuItem>
                     </Select>
                 </FormControl>
 
