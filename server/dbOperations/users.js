@@ -1,4 +1,5 @@
 const { pool } = require('../db')
+const { addAddress } = require('./addresses')
 
 async function getClient(username, password) {
     const sql = `
@@ -54,7 +55,7 @@ async function addUserGate(isFreelance, firstName, lastName, username, email, ph
     categoryId) {
     const userId = await addUser(firstName, lastName, username, email, phone, password)
     if (isFreelance) {
-        await addAddress(userId, city, street, building, suite, zipCode)
+        const affectedRows = await addAddress(userId, city, street, building, suite, zipCode)
         const freelanceId = await addFreelance(userId, about, title, accountType, serviceLocation)
         await addfreelanceToCategory(freelanceId, categoryId)
     }
@@ -70,14 +71,14 @@ async function addUser(firstName, lastName, username, email, phone, password) {
     return insertId
 }
 
-async function addAddress(userId, city, street, building, suite, zipCode) {
-    const sql = `
-    INSERT INTO addresses (user_id, city, street, building, suite, zip_code)
-    VALUES (?, ?, ?, ?, ?, ?)
-`
-    const [{ affectedRows }] = await pool.query(sql, [userId, city, street, building, suite, zipCode])
-    return affectedRows
-}
+// async function addAddress(userId, city, street, building, suite, zipCode) {
+//     const sql = `
+//     INSERT INTO addresses (user_id, city, street, building, suite, zip_code)
+//     VALUES (?, ?, ?, ?, ?, ?)
+// `
+//     const [{ affectedRows }] = await pool.query(sql, [userId, city, street, building, suite, zipCode])
+//     return affectedRows
+// }
 
 async function addFreelance(userId, about, title, accountType, serviceLocation) {
     const sql = `
@@ -169,7 +170,7 @@ async function deleteUserAccount(userId) {
     DELETE FROM users
     WHERE user_id = ?;
     `
-    const [{affectedRows }] = await pool.query(sql, [userId, userId, userId])
+    const [{ affectedRows }] = await pool.query(sql, [userId, userId, userId])
     return affectedRows
 }
 

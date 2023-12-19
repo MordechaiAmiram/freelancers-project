@@ -52,7 +52,7 @@ router
     .delete(async (req, res) => {
         try {
             res.status(201)
-                .send('Hi')
+                .send('waiting to be implemented...')
         } catch (err) {
             res.status(400)
                 .send(err.message)

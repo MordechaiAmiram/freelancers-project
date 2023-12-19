@@ -16,14 +16,23 @@ async function updateAddress(userId, city, street, building, suite, zipCode) {
     return affectedRows
 }
 
+async function addAddress(userId, city, street, building, suite, zipCode) {
+    const sql = `
+        INSERT INTO addresses (user_id, city, street, building, suite, zip_code)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `
+    const [{ affectedRows }] = await pool.query(sql, [userId, city, street, building, suite, zipCode])
+    return affectedRows
+}
+
 async function getCity(userId) {
     const sql = `
     SELECT city 
     FROM addresses
     WHERE user_id = ?
     `
-    const [[ city ]] = await pool.query(sql, [userId])
-    return city?.city 
+    const [[city]] = await pool.query(sql, [userId])
+    return city?.city
 }
 
 async function getStreet(userId) {
@@ -71,5 +80,6 @@ module.exports = {
     getBuilding,
     getSuite,
     getZipCode,
-    updateAddress
+    updateAddress,
+    addAddress
 }
