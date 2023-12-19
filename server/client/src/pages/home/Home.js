@@ -8,6 +8,7 @@ function Home() {
         async function getCategories() {
             try {
                 const {data} = await api.get('categories/parents')
+                setCategories(data)
                 console.log(data);
             } catch (err) {
                 console.log(err.message);
@@ -15,7 +16,6 @@ function Home() {
         }
         getCategories()
     }, [])
-
     return (
         <HomeForm categories={categories}/>
     )

@@ -16,7 +16,8 @@ function HomeForm({ categories }) {
             <h1>Freeלאנ"ש</h1>
             <Button><SearchIcon /></Button>
             <InputField label={'חפש'} sx={{ width: '30%' }} />
-            <Categories />
+            <Categories 
+            categories={categories}/>
         </>
     )
 }

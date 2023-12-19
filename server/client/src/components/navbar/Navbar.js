@@ -12,7 +12,7 @@ function Navbar() {
                 <Link className='link'
                 component={RouterLink} to={'/'}>כניסה</Link>
                  <Link className='link'
-                component={RouterLink} to={'/'}>הפרופיל שלי</Link>
+                component={RouterLink} to={'/my-profile/1'}>הפרופיל שלי</Link>
             </div>
         </>
     )

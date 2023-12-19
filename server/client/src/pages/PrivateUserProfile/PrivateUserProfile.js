@@ -1,8 +1,10 @@
 import React from 'react'
-
+import PrivateUserProfileForm from './PrivateUserProfileForm'
 function PrivateUserProfile() {
   return (
-    <div>privateUserProfile</div>
+    <>
+      <PrivateUserProfileForm />
+    </>
   )
 }
 
