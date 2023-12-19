@@ -1,4 +1,4 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -62,9 +62,15 @@
   font-weight: 300;
 }
 
+.submit-btns {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .sign-up-submit {
   margin-top: 40px;
-  width: 100%;
+  width: 48%;
   background: rgb(162, 196, 199);
   padding: 12px 0;
   font-size: 18px;
@@ -78,7 +84,6 @@
 }
 
 .social {
-  cursor: pointer;
   margin-top: 30px;
   display: flex;
   justify-content: space-between;

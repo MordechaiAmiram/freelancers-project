@@ -1,7 +1,7 @@
 const express = require('express')
 const signUpRouter = require('./signUpRouter')
 const logInRouter = require('./logInRouter')
-const { getAllUsers, getClient, addUserGate, updateUserDetails } = require('../dbOperations/users')
+const { getAllUsers, getClient, updateUserDetails } = require('../dbOperations/users')
 const router = express.Router()
 
 router
@@ -36,7 +36,7 @@ router
     .delete(async (req, res) => {
         try {
             res.status(200)
-                .send('Hi')
+                .send('waiting to be implemented...')
         } catch (err) {
             res.status(400)
                 .send(err.message)

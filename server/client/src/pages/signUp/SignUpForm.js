@@ -1,6 +1,6 @@
 import React from 'react'
 import './signUp.css'
-function SignUpForm() {
+function SignUpForm({ firstName, lastName, username, email, phone, password, handleChange, handleSubmitAsClient, handleSubmitAsFreelance }) {
     return (
         <div>
             <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -14,20 +14,24 @@ function SignUpForm() {
             label={'Email or Phone'}
             sx={{ width: '100%' }} /> */}
 
-                <label id='firstname' for="firstname">שם פרטי
+                <label id='firstName' for="firstName">שם פרטי
                     <input
                         // id='firstname'
                         className='sign-up-input'
                         type="text"
-                        name='firstname'
+                        name='firstName'
+                        value={firstName}
+                        onChange={handleChange}
                         placeholder="שם פרטי" />
                 </label>
 
-                <label id='lastname' for="lastname">שם משפחה
+                <label id='lastName' for="lastName">שם משפחה
                     <input className='sign-up-input'
                         // id='lastname'
                         type="text"
-                        name='lastname'
+                        name='lastName'
+                        value={lastName}
+                        onChange={handleChange}
                         placeholder="שם משפחה" />
                 </label>
 
@@ -35,6 +39,8 @@ function SignUpForm() {
                     <input className='sign-up-input'
                         type="text"
                         name='username'
+                        value={username}
+                        onChange={handleChange}
                         placeholder="שם משתמש" />
                 </label>
 
@@ -42,6 +48,8 @@ function SignUpForm() {
                     <input className='sign-up-input'
                         type="text"
                         name='phone'
+                        value={phone}
+                        onChange={handleChange}
                         placeholder="טלפון" />
                 </label>
 
@@ -49,6 +57,8 @@ function SignUpForm() {
                     <input className='sign-up-input'
                         type="text"
                         name='email'
+                        value={email}
+                        onChange={handleChange}
                         placeholder="מייל" />
                 </label>
 
@@ -56,15 +66,19 @@ function SignUpForm() {
                     <input className='sign-up-input'
                         type="password"
                         name='password'
+                        value={password}
+                        onChange={handleChange}
                         placeholder="סיסמה" />
                 </label>
 
-
-                <button className='sign-up-submit'>אישור</button>
-                <div className="social">
+                <div className='submit-btns'>
+                    <button className='sign-up-submit' onClick={handleSubmitAsClient}>הרשמה כלקוח</button>
+                    <button className='sign-up-submit' onClick={handleSubmitAsFreelance}>הרשמה כפרילנס</button>
+                </div>
+                {/* <div className="social">
                     <div className="go"><i className="fab fa-google"></i>  Google</div>
                     <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>
-                </div>
+                </div> */}
             </form>
         </div >
     )
