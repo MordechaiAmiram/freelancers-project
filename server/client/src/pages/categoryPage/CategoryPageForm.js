@@ -15,11 +15,11 @@ function CategoryPageFrom({ categoryName, profiles, subcategories }) {
             ))}
             {profiles && profiles.map(profile => (
                 <ProfileCard  
-                key={profile.freelaceId}
+                key={profile.freelanceId}
                 name={profile.firstName + ' ' + profile.lastName}
                 rating={profile.rating}
                 text={profile.title}   
-                freelaceId={profile.freelaceId} 
+                freelanceId={profile.freelanceId} 
                 />
             ))}
 

@@ -4,6 +4,8 @@ import { Link as LinkRouter } from 'react-router-dom'
 import { Link } from '@mui/material';
 
 function ProfileCardForm({ name, rating, text, freelanceId}) {
+  // const newRating = rating ? rating.toFixed(1) : ""
+  // console.log(rating);
   return (
     <div className="card-container">
       <span className="pro">PRO</span>
@@ -14,7 +16,7 @@ function ProfileCardForm({ name, rating, text, freelanceId}) {
       {/* <p>   <br /> </p> */}
       <div className="buttons">
         <button className="primary">
-          <Link component={LinkRouter} to={`/profile/${freelanceId}`}>ראה יותר</Link>
+          <Link component={LinkRouter} to={`/profile/${name}`}>ראה יותר</Link>
         </button>
         {/* <button class="primary ghost">
           Following
