@@ -5,7 +5,7 @@ function MainCategories({ categories }) {
     return (
         <>
             <div className='categories'>
-                {categories.length > 0 &&
+                {categories &&
                     categories.map(category => (
                         <Category key={category.id} name={category.name} />
                     ))}

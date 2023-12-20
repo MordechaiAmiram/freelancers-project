@@ -1,23 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import api from '../../services/BaseURL'
+import React from 'react'
 import HomeForm from './HomeForm'
+import useFetch from '../../hooks/useFetch'
 
 function Home() {
-    const [categories, setCategories] = useState([])
-    useEffect(() => {
-        async function getCategories() {
-            try {
-                const {data} = await api.get('categories/parents')
-                setCategories(data)
-                console.log(data);
-            } catch (err) {
-                console.log(err.message);
-            }
-        }
-        getCategories()
-    }, [])
+    const data = useFetch('/categories/parents')
     return (
-        <HomeForm categories={categories}/>
+        <HomeForm categories={data}/>
     )
 }
 
