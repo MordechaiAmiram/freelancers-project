@@ -8,9 +8,9 @@ function Navbar() {
         <>
             <div className='up-bar'>
                 <Link className='link'
-                component={RouterLink} to={'/'}>הרשמה</Link>
+                component={RouterLink} to={'/sign-up'}>הרשמה</Link>
                 <Link className='link'
-                component={RouterLink} to={'/'}>כניסה</Link>
+                component={RouterLink} to={'/log-in'}>כניסה</Link>
                  <Link className='link'
                 component={RouterLink} to={'/my-profile/1'}>הפרופיל שלי</Link>
             </div>
