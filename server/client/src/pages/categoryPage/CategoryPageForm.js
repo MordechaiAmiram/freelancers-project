@@ -10,7 +10,7 @@ function CategoryPageFrom({ categoryName, profiles, subcategories }) {
             <CategoryNavbar />
             <h1>{categoryName}</h1>
             {subcategories && subcategories.map(category => (
-                <div key={category.id}>category.name</div>
+                <div key={category.id}>{category.name}</div>
             ))}
             {profiles && profiles.map(profile => (
                 <ProfileCard  

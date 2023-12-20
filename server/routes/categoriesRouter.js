@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getParentsCategories, getChildren, addCategory, updateCategory } = require('../dbOperations/categories')
+const { getParentsCategories, getChildren, addCategory, updateCategory, getCategory } = require('../dbOperations/categories')
 
 router
     .route('/parents')
@@ -16,12 +16,24 @@ router
     })
 
 router
-    .route('/:id')
+    .route('/children/:id')
     .get(async (req, res) => {
         try {
             const categories = await getChildren(req.params.id)
             res.status(200)
                 .send(categories)
+        } catch (err) {
+            res.status(400)
+                .send(err.message)
+        }
+    })
+router
+    .route('/:id')
+    .get(async (req, res) => {
+        try {
+            const category = await getCategory(req.params.id)
+            res.status(200)
+                .send(category)
         } catch (err) {
             res.status(400)
                 .send(err.message)

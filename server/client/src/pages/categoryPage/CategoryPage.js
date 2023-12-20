@@ -1,16 +1,20 @@
 import React from 'react'
 import CategoryPageForm from './CategoryPageForm'
 import useFetch from '../../hooks/useFetch'
+import { useLocation } from 'react-router-dom'
 
 function CategoryPage({ category }) {
-    const profiles = useFetch(`/freelancers/${category.id}`)
-    const subcategories = useFetch(`/category/${category.id}`)
+    const location = useLocation()
+    let { state } = useLocation();
+    const subcategories = useFetch(location.pathname)
+    // const profiles = useFetch(`/freelancers/${category.id}`)
+    console.log(subcategories);
     return (
         <>
             <CategoryPageForm
-                categoryName={category.name}
-                profiles={profiles}
-                subcategories={subcategories}
+            categoryName={state}
+            // profiles={profiles}
+            subcategories={subcategories}
             />
         </>
     )

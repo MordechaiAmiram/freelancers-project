@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Category({ name }) {
+function Category({ category }) {
     return (
-        <div>{name}</div>
+        <div><Link to={`/categories/${category.id}`} state={category.name}>{category.name}</Link></div>
     )
 }
 
