@@ -14,8 +14,8 @@ function CategoryPageFrom({ categoryName, profiles, subcategories }) {
             ))}
             {profiles && profiles.map(profile => (
                 <ProfileCard  
-                key={profile.id}
-                name={profile.name}
+                key={profile.freelaceId}
+                name={profile.firstName + ' ' + profile.lastName}
                 rating={profile.rating}
                 text={profile.title}    
                 />

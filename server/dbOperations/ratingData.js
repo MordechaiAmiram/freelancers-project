@@ -23,7 +23,7 @@ async function addratingData(freelanceId, currRating) {
 
 async function getFreelanceRating(freelanceId) {
     const sql = `
-    SELECT AVG (cumulative_rating) as average
+    SELECT (cumulative_rating / number_of_ratings) as averageRating
     FROM rating_data
     WHERE freelance_id = ?
     `

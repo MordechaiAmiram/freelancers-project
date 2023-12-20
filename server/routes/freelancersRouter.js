@@ -1,7 +1,8 @@
 const express = require('express')
-const { getFreelancersByCategory } = require('../dbOperations/users')
-const { updateFreelance, getAbout } = require('../dbOperations/freelancers')
+const { getFreelancersByCategory } = require('../dbOperations/freelancers')
+const { updateFreelance } = require('../dbOperations/freelancers')
 const { updateAddress } = require('../dbOperations/addresses')
+const { getFreelanceRating } = require('../dbOperations/ratingData')
 const router = express.Router()
 
 router

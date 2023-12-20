@@ -20,7 +20,7 @@ async function getTitle(freelanceId) {
     FROM freelancers
     WHERE freelance_id = ?
     `
-    const [[ title ]] = await pool.query(sql, [freelanceId])
+    const [[title]] = await pool.query(sql, [freelanceId])
     return title?.title
 }
 
@@ -31,7 +31,7 @@ async function getAbout(freelanceId) {
     FROM freelancers
     WHERE freelance_id = ?
     `
-    const [[ about ]] = await pool.query(sql, [freelanceId])
+    const [[about]] = await pool.query(sql, [freelanceId])
     return about?.about
 }
 
@@ -42,7 +42,7 @@ async function getType(freelanceId) {
     FROM freelancers
     WHERE freelance_id = ?
     `
-    const [[ type ]] = await pool.query(sql, [freelanceId])
+    const [[type]] = await pool.query(sql, [freelanceId])
     return type?.type
 }
 
@@ -53,18 +53,25 @@ async function getServiceLocation(freelanceId) {
     FROM freelancers
     WHERE freelance_id = ?
     `
-    const [[ serviceLocation ]] = await pool.query(sql, [freelanceId])
+    const [[serviceLocation]] = await pool.query(sql, [freelanceId])
     return serviceLocation?.serviceLocation
 }
 
-async function getFreelancersByCategory(categoryId){
+async function getFreelancersByCategory(categoryId) {
     const sql = `
-    SELECT * FROM freelancers
-        JOIN freelance_category_enrollment
+    SELECT title, about, service_location as serviceLocation,
+        freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
+        category_id as categoryId, (cumulative_rating / number_of_ratings) as rating
+    FROM freelancers 
+        JOIN users
+    USING(user_id)
+        JOIN freelance_category_enrollment fce
+    USING(freelance_id)
+		LEFT JOIN rating_data
 	USING(freelance_id)
-    WHERE freelance_category_enrollment.category_id = ?
+    WHERE fce.category_id = ?
     `
-    const [freelancers] = pool.query(sql, [categoryId])
+    const [freelancers] = await pool.query(sql, [categoryId])
     return freelancers
 }
 

@@ -16,8 +16,8 @@ function AppRouting() {
             <Route path='/sign-up' element={<SignUp />} />
             <Route path='/sign-up-freelance' element={<SignUpFreelanceForm />} />
             <Route path='/my-profile/:username' element={<PrivateUserProfile />} />
-            <Route path='/profile/:freelanceName' element={<PublicUserProfile />} />
-            <Route path='/categories/:categoryName' element={<CategoryPage />} />
+            <Route path='/profile/:freelanceId' element={<PublicUserProfile />} />
+            <Route path='/categories/children/:categoryId' element={<CategoryPage />} />
         </Routes>
     )
 }

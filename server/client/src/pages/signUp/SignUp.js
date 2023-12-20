@@ -72,7 +72,7 @@ function SignUp() {
 
   const handleCategorySelect = async (value) => {
     try {
-      const { data } = await api.get(`/categories/${value}`)
+      const { data } = await api.get(`/categories/children/${value}`)
       setSubcategoryList(data)
     } catch (err) {
       console.log(err.message);

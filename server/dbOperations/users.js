@@ -38,17 +38,6 @@ async function getAllUsers() {
     return clients
 }
 
-async function getFreelancersByCategory(categoryId) {
-    const sql = `
-    SELECT * FROM freelancers
-    JOIN freelance_category_enrollment
-	    USING(freelance_id)
-    WHERE freelance_category_enrollment.category_id = ?
-    `
-    const [freelancers] = await pool.query(sql, [categoryId])
-    return freelancers
-}
-
 async function addUserGate(isFreelance, firstName, lastName, username, email, phone, password,
     city, street, building, suite, zipCode,
     about, title, accountType, serviceLocation,
@@ -70,15 +59,6 @@ async function addUser(firstName, lastName, username, email, phone, password) {
     const [{ insertId }] = await pool.query(sql, [firstName, lastName, username, email, phone, password])
     return insertId
 }
-
-// async function addAddress(userId, city, street, building, suite, zipCode) {
-//     const sql = `
-//     INSERT INTO addresses (user_id, city, street, building, suite, zip_code)
-//     VALUES (?, ?, ?, ?, ?, ?)
-// `
-//     const [{ affectedRows }] = await pool.query(sql, [userId, city, street, building, suite, zipCode])
-//     return affectedRows
-// }
 
 async function addFreelance(userId, about, title, accountType, serviceLocation) {
     const sql = `
@@ -178,7 +158,6 @@ module.exports = {
     getClient,
     getFreelance,
     getAllUsers,
-    getFreelancersByCategory,
     addUserGate,
     getFirstName,
     getLastName,

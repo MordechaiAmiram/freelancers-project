@@ -3,18 +3,18 @@ import CategoryPageForm from './CategoryPageForm'
 import useFetch from '../../hooks/useFetch'
 import { useLocation } from 'react-router-dom'
 
-function CategoryPage({ category }) {
+function CategoryPage() {
     const location = useLocation()
     let { state } = useLocation();
     const subcategories = useFetch(location.pathname)
-    // const profiles = useFetch(`/freelancers/${category.id}`)
-    console.log(subcategories);
+    const splitURL = location.pathname.split('/')
+    const profiles = useFetch(`/freelancers/${splitURL[splitURL.length - 1]}`)
     return (
         <>
             <CategoryPageForm
-            categoryName={state}
-            // profiles={profiles}
-            subcategories={subcategories}
+                categoryName={state}
+                profiles={profiles}
+                subcategories={subcategories}
             />
         </>
     )
