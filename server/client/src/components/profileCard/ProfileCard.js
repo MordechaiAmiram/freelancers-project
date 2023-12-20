@@ -1,8 +1,15 @@
 import React from 'react'
+import ProfileCardForm from './ProfileCardForm'
 
-function ProfileCard() {
+function ProfileCard({ name, rating, text }) {
   return (
-    <div>ProfileCard</div>
+    <>
+      <ProfileCardForm
+        name={name}
+        rating={rating}
+        text={text}
+      />
+    </>
   )
 }
 

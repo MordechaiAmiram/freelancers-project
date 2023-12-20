@@ -6,16 +6,18 @@ import Home from '../pages/home/Home';
 import LogIn from '../pages/logIn/LogIn';
 import PrivateUserProfile from '../pages/PrivateUserProfile/PrivateUserProfile';
 import PublicUserProfile from '../pages/publicUserProfile/PublicUserProfile';
+import CategoryPage from '../pages/categoryPage/CategoryPage';
 
 function AppRouting() {
     return (
         <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='log-in' element={<LogIn />} />
-            <Route path='sign-up' element={<SignUp />} />
-            <Route path='sign-up-freelance' element={<SignUpFreelanceForm />} />
-            <Route path='my-profile/:username' element={<PrivateUserProfile />} />
-            <Route path='profile/:username' element={<PublicUserProfile />} />
+            <Route path='/log-in' element={<LogIn />} />
+            <Route path='/sign-up' element={<SignUp />} />
+            <Route path='/sign-up-freelance' element={<SignUpFreelanceForm />} />
+            <Route path='/my-profile/:username' element={<PrivateUserProfile />} />
+            <Route path='/profile/:freelanceName' element={<PublicUserProfile />} />
+            <Route path='/category/:categoryName' element={<CategoryPage />} />
         </Routes>
     )
 }

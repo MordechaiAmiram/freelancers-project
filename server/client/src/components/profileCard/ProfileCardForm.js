@@ -1,7 +1,7 @@
 import React from 'react'
-import StarIcon from '@mui/icons-material/Star';import './profileCard.css'
+import StarIcon from '@mui/icons-material/Star'; import './profileCard.css'
 
-function ProfileCardForm() {
+function ProfileCardForm({ name, rating, text }) {
   return (
     <div class="card-container">
       <span class="pro">PRO</span>

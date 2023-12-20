@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SignUpForm from './SignUpForm'
 import SignUpFreelanceForm from './SignUpFreelanceForm'
 import api from '../../services/BaseURL'
+
 function SignUp() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
