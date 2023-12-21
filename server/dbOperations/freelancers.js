@@ -71,6 +71,7 @@ async function getFreelancersByCategory(categoryId) {
 		LEFT JOIN rating_data
 	USING(freelance_id)
     WHERE fce.category_id = ?
+    AND is_confirmed = 1
     `
     const [freelancers] = await pool.query(sql, [categoryId])
     return freelancers
@@ -95,6 +96,22 @@ async function getFreelance(freelanceId) {
     return freelancers
 }
 
+async function getUnconfirmedFreelancers(){
+    const sql = `
+    SELECT title, about, service_location as serviceLocation, account_type as accountType,
+        freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
+        phone, email,
+    FROM freelancers 
+        JOIN users
+    USING(user_id)
+        JOIN freelance_category_enrollment fce
+    USING(freelance_id)
+    WHERE is_confirmed = 0
+    `
+    const [freelancers] = await pool.query(sql, [categoryId])
+    return freelancers
+}
+
 module.exports = {
     getTitle,
     getAbout,
@@ -102,5 +119,6 @@ module.exports = {
     getServiceLocation,
     updateFreelance,
     getFreelancersByCategory,
-    getFreelance
+    getFreelance,
+    getUnconfirmedFreelancers
 }
