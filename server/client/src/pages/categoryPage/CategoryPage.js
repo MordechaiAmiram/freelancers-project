@@ -13,7 +13,7 @@ function CategoryPage() {
     const [categoryName, setCategoryName] = useState(state)
 
     useEffect(() => {
-        if ((category)) {
+        if (category) {
             setCategoryName(category.name)
         }
     }, [category])

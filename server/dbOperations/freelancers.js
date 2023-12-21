@@ -91,7 +91,7 @@ async function getFreelance(freelanceId) {
 	USING(freelance_id)
     WHERE f.freelance_id = ?
     `
-    const [freelancers] = await pool.query(sql, [freelanceId])
+    const [[freelancers]] = await pool.query(sql, [freelanceId])
     return freelancers
 }
 

@@ -6,21 +6,18 @@ function PublicUserProfile() {
     const { state } = useLocation();
     const location = useLocation()
     const splitURL = location.pathname.split('/')
-    const data = useFetch(`/freelancers${splitURL[splitURL.length - 1]}`)
-
+    const data = useFetch(`/freelance/${splitURL[splitURL.length - 1]}`)
     const [freelance, setFreelance] = useState(state)
 
-    useEffect(() => {
-        if (!state && data) {
-            setFreelance(data)
-        }
-    }, [state, data])
-
-    console.log(data, 'data');
-    console.log(state, 'state');
+    // useEffect(() => {
+    //     if ( data) {
+    //         setFreelance(data)
+    //     }
+    // }, [data])
+    
     return (
         <>
-            <PublicUserProfileForm state={freelance} />
+            <PublicUserProfileForm profile={freelance} />
         </>
     )
 }

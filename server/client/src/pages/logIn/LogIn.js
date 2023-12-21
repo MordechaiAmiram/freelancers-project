@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import LogInForm from './LogInForm'
 import api from '../../services/BaseURL'
+import { useNavigate } from 'react-router-dom';
 
 function LogIn() {
-
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -28,6 +29,8 @@ function LogIn() {
         password: password
       })
       console.log(data);
+      localStorage.setItem('currentUser', JSON.stringify(data))
+      navigate('/')
     } catch (err) {
       console.log(err);
     }

@@ -3,8 +3,8 @@ import './publicUserProfile.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import Navbar from '../../components/navbar/Navbar'
 import { Button } from '@mui/material'
-function PublicUserProfileForm({ state }) {
-    const { firstName, lastName, title, rating, about, serviceLocation, phone, email } = state
+function PublicUserProfileForm({ profile }) {
+    const { firstName, lastName, title, rating, about, serviceLocation, phone, email } = profile
     return (
         <>
             <Navbar />

@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import SignUpForm from './SignUpForm'
 import SignUpFreelanceForm from './SignUpFreelanceForm'
 import api from '../../services/BaseURL'
+import { useNavigate } from 'react-router-dom'
 
 function SignUp() {
+  const navigate = useNavigate()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [username, setUsername] = useState('')
@@ -49,6 +51,8 @@ function SignUp() {
       }
       const { data } = await api.post('/users/sign-up', user)
       console.log(data);
+      localStorage.setItem('currentUser', JSON.stringify(data))
+      navigate('/')
     } catch (err) {
       console.log(err);
     }
