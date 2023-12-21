@@ -6,7 +6,8 @@ CREATE TABLE `freelance`(
     `about` VARCHAR(255) NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `account_type` VARCHAR(255) NOT NULL,
-    `service_location` VARCHAR(255) NOT NULL
+    `service_location` VARCHAR(255) NOT NULL 
+    `is_confirmed` TINYINT NOT NULL DEFAULT 0;
 );
 
 CREATE TABLE `users`(
