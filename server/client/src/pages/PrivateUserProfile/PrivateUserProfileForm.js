@@ -3,7 +3,7 @@ import Navbar from '../../components/navbar/Navbar'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import './privateUserProfile.css'
 import { Button } from '@mui/material'
-function PrivateUserProfileForm({ profile }) {
+function PrivateUserProfileForm({ profile , handleLogUot}) {
   return (
     <div>
       <Navbar />
@@ -23,7 +23,7 @@ function PrivateUserProfileForm({ profile }) {
           </>}
         <div>{`סוג חשבון: ${!profile.account_type ? 'לקוח' : profile.is_admin ? 'מנהל' : profile.account_type}`}</div>
         <Button>עריכת פרופיל</Button>
-        <Button>יציאה</Button>
+        <Button onClick={handleLogUot}>יציאה</Button>
         <Button>מחיקת חשבון</Button>
       </div>
     </div>
