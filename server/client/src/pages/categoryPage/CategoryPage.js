@@ -13,7 +13,6 @@ function CategoryPage() {
     const [categoryName, setCategoryName] = useState(state)
 
     useEffect(() => {
-        console.log(category);
         if ((category)) {
             setCategoryName(category.name)
         }

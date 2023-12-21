@@ -1,14 +1,11 @@
 import React from 'react'
 import ProfileCardForm from './ProfileCardForm'
 
-function ProfileCard({ name, rating, text, freelanceId }) {
+function ProfileCard({ profile }) {
   return (
     <>
       <ProfileCardForm
-        name={name}
-        rating={rating}
-        text={text}
-        freelanceId={freelanceId}
+        profile={profile}
       />
     </>
   )
