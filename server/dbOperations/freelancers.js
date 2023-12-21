@@ -61,7 +61,8 @@ async function getFreelancersByCategory(categoryId) {
     const sql = `
     SELECT title, about, service_location as serviceLocation,
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
-        category_id as categoryId, (cumulative_rating / number_of_ratings) as rating
+        phone, email, category_id as categoryId,
+        (cumulative_rating / number_of_ratings) as rating
     FROM freelancers 
         JOIN users
     USING(user_id)
@@ -75,11 +76,31 @@ async function getFreelancersByCategory(categoryId) {
     return freelancers
 }
 
+async function getFreelance(freelanceId) {
+    const sql = `
+    SELECT title, about, service_location as serviceLocation,
+        freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
+        phone, email, category_id as categoryId,
+        (cumulative_rating / number_of_ratings) as rating
+    FROM freelancers f
+        JOIN users
+    USING(user_id)
+        JOIN freelance_category_enrollment fce
+    USING(freelance_id)
+		LEFT JOIN rating_data
+	USING(freelance_id)
+    WHERE f.freelance_id = ?
+    `
+    const [freelancers] = await pool.query(sql, [freelanceId])
+    return freelancers
+}
+
 module.exports = {
     getTitle,
     getAbout,
     getType,
     getServiceLocation,
     updateFreelance,
-    getFreelancersByCategory
+    getFreelancersByCategory,
+    getFreelance
 }

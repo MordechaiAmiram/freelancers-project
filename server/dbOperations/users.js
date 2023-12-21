@@ -11,19 +11,19 @@ async function getClient(username, password) {
     return client
 }
 
-async function getFreelance(username, password) {
-    const sql = `
-    SELECT * 
-    FROM users
-    JOIN addresses 
-        USING(user_id)
-    JOIN freelancers
-        USING(user_id)
-    WHERE username = ? AND password = ?
-    `
-    const [[freelance]] = await pool.query(sql, [username, password])
-    return freelance
-}
+// async function getFreelance(username, password) {
+//     const sql = `
+//     SELECT * 
+//     FROM users
+//     JOIN addresses 
+//         USING(user_id)
+//     JOIN freelancers
+//         USING(user_id)
+//     WHERE username = ? AND password = ?
+//     `
+//     const [[freelance]] = await pool.query(sql, [username, password])
+//     return freelance
+// }
 
 async function getAllUsers() {
     const sql = `
@@ -156,7 +156,7 @@ async function deleteUserAccount(userId) {
 
 module.exports = {
     getClient,
-    getFreelance,
+    // getFreelance,
     getAllUsers,
     addUserGate,
     getFirstName,
