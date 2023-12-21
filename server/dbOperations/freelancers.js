@@ -62,7 +62,7 @@ async function getFreelancersByCategory(categoryId) {
     SELECT title, about, service_location as serviceLocation,
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
         phone, email, category_id as categoryId,
-        (cumulative_rating / number_of_ratings) as rating
+        ROUND((cumulative_rating / number_of_ratings), 1) as rating
     FROM freelancers 
         JOIN users
     USING(user_id)
