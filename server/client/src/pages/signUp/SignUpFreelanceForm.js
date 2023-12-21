@@ -6,7 +6,7 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 
 
-function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, about, serviceLocation, categoriesList, subcategoryList, subcategory, handleChange, handleSubmit, handleBack }) {
+function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps, zipCodeProps, titleProps, aboutProps, serviceLocationProps, categoriesList, subcategoryList, subcategoryProps, handleSubmit, handleBack, handleCategorySelect }) {
     return (
         <div>
             <form className='sign-up-form'>
@@ -24,8 +24,7 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <input className='sign-up-input'
                         type="text"
                         name='city'
-                        value={city}
-                        onChange={handleChange}
+                        {...cityProps}
                         placeholder="עיר" />
                 </label>
 
@@ -33,8 +32,7 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <input className='sign-up-input'
                         type="text"
                         name='street'
-                        value={street}
-                        onChange={handleChange}
+                        {...streetProps}
                         placeholder="רחוב" />
                 </label>
 
@@ -42,8 +40,7 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <input className='sign-up-input'
                         type="text"
                         name='building'
-                        value={building}
-                        onChange={handleChange}
+                        {...buildingProps}
                         placeholder="בנין" />
                 </label>
 
@@ -51,8 +48,7 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <input className='sign-up-input'
                         type="text"
                         name='suite'
-                        value={suite}
-                        onChange={handleChange}
+                        {...suiteProps}
                         placeholder="דירה" />
                 </label>
 
@@ -60,8 +56,7 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <input className='sign-up-input'
                         type="text"
                         name='zipCode'
-                        value={zipCode}
-                        onChange={handleChange}
+                        {...zipCodeProps}
                         placeholder="מיקוד" />
                 </label>
 
@@ -69,8 +64,7 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <input className='sign-up-input'
                         type="text"
                         name='title'
-                        value={title}
-                        onChange={handleChange}
+                        {...titleProps}
                         placeholder="כותרת" />
                 </label>
 
@@ -78,8 +72,7 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <input className='sign-up-input'
                         type="text"
                         name='about'
-                        value={about}
-                        onChange={handleChange}
+                        {...aboutProps}
                         placeholder="אודות" />
                 </label>
 
@@ -99,9 +92,8 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <InputLabel>בחר איזור שירות</InputLabel>
                     <Select
                         name='serviceLocation'
-                        value={serviceLocation}
                         label="serviceLocation"
-                        onChange={handleChange}
+                        {...serviceLocationProps}
                     >
                         <MenuItem value={'ללא הגבלה'}>ללא הגבלת אזור</MenuItem>
                         <MenuItem value={'ירושלים והסביבה'}>ירושלים והסביבה</MenuItem>
@@ -115,9 +107,8 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <InputLabel>קטגוריה</InputLabel>
                     <Select
                         name='category'
-                        // value={category}
                         label="category"
-                        onChange={handleChange}
+                        onChange={(e)=> handleCategorySelect(e.target.value)}
                     >
                         {categoriesList.length > 0 &&
                             categoriesList.map(category => (
@@ -132,9 +123,8 @@ function SignUpFreelanceForm({ city, street, building, suite, zipCode, title, ab
                     <InputLabel>תת קטגוריה</InputLabel>
                     <Select
                         name='subcategory'
-                        value={subcategory}
                         label="subcategory"
-                        onChange={handleChange}
+                        {...subcategoryProps}
                     >
                         {subcategoryList.length > 0 &&
                             subcategoryList.map(category => (

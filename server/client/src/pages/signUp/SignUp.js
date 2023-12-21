@@ -3,28 +3,28 @@ import SignUpForm from './SignUpForm'
 import SignUpFreelanceForm from './SignUpFreelanceForm'
 import api from '../../services/BaseURL'
 import { useNavigate } from 'react-router-dom'
+import useInput from '../../hooks/useInput'
 
 function SignUp() {
   const navigate = useNavigate()
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [password, setPassword] = useState('')
-  const [city, setCity] = useState('')
-  const [street, setStreet] = useState('')
-  const [building, setBuilding] = useState('')
-  const [suite, setSuite] = useState('')
-  const [zipCode, setZipCode] = useState('')
-  const [title, setTitle] = useState('')
-  const [about, setAbout] = useState('')
-  const [serviceLocation, setServiceLoaction] = useState('')
-  const [subcategory, setSubcategory] = useState('')
+  const firstNameProps = useInput()
+  const lastNameProps = useInput()
+  const usernameProps = useInput()
+  const emailProps = useInput()
+  const phoneProps = useInput()
+  const passwordProps = useInput()
+  const cityProps = useInput()
+  const streetProps = useInput()
+  const buildingProps = useInput()
+  const suiteProps = useInput()
+  const zipCodeProps = useInput()
+  const titleProps = useInput()
+  const aboutProps = useInput()
+  const serviceLocationProps = useInput()
+  const subcategoryProps = useInput()
 
   const [categoriesList, setCategoriesList] = useState('')
   const [subcategoryList, setSubcategoryList] = useState('')
-
   const [isFreelance, setIsFreelance] = useState(false)
 
   const handleSubmit = async (e) => {
@@ -32,22 +32,22 @@ function SignUp() {
     try {
       const user = {
         isFreelance: isFreelance,
-        firstName: firstName,
-        lastName: lastName,
-        username: username,
-        email: email,
-        phone: phone,
-        password: password,
-        city: city,
-        street: street,
-        building: building,
-        suite: suite,
-        zipCode: zipCode,
-        title: title,
-        about: about,
+        firstName: firstNameProps.value,
+        lastName: lastNameProps.value,
+        username: usernameProps.value,
+        email: emailProps.value,
+        phone: phoneProps.value,
+        password: passwordProps.value,
+        city: cityProps.value,
+        street: streetProps.value,
+        building: buildingProps.value,
+        suite: suiteProps.value,
+        zipCode: zipCodeProps.value,
+        title: titleProps.value,
+        about: aboutProps.value,
         accountType: 'pro',
-        serviceLocation: serviceLocation,
-        categoryId: subcategory
+        serviceLocation: serviceLocationProps.value,
+        categoryId: subcategoryProps.value
       }
       const { data } = await api.post('/users/sign-up', user)
       console.log(data);
@@ -83,91 +83,34 @@ function SignUp() {
     }
   }
 
-  const handleChange = async ({ target }) => {
-    const { name, value } = target
-    switch (name) {
-      case 'firstName':
-        setFirstName(value)
-        break
-      case 'lastName':
-        setLastName(value)
-        break
-      case 'username':
-        setUsername(value)
-        break
-      case 'phone':
-        setPhone(value)
-        break
-      case 'email':
-        setEmail(value)
-        break
-      case 'password':
-        setPassword(value)
-        break
-      case 'city':
-        setCity(value)
-        break
-      case 'street':
-        setStreet(value)
-        break
-      case 'building':
-        setBuilding(value)
-        break
-      case 'suite':
-        setSuite(value)
-        break
-      case 'zipCode':
-        setZipCode(value)
-        break
-      case 'title':
-        setTitle(value)
-        break
-      case 'about':
-        setAbout(value)
-        break
-      case 'serviceLocation':
-        setServiceLoaction(value)
-        break
-      case 'category':
-        handleCategorySelect(value)
-        break
-      case 'subcategory':
-        setSubcategory(value)
-        break
-      default:
-        return
-    }
-  }
-
   return (
     <>
       <div style={{ visibility: isFreelance ? 'hidden' : "" }}>
         <SignUpForm
-          firstName={firstName}
-          lastName={lastName}
-          username={username}
-          email={email}
-          phone={phone}
-          password={password}
-          handleChange={handleChange}
+          firstNameProps={firstNameProps}
+          lastNameProps={lastNameProps}
+          usernameProps={usernameProps}
+          emailProps={emailProps}
+          phoneProps={phoneProps}
+          passwordProps={passwordProps}
           handleSubmit={handleSubmit}
           continueAsFreelance={continueAsFreelance}
         />
       </div>
       <div style={{ visibility: !isFreelance ? 'hidden' : "" }}>
         <SignUpFreelanceForm
-          city={city}
-          street={street}
-          building={building}
-          suite={suite}
-          zipCode={zipCode}
-          title={title}
-          about={about}
-          serviceLocation={serviceLocation}
+          cityProps={cityProps}
+          streetProps={streetProps}
+          buildingProps={buildingProps}
+          suiteProps={suiteProps}
+          zipCodeProps={zipCodeProps}
+          titleProps={titleProps}
+          aboutProps={aboutProps}
+          serviceLocationProps={serviceLocationProps}
           categoriesList={categoriesList}
           subcategoryList={subcategoryList}
-          subcategory={subcategory}
-          handleChange={handleChange}
+          subcategoryProps={subcategoryProps}
+          handleCategorySelect={handleCategorySelect}
           handleSubmit={handleSubmit}
           handleBack={handleBack}
         />

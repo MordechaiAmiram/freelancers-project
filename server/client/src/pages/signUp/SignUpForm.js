@@ -1,6 +1,6 @@
 import React from 'react'
 import './signUp.css'
-function SignUpForm({ firstName, lastName, username, email, phone, password, handleChange, handleSubmit, continueAsFreelance }) {
+function SignUpForm({ firstNameProps, lastNameProps, usernameProps, emailProps, phoneProps, passwordProps, handleSubmit, continueAsFreelance }) {
     return (
         <div>
             <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -20,8 +20,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                         className='sign-up-input'
                         type="text"
                         name='firstName'
-                        value={firstName}
-                        onChange={handleChange}
+                        {...firstNameProps}
                         placeholder="שם פרטי" />
                 </label>
 
@@ -30,8 +29,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                         // id='lastname'
                         type="text"
                         name='lastName'
-                        value={lastName}
-                        onChange={handleChange}
+                        {...lastNameProps}
                         placeholder="שם משפחה" />
                 </label>
 
@@ -39,8 +37,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                     <input className='sign-up-input'
                         type="text"
                         name='username'
-                        value={username}
-                        onChange={handleChange}
+                        {...usernameProps}
                         placeholder="שם משתמש" />
                 </label>
 
@@ -48,8 +45,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                     <input className='sign-up-input'
                         type="text"
                         name='phone'
-                        value={phone}
-                        onChange={handleChange}
+                        {...phoneProps}
                         placeholder="טלפון" />
                 </label>
 
@@ -57,8 +53,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                     <input className='sign-up-input'
                         type="text"
                         name='email'
-                        value={email}
-                        onChange={handleChange}
+                        {...emailProps}
                         placeholder="מייל" />
                 </label>
 
@@ -66,8 +61,7 @@ function SignUpForm({ firstName, lastName, username, email, phone, password, han
                     <input className='sign-up-input'
                         type="password"
                         name='password'
-                        value={password}
-                        onChange={handleChange}
+                        {...passwordProps}
                         placeholder="סיסמה" />
                 </label>
 
