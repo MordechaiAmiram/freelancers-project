@@ -6,6 +6,7 @@ import { Link } from '@mui/material';
 function ProfileCardForm({ name, rating, text, freelanceId}) {
   // const newRating = rating ? rating.toFixed(1) : ""
   // console.log(rating);
+
   return (
     <div className="card-container">
       <span className="pro">PRO</span>

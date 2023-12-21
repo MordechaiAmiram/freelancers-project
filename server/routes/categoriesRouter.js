@@ -31,7 +31,7 @@ router
     .route('/:id')
     .get(async (req, res) => {
         try {
-            const category = await getCategory(req.params.id)
+            const [category] = await getCategory(req.params.id)
             res.status(200)
                 .send(category)
         } catch (err) {

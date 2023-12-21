@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import api from '../services/BaseURL';
 
 const useFetch = (url) => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState();
 
     useEffect(() => {
         async function fetchData() {
