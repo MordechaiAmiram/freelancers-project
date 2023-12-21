@@ -4,13 +4,12 @@ import { Link as LinkRouter } from 'react-router-dom'
 import { Link } from '@mui/material';
 
 function ProfileCardForm({ profile }) {
-  const { firstName, lastName, title, rating, freelanceId } = profile
-  // const newRating = rating ? rating.toFixed(1) : ""
-  // console.log(rating);
+  const { firstName, lastName, title, rating, freelanceId, accountType } = profile
+  console.log(profile);
 
   return (
     <div className="card-container">
-      <span className="pro">PRO</span>
+      {accountType && <span className="pro">PRO</span>}
       <img className="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
       <h3>{firstName + ' ' + lastName}</h3>
       <div>{rating ? `(${rating})` : '(0)'}<StarIcon /></div>

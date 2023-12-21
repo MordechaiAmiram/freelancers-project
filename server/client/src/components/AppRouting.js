@@ -4,7 +4,7 @@ import SignUp from '../pages/signUp/SignUp';
 import SignUpFreelanceForm from '../pages/signUp/SignUpFreelanceForm'
 import Home from '../pages/home/Home';
 import LogIn from '../pages/logIn/LogIn';
-import PrivateUserProfile from '../pages/PrivateUserProfile/PrivateUserProfile';
+import PrivateUserProfile from '../pages/privateUserProfile/PrivateUserProfile';
 import PublicUserProfile from '../pages/publicUserProfile/PublicUserProfile';
 import CategoryPage from '../pages/categoryPage/CategoryPage';
 

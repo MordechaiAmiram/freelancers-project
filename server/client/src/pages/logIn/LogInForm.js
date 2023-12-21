@@ -2,7 +2,7 @@ import React from 'react'
 import './logIn.css'
 // import InputField from '../../components/form/InputField'
 // import { Button } from '@mui/material'
-function LogInForm({ username, password, handleChange, handleSubmit }) {
+function LogInForm({ username, password, handleChange, handleSubmit, usernameProps, passwordProps }) {
     return (
         <div>
             <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -20,8 +20,9 @@ function LogInForm({ username, password, handleChange, handleSubmit }) {
                     <input
                         type="text"
                         name='username'
-                        value={username}
-                        onChange={handleChange}
+                        {...usernameProps}
+                        // value={username}
+                        // onChange={handleChange}
                         placeholder="שם משתמש" />
                 </label>
 
@@ -29,8 +30,9 @@ function LogInForm({ username, password, handleChange, handleSubmit }) {
                     <input
                         type="password"
                         name='password'
-                        value={password}
-                        onChange={handleChange}
+                        {...passwordProps}
+                        // value={password}
+                        // onChange={handleChange}
                         placeholder="סיסמה" />
                 </label>
 

@@ -59,7 +59,7 @@ async function getServiceLocation(freelanceId) {
 
 async function getFreelancersByCategory(categoryId) {
     const sql = `
-    SELECT title, about, service_location as serviceLocation,
+    SELECT title, about, service_location as serviceLocation, account_type as accountType,
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
         phone, email, category_id as categoryId,
         ROUND((cumulative_rating / number_of_ratings), 1) as rating
