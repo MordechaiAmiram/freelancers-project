@@ -27,7 +27,7 @@ function PublicUserProfileForm({ profile, reviews }) {
             </div>
             {/* <div className='portfolio'>תיקיית עבודות</div> */}
             <div className='reviews'><b>ביקורות</b>
-            {reviews?.length > 0 &&
+            {reviews &&
             reviews.map(review => (
                 <Review 
                 key={review.id}
