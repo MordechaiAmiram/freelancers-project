@@ -7,7 +7,9 @@ function PublicUserProfile() {
     const location = useLocation()
     const splitURL = location.pathname.split('/')
     const data = useFetch(`/freelance/${splitURL[splitURL.length - 1]}`)
+    const reviews = useFetch(`/reviews/by-freelance/${splitURL[splitURL.length - 1]}`)
     const [freelance, setFreelance] = useState(state)
+    console.log(reviews, 'reviews');
 
     // useEffect(() => {
     //     if ( data) {
@@ -17,7 +19,10 @@ function PublicUserProfile() {
     
     return (
         <>
-            <PublicUserProfileForm profile={freelance} />
+            <PublicUserProfileForm 
+            profile={freelance} 
+            reviews={reviews}
+            />
         </>
     )
 }

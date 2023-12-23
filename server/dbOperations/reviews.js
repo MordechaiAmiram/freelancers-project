@@ -36,8 +36,10 @@ async function getRating(reviewId) {
 
 async function getFreelanceReviews(freelanceId) {
     const sql = `
-    SELECT review_text review, rating
-    FROM reviews
+    SELECT review_text as review, rating, review_date as reviewDate, first_name as firstName, last_name as lastName
+        FROM reviews
+    JOIN users
+        ON (reviewer_id = user_id)
     WHERE freelance_id = ?
     `
     const [reviews] = await pool.query(sql, [freelanceId])
