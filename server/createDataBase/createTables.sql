@@ -1,13 +1,13 @@
 USE freelancers_project;
 
-CREATE TABLE `freelance`(
+CREATE TABLE `freelancers`(
     `freelance_id` BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `user_id` BIGINT NOT NULL,
     `about` VARCHAR(255) NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `account_type` VARCHAR(255) NOT NULL,
-    `service_location` VARCHAR(255) NOT NULL 
-    `is_confirmed` TINYINT NOT NULL DEFAULT 0;
+    `service_location` VARCHAR(255) NOT NULL ,
+    `is_confirmed` TINYINT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE `users`(
@@ -31,7 +31,6 @@ CREATE TABLE `freelance_category_enrollment`(
 CREATE TABLE `addresses`(
     `address_id` BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `user_id` BIGINT NOT NULL,
-    `country` VARCHAR(255) NOT NULL,
     `city` VARCHAR(255) NOT NULL,
     `street` VARCHAR(255) NOT NULL,
     `building` BIGINT NOT NULL,
