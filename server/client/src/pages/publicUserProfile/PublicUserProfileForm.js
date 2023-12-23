@@ -3,7 +3,8 @@ import './publicUserProfile.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import Navbar from '../../components/navbar/Navbar'
 import { Button } from '@mui/material'
-function PublicUserProfileForm({ profile }) {
+import Review from '../../components/review/Review'
+function PublicUserProfileForm({ profile, reviews }) {
     const { firstName, lastName, title, rating, about, serviceLocation, phone, email } = profile
     return (
         <>
@@ -24,8 +25,17 @@ function PublicUserProfileForm({ profile }) {
                 </div>
                 <div>{phone} <br /> {email}</div>
             </div>
-            <div className='portfolio'>תיקיית עבודות</div>
-            <div className='reviews'>ביקורות</div>
+            {/* <div className='portfolio'>תיקיית עבודות</div> */}
+            <div className='reviews'><b>ביקורות</b>
+            {reviews?.length > 0 &&
+            reviews.map(review => (
+                <Review 
+                key={review.id}
+                review={review}
+                />
+            ))
+            }
+            </div>
         </>
     )
 }

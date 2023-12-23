@@ -36,7 +36,7 @@ async function getRating(reviewId) {
 
 async function getFreelanceReviews(freelanceId) {
     const sql = `
-    SELECT review_text as review, rating, review_date as reviewDate, first_name as firstName, last_name as lastName
+    SELECT review_id as id, review_text as text, rating, review_date as date, first_name as firstName, last_name as lastName
         FROM reviews
     JOIN users
         ON (reviewer_id = user_id)
