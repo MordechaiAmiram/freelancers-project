@@ -1,5 +1,5 @@
 const express = require('express')
-const { getFreelancersByCategory, getUnconfirmedFreelancers } = require('../dbOperations/freelancers')
+const { getFreelancersByCategory, getUnconfirmedFreelancers, getSumOfFreelancers } = require('../dbOperations/freelancers')
 
 const router = express.Router()
 
@@ -24,6 +24,19 @@ router
             const freelancers = await getUnconfirmedFreelancers()
             res.status(200)
                 .send(freelancers)
+        } catch (err) {
+            res.status(400)
+                .send(err.message)
+        }
+    })
+
+router
+    .route('/sum')
+    .get(async (req, res) => {
+        try {
+            const sum = await getSumOfFreelancers()
+            res.status(200)
+                .send(sum)
         } catch (err) {
             res.status(400)
                 .send(err.message)

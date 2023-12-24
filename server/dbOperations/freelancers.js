@@ -124,6 +124,15 @@ async function getUnconfirmedFreelancers() {
     return freelancers
 }
 
+async function getSumOfFreelancers(){
+    const sql = `
+    SELECT COUNT(freelance_id)
+    FROM freelancers
+    `
+    const [[{'COUNT(freelance_id)': sum}]] = await pool.query(sql)
+    return sum
+}
+
 module.exports = {
     getTitle,
     getAbout,
@@ -132,5 +141,6 @@ module.exports = {
     updateFreelance,
     getFreelancersByCategory,
     getFreelance,
-    getUnconfirmedFreelancers
+    getUnconfirmedFreelancers,
+    getSumOfFreelancers
 }
