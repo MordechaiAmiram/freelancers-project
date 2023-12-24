@@ -5,7 +5,6 @@ import { Link } from '@mui/material';
 
 function ProfileCardForm({ profile }) {
   const { firstName, lastName, title, rating, freelanceId, accountType } = profile
-  console.log(profile);
 
   return (
     <div className="card-container">

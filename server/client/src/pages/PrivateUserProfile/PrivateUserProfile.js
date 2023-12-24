@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 function PrivateUserProfile() {
   const navigate = useNavigate()
   const profile = JSON.parse(localStorage.getItem('currentUser'))
-  console.log(profile);
-  const handleLogUot = () => {
+
+  const handleLogOut = () => {
     localStorage.setItem('currentUser', JSON.stringify(""))
     navigate('/')
   }
@@ -14,7 +14,7 @@ function PrivateUserProfile() {
     <>
       <PrivateUserProfileForm
         profile={profile}
-        handleLogUot={handleLogUot}
+        handleLogOut={handleLogOut}
       />
     </>
   )

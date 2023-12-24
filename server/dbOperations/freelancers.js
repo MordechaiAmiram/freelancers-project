@@ -100,15 +100,15 @@ async function getUnconfirmedFreelancers(){
     const sql = `
     SELECT title, about, service_location as serviceLocation, account_type as accountType,
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
-        phone, email,
-    FROM freelancers 
+        phone, email
+    FROM freelancers f
         JOIN users
     USING(user_id)
         JOIN freelance_category_enrollment fce
     USING(freelance_id)
-    WHERE is_confirmed = 0
+    WHERE f.is_confirmed = 0
     `
-    const [freelancers] = await pool.query(sql, [categoryId])
+    const [freelancers] = await pool.query(sql)
     return freelancers
 }
 
