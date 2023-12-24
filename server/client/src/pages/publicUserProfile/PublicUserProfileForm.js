@@ -4,6 +4,7 @@ import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import Navbar from '../../components/navbar/Navbar'
 import { Button } from '@mui/material'
 import Review from '../../components/review/Review'
+import BasicRating from '../../components/rating/BasicRating'
 function PublicUserProfileForm({ profile, reviews }) {
     const { firstName, lastName, title, rating, about, serviceLocation, phone, email } = profile
     return (
@@ -35,6 +36,9 @@ function PublicUserProfileForm({ profile, reviews }) {
                 />
             ))
             }
+            </div>
+            <div>
+                <BasicRating />
             </div>
         </>
     )
