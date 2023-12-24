@@ -36,7 +36,7 @@ router
         try {
             const sum = await getSumOfFreelancers()
             res.status(200)
-                .send(sum)
+                res.json(sum)
         } catch (err) {
             res.status(400)
                 .send(err.message)

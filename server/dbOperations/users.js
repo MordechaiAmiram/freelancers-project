@@ -154,6 +154,17 @@ async function deleteUserAccount(userId) {
     return affectedRows
 }
 
+async function getSumOfUsers() {
+    const sql = `
+    SELECT COUNT(user_id)
+    FROM users
+    LEFT JOIN freelancers
+        USING(user_id)
+    `
+    const [[{ 'COUNT(user_id)': sum }]] = await pool.query(sql)
+    return sum
+}
+
 module.exports = {
     getClient,
     // getFreelance,
@@ -165,5 +176,6 @@ module.exports = {
     getPhone,
     getPassword,
     updateUserDetails,
-    deleteUserAccount
+    deleteUserAccount,
+    getSumOfUsers
 }

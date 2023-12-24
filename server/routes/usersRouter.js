@@ -1,7 +1,7 @@
 const express = require('express')
 const signUpRouter = require('./signUpRouter')
 const logInRouter = require('./logInRouter')
-const { getAllUsers, getClient, updateUserDetails } = require('../dbOperations/users')
+const { getAllUsers, getClient, updateUserDetails, getSumOfUsers } = require('../dbOperations/users')
 const router = express.Router()
 
 router
@@ -12,6 +12,19 @@ router
             const client = await getClient(username, password)
             res.status(200)
                 .send(client)
+        } catch (err) {
+            res.status(400)
+                .send(err.message)
+        }
+    })
+
+router
+    .route('/sum')
+    .get(async (req, res) => {
+        try {
+            const sum = await getSumOfUsers()
+            res.status(200)
+                .json(sum)
         } catch (err) {
             res.status(400)
                 .send(err.message)
