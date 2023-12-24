@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
 
-export default function BasicRatingForm({value, setValue}) {
+export default function BasicRatingForm({value, handleChange}) {
 
     const theme = createTheme({
         direction: "rtl",
@@ -23,7 +23,7 @@ export default function BasicRatingForm({value, setValue}) {
                     name="simple-controlled"
                     value={value}
                     onChange={(event, newValue) => {
-                        setValue(newValue);
+                        handleChange(newValue);
                     }}
                 />
             </ThemeProvider>

@@ -5,8 +5,12 @@ import Navbar from '../../components/navbar/Navbar'
 import { Button } from '@mui/material'
 import Review from '../../components/review/Review'
 import BasicRating from '../../components/rating/BasicRating'
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import AddReview from '../../components/addReview/AddReview'
+
+
 function PublicUserProfileForm({ profile, reviews }) {
-    const { firstName, lastName, title, rating, about, serviceLocation, phone, email } = profile
+    const { firstName, lastName, title, rating, about, serviceLocation, phone, email, freelanceId } = profile
     return (
         <>
             <Navbar />
@@ -28,18 +32,16 @@ function PublicUserProfileForm({ profile, reviews }) {
             </div>
             {/* <div className='portfolio'>תיקיית עבודות</div> */}
             <div className='reviews'><b>ביקורות</b>
-            {reviews &&
-            reviews.map(review => (
-                <Review 
-                key={review.id}
-                review={review}
-                />
-            ))
-            }
+                {reviews &&
+                    reviews.map(review => (
+                        <Review
+                            key={review.id}
+                            review={review}
+                        />
+                    ))
+                }
             </div>
-            <div>
-                <BasicRating />
-            </div>
+            <AddReview />
         </>
     )
 }
