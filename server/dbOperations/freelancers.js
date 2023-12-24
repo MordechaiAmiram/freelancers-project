@@ -1,16 +1,18 @@
 const { pool } = require('../db')
 
-async function updateFreelance(freelanceId, title, about, serviceLocation, type) {
+async function updateFreelance(freelanceId, title, about, serviceLocation, type, isConfirmed) {
     const newTitle = title || await getTitle(freelanceId)
     const newAbout = about || await getAbout(freelanceId)
     const newServiceLocation = serviceLocation || await getServiceLocation(freelanceId)
     const newType = type || await getType(freelanceId)
+    const NewIsConfirmed = isConfirmed || await getIsConfirmed(freelanceId)
+
     const sql = `
     UPDATE freelancers
-    SET title = ?, about = ?, service_location = ?, account_type = ?
+    SET title = ?, about = ?, service_location = ?, account_type = ?, is_confirmed = ?
     WHERE freelance_id = ?
     `
-    const [{ affectedRows }] = await pool.query(sql, [newTitle, newAbout, newServiceLocation, newType, freelanceId])
+    const [{ affectedRows }] = await pool.query(sql, [newTitle, newAbout, newServiceLocation, newType, NewIsConfirmed, freelanceId])
     return affectedRows
 }
 
@@ -57,6 +59,16 @@ async function getServiceLocation(freelanceId) {
     return serviceLocation?.serviceLocation
 }
 
+async function getIsConfirmed(freelanceId) {
+    const sql = `
+    SELECT is_confirmed isConfirmed
+    FROM freelancers
+    WHERE freelance_id = ?
+    `
+    const [[isConfirmed]] = await pool.query(sql, [freelanceId])
+    return isConfirmed?.isConfirmed
+}
+
 async function getFreelancersByCategory(categoryId) {
     const sql = `
     SELECT title, about, service_location as serviceLocation, account_type as accountType,
@@ -96,7 +108,7 @@ async function getFreelance(freelanceId) {
     return freelancers
 }
 
-async function getUnconfirmedFreelancers(){
+async function getUnconfirmedFreelancers() {
     const sql = `
     SELECT title, about, service_location as serviceLocation, account_type as accountType,
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 

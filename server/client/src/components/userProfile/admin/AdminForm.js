@@ -1,22 +1,13 @@
 import React from 'react'
 import BasicTable from '../../table/BasicTable'
-import api from '../../../utils/api'
 
-function AdminForm({ profile, usersOnHold }) {
+function AdminForm({ profile, usersOnHold, handleConfirm }) {
 
-  const handleConfirm = async (toConfirm) => {
-    try {
-      toConfirm.forEach(element => {
-        const { data } = api.put(`/freelancers/${element}`)
-      });
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
   return (
     <>
-      <div>Waiting to confirtmed
-        {usersOnHold && <BasicTable
+      <div><b>Waiting to confirtmed</b>
+        {usersOnHold?.length > 0 && 
+        <BasicTable
           usersOnHold={usersOnHold}
           handleConfirm={handleConfirm}
         />}
