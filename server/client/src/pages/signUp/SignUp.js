@@ -23,11 +23,11 @@ function SignUp() {
   const serviceLocationProps = useInput()
   const subcategoryProps = useInput()
 
-  const [imageId, setImageId] = useState()
+  const [imageId, setImageId] = useState('')
   const [categoriesList, setCategoriesList] = useState('')
   const [subcategoryList, setSubcategoryList] = useState('')
   const [isFreelance, setIsFreelance] = useState(false)
-  console.log(imageId);
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {

@@ -1,18 +1,19 @@
 const { pool } = require('../db')
 
-async function updateFreelance(freelanceId, title, about, serviceLocation, type, isConfirmed) {
+async function updateFreelance(freelanceId, title, about, serviceLocation, type, isConfirmed, imageId) {
     const newTitle = title || await getTitle(freelanceId)
     const newAbout = about || await getAbout(freelanceId)
     const newServiceLocation = serviceLocation || await getServiceLocation(freelanceId)
     const newType = type || await getType(freelanceId)
     const NewIsConfirmed = isConfirmed || await getIsConfirmed(freelanceId)
+    const newImageId = imageId || await getImageId(freelanceId)
 
     const sql = `
     UPDATE freelancers
-    SET title = ?, about = ?, service_location = ?, account_type = ?, is_confirmed = ?
+    SET title = ?, about = ?, service_location = ?, account_type = ?, is_confirmed = ?, profile_image_id = ?
     WHERE freelance_id = ?
     `
-    const [{ affectedRows }] = await pool.query(sql, [newTitle, newAbout, newServiceLocation, newType, NewIsConfirmed, freelanceId])
+    const [{ affectedRows }] = await pool.query(sql, [newTitle, newAbout, newServiceLocation, newType, NewIsConfirmed, newImageId, freelanceId])
     return affectedRows
 }
 
@@ -67,6 +68,16 @@ async function getIsConfirmed(freelanceId) {
     `
     const [[isConfirmed]] = await pool.query(sql, [freelanceId])
     return isConfirmed?.isConfirmed
+}
+
+async function getImageId(freelanceId) {
+    const sql = `
+    SELECT profile_image_id profileImageId
+    FROM freelancers
+    WHERE freelance_id = ?
+    `
+    const [[imageId]] = await pool.query(sql, [freelanceId])
+    return imageId?.imageId
 }
 
 async function getFreelancersByCategory(categoryId) {
@@ -144,5 +155,6 @@ module.exports = {
     getFreelancersByCategory,
     getFreelance,
     getUnconfirmedFreelancers,
-    getSumOfFreelancers
+    getSumOfFreelancers,
+    getImageId
 }
