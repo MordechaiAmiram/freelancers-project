@@ -1,3 +1,4 @@
+import { Rating } from '@mui/material'
 import React from 'react'
 
 function ReviewForm({ review }) {
@@ -7,7 +8,7 @@ function ReviewForm({ review }) {
             <div>{`ביקורת מאת: ${firstName} ${lastName}`} <br />
                 {`נכתבה בתאריך: ${date}`} <br />
                 {text} <br />
-                {rating}
+                <Rating name="read-only" value={rating} readOnly />
             </div>
         </>
     )

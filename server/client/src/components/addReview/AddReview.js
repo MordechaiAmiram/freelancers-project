@@ -4,24 +4,23 @@ import useInput from '../../hooks/useInput'
 import api from '../../services/BaseURL'
 
 function AddReview({ freelanceId }) {
+    const reviewerId = JSON.parse(localStorage.getItem('currentUser')).user_id
     const textProps = useInput()
-    // const [rating, setRating] = useState(0)
-
-    const [value, setValue] = useState(0);
+    const [rating, setRating] = useState(0)
 
     const handleChange = (newValue) => {
-        setValue(newValue)
+        setRating(newValue)
     }
 
     const handleClick = async () => {
         try {
-            const { data } = api.post('/reviews',
-                {
-                    text: textProps.value,
-                    rating: '',
-                    reviewerId: '',
-                    freelanceId: freelanceId
-                })
+            const review = {
+                text: textProps.value,
+                rating: rating,
+                reviewerId: reviewerId,
+                freelanceId: freelanceId
+            }
+            const { data } = api.post('/reviews', review)
         } catch (err) {
             console.log(err.message);
         }
@@ -34,7 +33,7 @@ function AddReview({ freelanceId }) {
                 textProps={textProps}
                 handleClick={handleClick}
                 handleChange={handleChange}
-                value={value}
+                value={rating}
             />
         </>
     )

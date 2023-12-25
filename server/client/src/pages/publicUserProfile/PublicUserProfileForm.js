@@ -4,13 +4,13 @@ import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import Navbar from '../../components/navbar/Navbar'
 import { Button } from '@mui/material'
 import Review from '../../components/review/Review'
-import BasicRating from '../../components/rating/BasicRating'
-import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import AddReview from '../../components/addReview/AddReview'
 
 
 function PublicUserProfileForm({ profile, reviews }) {
     const { firstName, lastName, title, rating, about, serviceLocation, phone, email, freelanceId } = profile
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+
     return (
         <>
             <Navbar />
@@ -24,9 +24,9 @@ function PublicUserProfileForm({ profile, reviews }) {
                     {/* <div className='category'><b>מקצוע</b></div><br /> */}
                     <div className='work-in-area'>{`מבצע/ת עבודות באזור: ${serviceLocation}`}</div><br />
                     <div className='about'><b>{about}</b></div>
-                    <Button className='contact'
+                    {/* <Button className='contact'
                         variant='contained'
-                        sx={{ width: 150 }}>צור קשר</Button>
+                        sx={{ width: 150 }}>צור קשר</Button> */}
                 </div>
                 <div>{phone} <br /> {email}</div>
             </div>
@@ -41,7 +41,7 @@ function PublicUserProfileForm({ profile, reviews }) {
                     ))
                 }
             </div>
-            <AddReview />
+            {currentUser && <AddReview freelanceId={freelanceId} />}
         </>
     )
 }
