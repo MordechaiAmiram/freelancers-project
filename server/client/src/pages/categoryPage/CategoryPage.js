@@ -7,9 +7,9 @@ function CategoryPage() {
     const location = useLocation()
     let { state } = useLocation();
     const splitURL = location.pathname.split('/')
-    const subcategories = useFetch(location.pathname)
-    const profiles = useFetch(`/freelancers/${splitURL[splitURL.length - 1]}`)
-    const category = useFetch(`/categories/${splitURL[splitURL.length - 1]}`)
+    const [subcategories] = useFetch(location.pathname)
+    const [profiles] = useFetch(`/freelancers/${splitURL[splitURL.length - 1]}`)
+    const [category] = useFetch(`/categories/${splitURL[splitURL.length - 1]}`)
     const [categoryName, setCategoryName] = useState(state)
 
     useEffect(() => {

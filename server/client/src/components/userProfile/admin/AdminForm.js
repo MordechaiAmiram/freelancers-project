@@ -1,7 +1,7 @@
 import React from 'react'
 import BasicTable from '../../table/BasicTable'
 
-function AdminForm({ profile, usersOnHold, handleConfirm, sumOfFreelancers, sumOfUsers }) {
+function AdminForm({ usersOnHold, handleConfirm, sumOfFreelancers, sumOfUsers, handleUsersOnHold }) {
 
   return (
     <>
@@ -14,6 +14,7 @@ function AdminForm({ profile, usersOnHold, handleConfirm, sumOfFreelancers, sumO
           <BasicTable
             usersOnHold={usersOnHold}
             handleConfirm={handleConfirm}
+            handleUsersOnHold={handleUsersOnHold}
           />}
       </div>
       <div>דיווחים</div>

@@ -18,7 +18,7 @@ router
     .route('/')
     .put(async (req, res) => {
         try {
-            const { freelanceId, title, about, serviceLocation,type,  isConfirmed } = req.body
+            const { freelanceId, title, about, serviceLocation,type, isConfirmed } = req.body
             const isEdited = await updateFreelance(freelanceId, title, about, serviceLocation, type, isConfirmed)
             if (isEdited) {
                 res.status(201)

@@ -24,6 +24,7 @@ export default function BasicTableForm({ usersOnHold, handleConfirm, handleChang
               <TableCell align="right">כותרת</TableCell>
               <TableCell align="right">אודות</TableCell>
               <TableCell align="right">אזור שירות</TableCell>
+              <TableCell align="right">לאישור</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

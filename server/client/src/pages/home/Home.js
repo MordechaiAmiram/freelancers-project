@@ -3,7 +3,7 @@ import HomeForm from './HomeForm'
 import useFetch from '../../hooks/useFetch'
 
 function Home() {
-    const data = useFetch('/categories/parents')
+    const [data] = useFetch('/categories/parents')
     return (
         <HomeForm categories={data}/>
     )

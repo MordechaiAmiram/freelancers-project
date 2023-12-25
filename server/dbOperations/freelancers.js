@@ -112,24 +112,26 @@ async function getUnconfirmedFreelancers() {
     const sql = `
     SELECT title, about, service_location as serviceLocation, account_type as accountType,
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
-        phone, email
+        phone, email, category_name as categoryName
     FROM freelancers f
         JOIN users
     USING(user_id)
         JOIN freelance_category_enrollment fce
     USING(freelance_id)
+        JOIN categories
+    USING (category_id)
     WHERE f.is_confirmed = 0
     `
     const [freelancers] = await pool.query(sql)
     return freelancers
 }
 
-async function getSumOfFreelancers(){
+async function getSumOfFreelancers() {
     const sql = `
     SELECT COUNT(freelance_id)
     FROM freelancers
     `
-    const [[{'COUNT(freelance_id)': sum}]] = await pool.query(sql)
+    const [[{ 'COUNT(freelance_id)': sum }]] = await pool.query(sql)
     return sum
 }
 

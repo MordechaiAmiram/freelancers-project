@@ -2,7 +2,7 @@ import React from 'react'
 import './publicUserProfile.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import Navbar from '../../components/navbar/Navbar'
-import { Button } from '@mui/material'
+import { Button, Rating } from '@mui/material'
 import Review from '../../components/review/Review'
 import AddReview from '../../components/addReview/AddReview'
 
@@ -20,7 +20,11 @@ function PublicUserProfileForm({ profile, reviews }) {
                 <div className='profile-picture'></div>
                 <div className='profile-inner'>
                     <div className='name'><b>{`${firstName} ${lastName}`}</b></div>
-                    <div className='rating'><b>{rating}</b></div><br />
+
+                    <div className='rating'>
+                        <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+                    </div> <br />
+
                     {/* <div className='category'><b>מקצוע</b></div><br /> */}
                     <div className='work-in-area'>{`מבצע/ת עבודות באזור: ${serviceLocation}`}</div><br />
                     <div className='about'><b>{about}</b></div>
