@@ -3,6 +3,7 @@ import './signUp.css'
 import Select from '@mui/material/Select';
 import { FormControl, InputLabel, MenuItem } from '@mui/material';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import UploadWidget from '../../hooks/UploadWidget';
 
 
 
@@ -133,6 +134,7 @@ function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps
                                 </MenuItem>)
                             )}
                     </Select>
+                    <UploadWidget />
                 </FormControl>
 
                 <button className='sign-up-submit' onClick={handleSubmit}>אישור</button>

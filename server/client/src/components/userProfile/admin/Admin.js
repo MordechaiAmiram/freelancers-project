@@ -1,7 +1,7 @@
 import AdminForm from './AdminForm'
 import useFetch from '../../../hooks/useFetch'
 
-function Admin({ profile }) {
+function Admin({ profile, handleLogOut }) {
   const [usersOnHold, setUsersOnHold] = useFetch('/freelancers/on-hold')
   const [sumOfFreelancers] = useFetch('/freelancers/sum')
   const [sumOfUsers] = useFetch('/users/sum')
@@ -26,6 +26,7 @@ function Admin({ profile }) {
         handleUsersOnHold={handleUsersOnHold}
         sumOfFreelancers={sumOfFreelancers}
         sumOfUsers={sumOfUsers}
+        handleLogOut={handleLogOut}
       />
     </>
   )
