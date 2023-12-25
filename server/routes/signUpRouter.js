@@ -6,10 +6,10 @@ router
     .route('/')
     .post(async (req, res) => {
         try {
-            const { isFreelance, firstName, lastName, username, email, phone, password, city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId } = req.body
+            const { isFreelance, firstName, lastName, username, email, phone, password, city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId, imageId } = req.body
             const isValid = await validation(username, password)
             if (isValid[1]) {
-                const userId = await addUserGate(isFreelance, firstName, lastName, username, email, phone, password, city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId)
+                const userId = await addUserGate(isFreelance, firstName, lastName, username, email, phone, password, city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId, imageId)
                 const user = {
                     userId: userId,
                     firstName: firstName,

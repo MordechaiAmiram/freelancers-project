@@ -11,20 +11,6 @@ async function getClient(username, password) {
     return client
 }
 
-// async function getFreelance(username, password) {
-//     const sql = `
-//     SELECT * 
-//     FROM users
-//     JOIN addresses 
-//         USING(user_id)
-//     JOIN freelancers
-//         USING(user_id)
-//     WHERE username = ? AND password = ?
-//     `
-//     const [[freelance]] = await pool.query(sql, [username, password])
-//     return freelance
-// }
-
 async function getAllUsers() {
     const sql = `
     SELECT * 
@@ -41,11 +27,11 @@ async function getAllUsers() {
 async function addUserGate(isFreelance, firstName, lastName, username, email, phone, password,
     city, street, building, suite, zipCode,
     about, title, accountType, serviceLocation,
-    categoryId) {
+    categoryId, imageId) {
     const userId = await addUser(firstName, lastName, username, email, phone, password)
     if (isFreelance) {
         const affectedRows = await addAddress(userId, city, street, building, suite, zipCode)
-        const freelanceId = await addFreelance(userId, about, title, accountType, serviceLocation)
+        const freelanceId = await addFreelance(userId, about, title, accountType, serviceLocation, imageId)
         await addfreelanceToCategory(freelanceId, categoryId)
     }
     return userId
@@ -60,12 +46,12 @@ async function addUser(firstName, lastName, username, email, phone, password) {
     return insertId
 }
 
-async function addFreelance(userId, about, title, accountType, serviceLocation) {
+async function addFreelance(userId, about, title, accountType, serviceLocation, imageId) {
     const sql = `
-    INSERT INTO freelancers(user_id, about, title, account_type, service_location)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO freelancers(user_id, about, title, account_type, service_location, profile_image_id)
+    VALUES (?, ?, ?, ?, ?, ?)
     `
-    const [{ insertId }] = await pool.query(sql, [userId, about, title, accountType, serviceLocation])
+    const [{ insertId }] = await pool.query(sql, [userId, about, title, accountType, serviceLocation, imageId])
     return insertId
 }
 
@@ -167,7 +153,6 @@ async function getSumOfUsers() {
 
 module.exports = {
     getClient,
-    // getFreelance,
     getAllUsers,
     addUserGate,
     getFirstName,
