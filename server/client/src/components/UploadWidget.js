@@ -1,7 +1,7 @@
 import { Button } from "@mui/base"
 import { useEffect, useRef } from "react"
 
-const UploadWidget = () => {
+const UploadWidget = ({handleImageId}) => {
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
 
@@ -11,7 +11,10 @@ const UploadWidget = () => {
             cloudName: 'dcgu0vi6u',
             uploadPreset: 'gzqr6cgn'
         }, function (err, res) {
-            console.log(res);
+            console.log(res.info.public_id);
+            console.log(handleImageId);
+            if(res?.info?.public_id)
+              handleImageId(res.info.public_id)
         })
     }, [])
     return (

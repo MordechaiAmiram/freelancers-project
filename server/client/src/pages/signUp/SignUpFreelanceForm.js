@@ -3,11 +3,11 @@ import './signUp.css'
 import Select from '@mui/material/Select';
 import { FormControl, InputLabel, MenuItem } from '@mui/material';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import UploadWidget from '../../hooks/UploadWidget';
+import UploadWidget from '../../components/UploadWidget';
 
 
 
-function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps, zipCodeProps, titleProps, aboutProps, serviceLocationProps, categoriesList, subcategoryList, subcategoryProps, handleSubmit, handleBack, handleCategorySelect }) {
+function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps, zipCodeProps, titleProps, aboutProps, serviceLocationProps, categoriesList, subcategoryList, subcategoryProps, handleImageId, handleSubmit, handleBack, handleCategorySelect }) {
     return (
         <div>
             <form className='sign-up-form'>
@@ -134,7 +134,7 @@ function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps
                                 </MenuItem>)
                             )}
                     </Select>
-                    <UploadWidget />
+                    <UploadWidget handleImageId={handleImageId} />
                 </FormControl>
 
                 <button className='sign-up-submit' onClick={handleSubmit}>אישור</button>

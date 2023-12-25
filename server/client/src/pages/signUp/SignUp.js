@@ -23,10 +23,11 @@ function SignUp() {
   const serviceLocationProps = useInput()
   const subcategoryProps = useInput()
 
+  const [imageId, setImageId] = useState()
   const [categoriesList, setCategoriesList] = useState('')
   const [subcategoryList, setSubcategoryList] = useState('')
   const [isFreelance, setIsFreelance] = useState(false)
-
+  console.log(imageId);
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -47,7 +48,8 @@ function SignUp() {
         about: aboutProps.value,
         accountType: 'pro',
         serviceLocation: serviceLocationProps.value,
-        categoryId: subcategoryProps.value
+        categoryId: subcategoryProps.value,
+        imageId: imageId
       }
       const { data } = await api.post('/users/sign-up', user)
       console.log(data);
@@ -83,6 +85,10 @@ function SignUp() {
     }
   }
 
+  const handleImageId = (id) => {
+    setImageId(id)
+  }
+
   return (
     <>
       <div style={{ visibility: isFreelance ? 'hidden' : "" }}>
@@ -110,6 +116,7 @@ function SignUp() {
           categoriesList={categoriesList}
           subcategoryList={subcategoryList}
           subcategoryProps={subcategoryProps}
+          handleImageId={handleImageId}
           handleCategorySelect={handleCategorySelect}
           handleSubmit={handleSubmit}
           handleBack={handleBack}
