@@ -51,7 +51,6 @@ router
     .route('/')
     .delete(async (req, res) => {
         try {
-            console.log(req.body);
             const isDeleted = await deleteReview(req.body.reviewId)
             if (isDeleted) {
                 res.status(201)

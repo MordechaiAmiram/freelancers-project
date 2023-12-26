@@ -10,16 +10,23 @@ function Navbar() {
             <div className='up-bar'>
                 {!profile &&
                     <>
-                        <Link className='link'
-                            component={RouterLink} to={'/sign-up'}>הרשמה</Link>
-                        <Link className='link'
-                            component={RouterLink} to={'/log-in'}>כניסה</Link>
+                        <div><span className='hello'>שלום אורח</span>
+                            <Link className='link'
+                                component={RouterLink} to={'/sign-up'}>הרשמה</Link>
+                            <Link className='link'
+                                component={RouterLink} to={'/log-in'}>כניסה</Link>
+                        </div>
                     </>}
-                {profile && <Link className='link'
-                    component={RouterLink} to={'/my-profile/:userId'}>הפרופיל שלי</Link>}
-                    {profile?.isAdmin && 
+                {profile &&
+                    <div><span className='hello' >{`שלום ${profile.firstName}`}</span>
+                        <Link className='link'
+                            component={RouterLink} to={'/my-profile/:userId'}>הפרופיל שלי</Link>
+                    </div>
+                }
+                {profile?.isAdmin &&
                     <Link className='link' component={RouterLink} to={'/management'}>ניהול</Link>
-                    }
+                }
+                <Link sx={{ position: 'relative', marginLeft: 0 }} component={RouterLink} to={'/'}>דף הבית</Link>
             </div>
         </>
     )

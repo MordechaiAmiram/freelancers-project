@@ -6,6 +6,12 @@
     justify-content: right;
 }
 
+.hello {
+    color: white;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
 .categories-navbar {
     width: 100%;
     background-color: lightgray;

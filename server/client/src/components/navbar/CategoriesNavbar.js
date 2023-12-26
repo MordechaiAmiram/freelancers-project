@@ -1,26 +1,16 @@
 import React from 'react'
-import { Link } from '@mui/material'
-import { Link as RouterLink } from 'react-router-dom'
+import useFetch from '../../hooks/useFetch'
+import Category from '../mainCategories/Category'
 
 function CategoriesNavbar() {
+    const [categories] = useFetch('/categories/parents')
+    console.log(categories);
     return (
         <div className='categories-navbar'>
-            <Link className='link'
-                component={RouterLink} to={'/'}>קטגוריה</Link>
-            <Link className='link'
-                component={RouterLink} to={'/'}>קטגוריה</Link>
-            <Link className='link'
-                component={RouterLink} to={'/'}>קטגוריה</Link>
-            <Link className='link'
-                component={RouterLink} to={'/'}>קטגוריה</Link>
-            <Link className='link'
-                component={RouterLink} to={'/'}>קטגוריה</Link>
-            <Link className='link'
-                component={RouterLink} to={'/'}>קטגוריה</Link>
-            <Link className='link'
-                component={RouterLink} to={'/'}>קטגוריה</Link>
-            <Link className='link'
-                component={RouterLink} to={'/'}>קטגוריה</Link>
+            {categories &&
+                categories.map(category => (
+                    <Category key={category.id} category={category} />
+                ))}
         </div>
     )
 }
