@@ -3,8 +3,10 @@ const { addAddress } = require('./addresses')
 
 async function getClient(username, password) {
     const sql = `
-    SELECT * 
+    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone, is_admin, password, username, freelance_id
     FROM users
+        LEFT JOIN freelancers
+    USING (user_id)
     WHERE username = ? AND password = ?
     `
     const [[client]] = await pool.query(sql, [username, password])
@@ -13,7 +15,10 @@ async function getClient(username, password) {
 
 async function getAllUsers() {
     const sql = `
-    SELECT * 
+    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone, 
+        is_admin, password, username, freelance_id, title, about, account_type as accountType, 
+        service_location as serviceLocation, profile_image_id as profileImageId,
+        city, street, building, suite, zip_code as zipCode
     FROM users
     LEFT JOIN addresses
         USING(user_id)

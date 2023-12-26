@@ -6,7 +6,7 @@ function FreelanceForm({ profile, handleLogOut }) {
         <>
             <div>
                 <div className='profile-picture'></div>
-                <div>{`שם: ${profile.first_name} ${profile.last_name}`}</div>
+                <div>{`שם: ${profile.firstName} ${profile.lastName}`}</div>
                 <div>{`דוא"ל: ${profile.email}`}</div>
                 <div>{`טלפון: ${profile.phone}`}</div>
                 <div>{`עיר: ${profile.city}`}</div>
@@ -14,7 +14,7 @@ function FreelanceForm({ profile, handleLogOut }) {
                 <div>הודעות</div>
                 <div> הזמנות</div>
                 <div>מי צפה בי</div>
-                <div>{`סוג חשבון: ${profile.account_type}`}</div>
+                <div>{`סוג חשבון: ${profile.accountType}`}</div>
                 <Button>עריכת פרופיל</Button>
                 <Button onClick={handleLogOut}>יציאה</Button>
                 <Button>מחיקת חשבון</Button>

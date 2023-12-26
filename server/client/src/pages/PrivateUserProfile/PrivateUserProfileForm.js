@@ -6,17 +6,17 @@ import Admin from '../../components/userProfile/admin/Admin'
 import Freelance from '../../components/userProfile/freelance/Freelance'
 import Client from '../../components/userProfile/client/Client'
 function PrivateUserProfileForm({ profile, handleLogOut }) {
-  const { is_admin, account_type } = profile
+  const { isAdmin, freelanceId } = profile
   return (
     <>
       <Navbar />
       <CategoriesNavbar />
-      {is_admin ?
+      {isAdmin ?
         <Admin
           profile={profile}
           handleLogOut={handleLogOut}
         /> :
-        account_type ?
+        freelanceId ?
           <Freelance
             profile={profile}
             handleLogOut={handleLogOut}
