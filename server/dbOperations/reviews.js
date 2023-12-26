@@ -1,5 +1,5 @@
 const { pool } = require('../db')
-const { updateRatingData, addratingData, getFreelanceRating } = require('./ratingData')
+const { updateRatingData, addratingData, getFreelanceRating, decreaseRatingData } = require('./ratingData')
 
 async function updateReview(reviewId, reviewText, rating) {
     const newReviewText = reviewText || await getReviewText(reviewId)
@@ -20,7 +20,7 @@ async function getReviewText(reviewId) {
     FROM reviews
     WHERE review_id = ?
     `
-    const [[ review ]] = await pool.query(sql, [reviewId])
+    const [[review]] = await pool.query(sql, [reviewId])
     return review?.review
 }
 
@@ -30,8 +30,18 @@ async function getRating(reviewId) {
     FROM reviews
     WHERE review_id = ?
     `
-    const [[ rating ]] = await pool.query(sql, [reviewId])
+    const [[rating]] = await pool.query(sql, [reviewId])
     return rating?.rating
+}
+
+async function getFreelanceId(reviewId){
+    const sql = `
+    SELECT freelance_id freelanceId
+    FROM reviews
+    WHERE review_id = ?
+    `
+    const [[freelanceId]] = await pool.query(sql, [reviewId])
+    return freelanceId?.freelanceId
 }
 
 async function getFreelanceReviews(freelanceId) {
@@ -70,12 +80,18 @@ async function addReview(text, rating, reviewerId, freelanceId) {
     return affectedRows
 }
 
-async function deleteReview(reviewId){
+async function deleteReview(reviewId) {
+    const rating = await getRating(reviewId)
+    const freelanceId = await getFreelanceId(reviewId)
+    
     const sql = `
     DELETE FROM reviews
     WHERE review_id = ?
     `
     const [{ affectedRows }] = await pool.query(sql, [reviewId])
+    if (affectedRows) {
+        await decreaseRatingData(freelanceId, rating)
+    }
     return affectedRows
 }
 
@@ -86,7 +102,8 @@ module.exports = {
     updateReview,
     addReview,
     getReviewerReviews,
-    deleteReview
+    deleteReview,
+    getFreelanceId
 }
 
 

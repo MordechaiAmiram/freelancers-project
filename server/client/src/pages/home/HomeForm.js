@@ -18,7 +18,6 @@ function HomeForm({ categories }) {
             <InputField label={'חפש'} sx={{ width: '30%' }} />
             <MainCategories 
             categories={categories}/>
-            <GetImage imageId={'othze865quavxprtd3kc'} />
         </>
     )
 }

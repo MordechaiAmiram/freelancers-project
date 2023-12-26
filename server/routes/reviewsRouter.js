@@ -1,5 +1,5 @@
 const express = require('express')
-const { getFreelanceReviews, getReviewerReviews, addReview, updateReview } = require('../dbOperations/reviews')
+const { getFreelanceReviews, getReviewerReviews, addReview, updateReview, deleteReview } = require('../dbOperations/reviews')
 const router = express.Router()
 
 router
@@ -51,9 +51,14 @@ router
     .route('/')
     .delete(async (req, res) => {
         try {
-            // const isDeleted = await 
-            res.status(201)
-                .send('waiting to be implemented...')
+            const isDeleted = await deleteReview(req.body.reviewId)
+            if (isDeleted) {
+                res.status(201)
+                    .send('Review is deleted')
+            } else {
+                res.status(400)
+                    .send('Bad requst')
+            }
         } catch (err) {
             res.status(400)
                 .send(err.message)
