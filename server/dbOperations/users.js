@@ -3,7 +3,8 @@ const { addAddress } = require('./addresses')
 
 async function getClient(username, password) {
     const sql = `
-    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone, is_admin, password, username, freelance_id
+    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone,
+        is_admin as isAdmin, password, username, freelance_id as freelanceId
     FROM users
         LEFT JOIN freelancers
     USING (user_id)

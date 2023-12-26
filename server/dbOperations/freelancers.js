@@ -76,8 +76,8 @@ async function getImageId(freelanceId) {
     FROM freelancers
     WHERE freelance_id = ?
     `
-    const [[imageId]] = await pool.query(sql, [freelanceId])
-    return imageId?.imageId
+    const [[profileImageId]] = await pool.query(sql, [freelanceId])
+    return profileImageId?.profileImageId
 }
 
 async function getFreelancersByCategory(categoryId) {
@@ -102,7 +102,7 @@ async function getFreelancersByCategory(categoryId) {
 
 async function getFreelance(freelanceId) {
     const sql = `
-    SELECT title, about, service_location as serviceLocation,
+    SELECT title, about, service_location as serviceLocation, profile_image_id as profileImageId
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
         phone, email, category_id as categoryId,
         (cumulative_rating / number_of_ratings) as rating

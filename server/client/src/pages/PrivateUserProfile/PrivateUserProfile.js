@@ -12,10 +12,10 @@ function PrivateUserProfile() {
   }
   return (
     <>
-      <PrivateUserProfileForm
+      {profile && <PrivateUserProfileForm
         profile={profile}
         handleLogOut={handleLogOut}
-      />
+      />}
     </>
   )
 }

@@ -7,6 +7,7 @@ import Freelance from '../../components/userProfile/freelance/Freelance'
 import Client from '../../components/userProfile/client/Client'
 function PrivateUserProfileForm({ profile, handleLogOut }) {
   const { isAdmin, freelanceId } = profile
+
   return (
     <>
       <Navbar />

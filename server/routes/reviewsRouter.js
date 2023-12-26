@@ -51,6 +51,7 @@ router
     .route('/')
     .delete(async (req, res) => {
         try {
+            // const isDeleted = await 
             res.status(201)
                 .send('waiting to be implemented...')
         } catch (err) {

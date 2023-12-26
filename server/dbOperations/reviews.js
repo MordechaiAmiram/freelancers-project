@@ -70,13 +70,23 @@ async function addReview(text, rating, reviewerId, freelanceId) {
     return affectedRows
 }
 
+async function deleteReview(reviewId){
+    const sql = `
+    DELETE FROM reviews
+    WHERE review_id = ?
+    `
+    const [{ affectedRows }] = await pool.query(sql, [reviewId])
+    return affectedRows
+}
+
 module.exports = {
     getRating,
     getReviewText,
     getFreelanceReviews,
     updateReview,
     addReview,
-    getReviewerReviews
+    getReviewerReviews,
+    deleteReview
 }
 
 
