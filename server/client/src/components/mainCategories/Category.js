@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Category({ category }) {
+function Category({ category, className }) {
     return (
-        <div><Link to={`/categories/children/${category.id}`} state={category.name}>{category.name}</Link></div>
+        <Link className={className} to={`/categories/children/${category.id}`} state={category.name}>{category.name}</Link>
     )
 }
 

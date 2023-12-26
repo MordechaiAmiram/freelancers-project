@@ -9,7 +9,7 @@ function CategoriesNavbar() {
         <div className='categories-navbar'>
             {categories &&
                 categories.map(category => (
-                    <Category key={category.id} category={category} />
+                        <Category key={category.id} category={category} className={'category-link-bar'} />
                 ))}
         </div>
     )
