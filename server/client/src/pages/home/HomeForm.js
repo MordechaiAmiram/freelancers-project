@@ -6,8 +6,6 @@ import './home.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import SearchIcon from '@mui/icons-material/Search';
 import MainCategories from '../../components/mainCategories/MainCategories'
-import UploadWidget from '../../components/UploadWidget'
-
 
 function HomeForm({ categories }) {
     return (
@@ -16,7 +14,6 @@ function HomeForm({ categories }) {
             <CategoriesNavbar />
             <h1>Freeלאנ"ש</h1>
             <Button><SearchIcon /></Button>
-            <UploadWidget />
             <InputField label={'חפש'} sx={{ width: '30%' }} />
             <MainCategories 
             categories={categories}/>

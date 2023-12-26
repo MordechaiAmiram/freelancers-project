@@ -17,6 +17,9 @@ function Navbar() {
                     </>}
                 {profile && <Link className='link'
                     component={RouterLink} to={'/my-profile/:userId'}>הפרופיל שלי</Link>}
+                    {profile?.isAdmin && 
+                    <Link className='link' component={RouterLink} to={'/management'}>ניהול</Link>
+                    }
             </div>
         </>
     )

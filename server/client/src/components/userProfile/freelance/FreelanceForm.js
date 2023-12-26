@@ -11,9 +11,9 @@ function FreelanceForm({ profile, handleLogOut }) {
                 <div>{`טלפון: ${profile.phone}`}</div>
                 <div>{`עיר: ${profile.city}`}</div>
                 <div>{`רחוב: ${profile.street} ${profile.building}/${profile.suite}`}</div>
-                <div>הודעות</div>
+                {/* <div>הודעות</div>
                 <div> הזמנות</div>
-                <div>מי צפה בי</div>
+                <div>מי צפה בי</div> */}
                 <div>{`סוג חשבון: ${profile.accountType}`}</div>
                 <Button>עריכת פרופיל</Button>
                 <Button onClick={handleLogOut}>יציאה</Button>

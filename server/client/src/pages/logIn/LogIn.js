@@ -20,7 +20,7 @@ function LogIn() {
       localStorage.setItem('currentUser', JSON.stringify(data))
       navigate('/')
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 

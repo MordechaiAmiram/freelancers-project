@@ -1,24 +1,16 @@
 import React from 'react'
-import BasicTable from '../../table/BasicTable'
 import { Button } from '@mui/material'
 
-function AdminForm({ handleLogOut, usersOnHold, handleConfirm, sumOfFreelancers, sumOfUsers, handleUsersOnHold }) {
+function AdminForm({ handleLogOut, profile }) {
 
   return (
     <>
-      <div><b>סטטיסטיקה</b> <br />
-        {`מספר משתמשים רשומים: ${sumOfUsers} `}
-        {`מתוכם פרילנסרים : ${sumOfFreelancers}`}
-      </div>
-      <div><b>ממתינים לאישור</b>
-        {usersOnHold?.length > 0 &&
-          <BasicTable
-            usersOnHold={usersOnHold}
-            handleConfirm={handleConfirm}
-            handleUsersOnHold={handleUsersOnHold}
-          />}
-      </div>
-      {/* <div>דיווחים</div> */}
+      <div className='profile-picture'></div>
+      <div>{`שם: ${profile.firstName} ${profile.lastName}`}</div>
+      <div>{`דוא"ל: ${profile.email}`}</div>
+      <div>{`טלפון: ${profile.phone}`}</div>
+      <div>{`סוג חשבון: מנהל`}</div>
+      <Button>עריכת פרופיל</Button>
       <Button onClick={handleLogOut}>יציאה</Button>
     </>
   )
