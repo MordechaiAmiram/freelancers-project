@@ -6,6 +6,7 @@ import './home.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import SearchIcon from '@mui/icons-material/Search';
 import MainCategories from '../../components/mainCategories/MainCategories'
+import GetImage from '../../components/GetImage'
 
 function HomeForm({ categories }) {
     return (
@@ -17,6 +18,7 @@ function HomeForm({ categories }) {
             <InputField label={'חפש'} sx={{ width: '30%' }} />
             <MainCategories 
             categories={categories}/>
+            <GetImage imageId={'othze865quavxprtd3kc'} />
         </>
     )
 }
