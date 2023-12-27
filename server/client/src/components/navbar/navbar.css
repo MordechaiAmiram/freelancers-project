@@ -12,7 +12,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid transparent;
     margin-left: 20px;
 }
 
@@ -32,15 +32,17 @@
 }
 
 .categories-navbar {
+    display: flex;
+    justify-content: space-around;
     width: 100%;
     background-color: lightgray;
     line-height: 35px;
-    display: flex;
-    justify-content: space-around;
+    /* border-bottom: 3px solid transparent; */
 }
 
 .category-link-bar {
     text-decoration: none;
+    border-bottom: 3px solid transparent;
 }
 
 .nav-item{
