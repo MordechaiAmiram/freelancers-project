@@ -8,13 +8,26 @@ function Navbar() {
         <>
             <div className='up-bar'>
                 {!profile &&
-                    <div><span className='hello'>שלום אורח</span>
-                        <RouterLink className='link'
-                            to={'/sign-up'}>הרשמה</RouterLink>
-                        <RouterLink className='link'
-                            to={'/log-in'}>כניסה</RouterLink>
-                        <RouterLink className='link home-link' to={'/'}>Freeלאנ"ש</RouterLink>
-                    </div>
+                    <>
+                        <div className='right-bar'>
+                            <div className='hello'>
+                                שלום אורח
+                            </div>
+                            <div className='nav-item'>
+                                <RouterLink className='link'
+                                    to={'/sign-up'}>הרשמה</RouterLink></div>
+                            <div className='nav-item'>
+                                <RouterLink className='link'
+                                    to={'/log-in'}>כניסה</RouterLink>
+                            </div>
+                        </div>
+                        <div className='left-bar'>
+                            <div className='nav-item'>
+                                <RouterLink className='link home-link'
+                                    to={'/'}>Freeלאנ"ש</RouterLink>
+                            </div>
+                        </div>
+                    </>
                 }
                 {profile &&
                     <div><span className='hello' >{`שלום ${profile.firstName}`}</span>
