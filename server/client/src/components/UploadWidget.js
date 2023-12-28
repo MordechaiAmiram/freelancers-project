@@ -9,9 +9,8 @@ const UploadWidget = ({ handleImageId }) => {
         cloudinaryRef.current = window.cloudinary
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
             cloudName: 'dcgu0vi6u',
-            uploadPreset: 'gzqr6cgn'
+            uploadPreset: 'gzqr6cgn',
         }, function (err, res) {
-            console.log(res.info.public_id);
             if(res?.info?.public_id)
               handleImageId(res.info.public_id)
         })

@@ -17,6 +17,7 @@ function HomeForm({ categories }) {
             <MainCategories
                 categories={categories}
             />
+            <GetImage imageId={'n3sujdkbkz0qfbmlyyvj'}/>
         </>
     )
 }
