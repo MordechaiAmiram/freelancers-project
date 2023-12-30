@@ -37,7 +37,8 @@ function PublicUserProfileForm({ profile, reviews }) {
                 <div>{phone} <br /> {email}</div>
             </div>
             {/* <div className='portfolio'>תיקיית עבודות</div> */}
-            <div className='reviews'><b>ביקורות</b>
+            <div className='reviews'>
+                <b>ביקורות</b>
                 {reviews &&
                     reviews.map(review => (
                         <Review

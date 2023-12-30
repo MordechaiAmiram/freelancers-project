@@ -30,21 +30,31 @@ function Navbar() {
                     </>
                 }
                 {profile &&
-                    <div><span className='hello' >{`שלום ${profile.firstName}`}</span>
-                        <RouterLink className='link'
-                            to={'/my-profile/:userId'}>הפרופיל שלי</RouterLink>
-                        <RouterLink className='link home-link' to={'/'}>Freeלאנ"ש</RouterLink>
-                    </div>
+                    <div className='right-bar'>
+                        <div className='hello'>
+                            {`שלום ${profile.firstName}`}
+                        </div>
+                        <div className='nav-item'>
+                            <RouterLink className='link'
+                                to={'/my-profile/:userId'}>הפרופיל שלי</RouterLink>
+                        </div>
+                        <div className='left-bar'>
+                            <div className='nav-item'>
+                                <RouterLink className='link home-link'
+                                    to={'/'}>Freeלאנ"ש</RouterLink>
+                            </div>
+                        </div>
+                        </div>
                 }
-                {profile?.isAdmin &&
-                    <>
-                        <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
-                        <RouterLink className='link home-link' to={'/'}>Freeלאנ"ש</RouterLink>
-                    </>
-                }
-            </div>
+                        {profile?.isAdmin &&
+                            <>
+                                <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
+                                <RouterLink className='link home-link' to={'/'}>Freeלאנ"ש</RouterLink>
+                            </>
+                        }
+                    </div >
         </>
-    )
+            )
 }
 
-export default Navbar
+            export default Navbar

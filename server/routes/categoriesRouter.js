@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getParentsCategories, getChildren, addCategory, updateCategory, getCategory } = require('../dbOperations/categories')
+const { getParentsCategories, getChildren, addCategory, updateCategory, getCategory, searchForCategory } = require('../dbOperations/categories')
 
 router
     .route('/parents')
@@ -29,8 +29,9 @@ router
     })
 router
     .route('/:id')
-    .get(async (req, res) => {
+    .get(async (req, res, next) => {
         try {
+            if (req.params.id === 'search') return next()
             const [category] = await getCategory(req.params.id)
             res.status(200)
                 .send(category)
@@ -38,6 +39,25 @@ router
             res.status(400)
                 .send(err.message)
         }
+    })
+router
+    .route('/search')
+    .get(async (req, res) => {
+        try {
+            console.log(req.headers.text);
+            const data = await searchForCategory(`% ${req.headers.text} %`)
+            if (data) {
+                res.status(200)
+                    .send(data)
+            } else {
+                res.status(400)
+                    .send('Bad request')
+            }
+        } catch (err) {
+            res.status(400)
+                .send('Bad request')
+        }
+
     })
 
 router
