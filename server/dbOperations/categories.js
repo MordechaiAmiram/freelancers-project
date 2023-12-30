@@ -49,10 +49,21 @@ async function updateCategory(name, parentId, categoryId) {
     return affectedRows
 }
 
+async function searchForCategory(text) {
+    const sql = `
+    SELECT category_name categoryName
+    FROM categories
+    WHERE category_name LIKE ?
+    `
+    const [data] = await pool.query(sql, [text])
+    return data
+}
+
 module.exports = {
     getChildren,
     getParentsCategories,
     addCategory,
     updateCategory,
-    getCategory
+    getCategory,
+    searchForCategory
 }
