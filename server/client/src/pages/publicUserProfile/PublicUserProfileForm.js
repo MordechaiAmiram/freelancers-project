@@ -5,6 +5,7 @@ import Navbar from '../../components/navbar/Navbar'
 import { Button, Rating } from '@mui/material'
 import Review from '../../components/review/Review'
 import AddReview from '../../components/addReview/AddReview'
+import GetImage from '../../components/GetImage'
 
 
 function PublicUserProfileForm({ profile, reviews }) {
@@ -17,7 +18,8 @@ function PublicUserProfileForm({ profile, reviews }) {
             <CategoriesNavbar />
             <div className='profile-container'>
                 <h2>{title}</h2>
-                <div className='profile-picture'></div>
+                {/* <div className='profile-picture'></div> */}
+                <GetImage imageId={'n3sujdkbkz0qfbmlyyvj'} width={200} className={'profile-picture'} />
                 <div className='profile-inner'>
                     <div className='name'><b>{`${firstName} ${lastName}`}</b></div>
 

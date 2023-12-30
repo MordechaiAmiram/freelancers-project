@@ -16,12 +16,12 @@ h2 {
 }
 
 .profile-picture {
+    border: 1px solid #03BFCB;
+	border-radius: 50%;
+	padding: 7px;
     height: 180px;
     width: 180px;
     margin-right: 5%;
-    border: solid 1px;
-    border-radius: 50%;
-    background-color: aqua;
 }
 
 .profile-inner {

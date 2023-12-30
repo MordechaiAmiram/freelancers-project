@@ -3,7 +3,7 @@ import React from 'react'
 
 function ReviewForm({ review, handleDelete }) {
     const { firstName, lastName, rating, text, date } = review
-    const isAdmin = JSON.parse(localStorage.getItem('currentUser')).isAdmin
+    const isAdmin = JSON.parse(localStorage.getItem('currentUser'))?.isAdmin
     
     return (
         <>
