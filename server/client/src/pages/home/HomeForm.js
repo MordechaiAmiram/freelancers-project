@@ -5,7 +5,6 @@ import Navbar from '../../components/navbar/Navbar'
 import './home.css'
 import SearchIcon from '@mui/icons-material/Search';
 import MainCategories from '../../components/mainCategories/MainCategories'
-import GetImage from '../../components/GetImage'
 
 function HomeForm({ categories }) {
     return (
@@ -17,7 +16,6 @@ function HomeForm({ categories }) {
             <MainCategories
                 categories={categories}
             />
-            <GetImage imageId={'n3sujdkbkz0qfbmlyyvj'}/>
         </>
     )
 }
