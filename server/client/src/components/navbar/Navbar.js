@@ -30,13 +30,20 @@ function Navbar() {
                     </>
                 }
                 {profile &&
-                    <div className='right-bar'>
-                        <div className='hello'>
-                            {`שלום ${profile.firstName}`}
-                        </div>
-                        <div className='nav-item'>
-                            <RouterLink className='link'
-                                to={'/my-profile/:userId'}>הפרופיל שלי</RouterLink>
+                    <>
+                        <div className='right-bar'>
+                            <div className='hello'>
+                                {`שלום ${profile.firstName}`}
+                            </div>
+                            <div className='nav-item'>
+                                <RouterLink className='link'
+                                    to={'/my-profile/:userId'}>הפרופיל שלי</RouterLink>
+                            </div>
+                            {profile?.isAdmin &&
+                                <div className='nav-item'>
+                                    <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
+                                </div>
+                            }
                         </div>
                         <div className='left-bar'>
                             <div className='nav-item'>
@@ -44,17 +51,10 @@ function Navbar() {
                                     to={'/'}>Freeלאנ"ש</RouterLink>
                             </div>
                         </div>
-                        </div>
-                }
-                        {profile?.isAdmin &&
-                            <>
-                                <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
-                                <RouterLink className='link home-link' to={'/'}>Freeלאנ"ש</RouterLink>
-                            </>
-                        }
-                    </div >
+                    </>}
+            </div>
         </>
-            )
+    )
 }
 
-            export default Navbar
+export default Navbar
