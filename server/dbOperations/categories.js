@@ -52,9 +52,10 @@ async function updateCategory(name, parentId, categoryId) {
 async function searchForCategory(text) {
     let like = `%${text}%`
     const sql = `
-    SELECT category_name categoryName
+    SELECT category_name name, category_id id
     FROM categories
     WHERE category_name LIKE ?
+    LIMIT 5;
     `
     const [data] = await pool.query(sql, [like])
     return data

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import './navbar.css'
+import SearchField from '../searchField/SearchField'
 
 function Navbar() {
     const profile = JSON.parse(localStorage.getItem('currentUser'))
@@ -45,6 +46,7 @@ function Navbar() {
                                 </div>
                             }
                         </div>
+                        <SearchField />
                         <div className='left-bar'>
                             <div className='nav-item'>
                                 <RouterLink className='link home-link'

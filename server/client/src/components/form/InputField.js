@@ -1,17 +1,17 @@
 import React from 'react'
 import { TextField } from '@mui/material'
 
-function InputField({ label, value, name, sx }) {
+function InputField({ label, name, sx , props}) {
   return (
     <>
       <TextField
         label={label}
+        {...props}
         variant="outlined"
         size='small'
-        sx={sx}
         type='text'
         name={name}
-        value={value}
+        sx={sx}
       />
     </>
   )
