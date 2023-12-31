@@ -44,8 +44,7 @@ router
     .route('/search')
     .get(async (req, res) => {
         try {
-            console.log(req.headers.text);
-            const data = await searchForCategory(`% ${req.headers.text} %`)
+            const data = await searchForCategory(req.query.text)
             if (data) {
                 res.status(200)
                     .send(data)

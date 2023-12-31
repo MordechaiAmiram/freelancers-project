@@ -50,12 +50,13 @@ async function updateCategory(name, parentId, categoryId) {
 }
 
 async function searchForCategory(text) {
+    let like = `%${text}%`
     const sql = `
     SELECT category_name categoryName
     FROM categories
     WHERE category_name LIKE ?
     `
-    const [data] = await pool.query(sql, [text])
+    const [data] = await pool.query(sql, [like])
     return data
 }
 
