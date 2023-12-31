@@ -37,17 +37,21 @@ function PublicUserProfileForm({ profile, reviews }) {
                 <div>{phone} <br /> {email}</div>
             </div>
             {/* <div className='portfolio'>תיקיית עבודות</div> */}
-            <div className='reviews'>
-                <b>ביקורות</b>
-                {reviews &&
-                    reviews.map(review => (
-                        <Review
-                            key={review.id}
-                            review={review}
-                        />
-                    ))
-                }
-            </div>
+            {reviews?.length > 0 &&
+                <div className='reviews'>
+                    <b>ביקורות</b>
+                    {reviews.map((review, index) => (
+                        <>
+                            <Review
+                                key={review.id}
+                                review={review}
+                            />
+                            {index !== reviews.length-1 &&
+                                <div className='separate-line' key={review.id}></div>}
+                        </>
+                    ))}
+                </div>
+            }
             {currentUser && <AddReview freelanceId={freelanceId} />}
         </>
     )

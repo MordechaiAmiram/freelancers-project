@@ -8,7 +8,7 @@ function ReviewForm({ review, handleDelete }) {
     return (
         <>
             {isAdmin && <Button onClick={handleDelete}>מחק</Button>}
-            <div>{`ביקורת מאת: ${firstName} ${lastName}`} <br />
+            <div>{`נכתבה על ידי: ${firstName} ${lastName}`} <br />
                 {`נכתבה בתאריך: ${date}`} <br />
                 {text} <br />
                 <Rating name="read-only" value={rating} readOnly />

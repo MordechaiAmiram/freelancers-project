@@ -1,24 +1,30 @@
-*{
+* {
     box-sizing: border-box;
 }
+
 h2 {
     padding-top: 3%;
     margin-right: 5%;
 }
+
 .profile-container {
     display: flex;
     display: block;
+    border-radius: 5px;
     flex-direction: column;
     width: 50%;
     margin-right: 5%;
-    background-color: antiquewhite;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 10px;
+    box-shadow: 1px 1px 2px 2px #888888;
     text-align: right;
 }
 
 .profile-picture {
     border: 1px solid #03BFCB;
-	border-radius: 50%;
-	padding: 7px;
+    border-radius: 50%;
+    padding: 7px;
     height: 180px;
     width: 180px;
     margin-right: 5%;
@@ -31,6 +37,7 @@ h2 {
     /* justify-content: space-around; */
     margin-bottom: 1%;
 }
+
 .profile-inner * {
     width: fit-content;
     display: inline-block;
@@ -47,5 +54,12 @@ h2 {
 .reviews {
     width: 50%;
     margin-right: 5%;
-    background-color: aqua;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 1px 1px 2px 2px #888888;
+}
+.separate-line {
+    /* width: 80%; */
+    margin-top: 10px;
+    border-bottom: solid 1px gray;
 }

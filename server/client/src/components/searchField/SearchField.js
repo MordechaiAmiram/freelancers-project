@@ -11,7 +11,10 @@ function SearchField() {
 
     useEffect(() => {
         const fetchData = async () => {
-            // if (textProps.value === '') return
+            if (!textProps.value) {
+                setData('')
+                return
+            }
             try {
                 const { data } = await api.get(`/categories/search/?text=${textProps.value}`)
                 console.log(data);
@@ -29,16 +32,16 @@ function SearchField() {
                 label='חפש'
                 name='search'
                 props={textProps}
-                sx={{ width: '30%' }} />
-            <div class="dropdown">
+                sx={{ width: '30%', bgcolor: '#fff' }} />
+            {data && <div class="dropdown">
                 <div class="dropdown-content">
-                    {data && data.map(element => (
+                    {data.map(element => (
                         <div key={element.id}>
                             <Category category={element} className={'dropdwon-link'} >{element.name}</Category>
                         </div>
                     ))}
                 </div>
-            </div>
+            </div>}
 
         </>
     )
