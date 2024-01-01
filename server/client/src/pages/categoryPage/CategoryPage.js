@@ -5,9 +5,9 @@ import { useLocation } from 'react-router-dom'
 
 function CategoryPage() {
     const location = useLocation()
-    let { state } = useLocation();
+    let { state } = useLocation(); //category name
     const splitURL = location.pathname.split('/')
-    const [subcategories] = useFetch(location.pathname)
+    const [subcategories] = useFetch(`categories/children/${splitURL[splitURL.length - 1]}`)
     const [profiles] = useFetch(`/freelancers/${splitURL[splitURL.length - 1]}`)
     const [category] = useFetch(`/categories/${splitURL[splitURL.length - 1]}`)
     const [categoryName, setCategoryName] = useState(state)

@@ -6,6 +6,7 @@ import Category from '../../components/mainCategories/Category'
 import './categoryPage.css'
 
 function CategoryPageFrom({ categoryName, profiles, subcategories }) {
+    console.log(subcategories, 'subcategories');
     return (
         <>
             <Navbar />

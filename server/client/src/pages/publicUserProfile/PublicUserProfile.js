@@ -6,7 +6,7 @@ function PublicUserProfile() {
     const { state } = useLocation();
     const location = useLocation()
     const splitURL = location.pathname.split('/')
-    const [data] = useFetch(`/freelance/${splitURL[splitURL.length - 1]}`)
+    const [data, setData] = useFetch(`/freelance/${splitURL[splitURL.length - 1]}`)
     const [reviews] = useFetch(`/reviews/by-freelance/${splitURL[splitURL.length - 1]}`)
     const [freelance, setFreelance] = useState(state)
 
