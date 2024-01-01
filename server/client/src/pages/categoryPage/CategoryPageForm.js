@@ -20,13 +20,15 @@ function CategoryPageFrom({ categoryName, profiles, subcategories }) {
                     ))}
                 </div>
             }
-            {profiles && profiles.map(profile => (
-                <ProfileCard
-                    profile={profile}
-                    key={profile.freelanceId}
-                />
-            ))}
-
+            {profiles &&
+                <div className='profiles-flex'>
+                    {profiles.map(profile => (
+                        <ProfileCard
+                            profile={profile}
+                            key={profile.freelanceId}
+                        />
+                    ))}
+                </div>}
         </>
     )
 }

@@ -22,3 +22,9 @@
 .category-page-link:hover{
     outline: solid 2px green;
 }
+
+.profiles-flex {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

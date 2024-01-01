@@ -8,34 +8,30 @@ function ProfileCardForm({ profile }) {
   const { firstName, lastName, title, rating, freelanceId, accountType } = profile
 
   return (
+
     <div className="card-container">
+      
       {accountType && <span className="pro">PRO</span>}
+      
       {/* <img className="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" /> */}
+      
       <GetImage imageId={'n3sujdkbkz0qfbmlyyvj'} width={150} className={'round'} />
+      
       <h3>{firstName + ' ' + lastName}</h3>
-      <div>{rating ? `(${rating})` : '(0)'}<StarIcon /></div>
-      <h4>{title}</h4>
-      {/* <p>   <br /> </p> */}
-      <div className="buttons">
-        <button className="primary">
-          <Link component={LinkRouter} to={`/profile/${freelanceId}`} state={profile}>ראה יותר</Link>
-        </button>
-        {/* <button class="primary ghost">
-          Following
-        </button> */}
-      </div>
-      {/* <div class="skills">
-        <h6>Skills</h6>
-        <ul>
-          <li>UI / UX</li>
-          <li>Front End Development</li>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>React</li>
-          <li>Node</li>
-        </ul>
-      </div> */}
+      
+      <h4 className='title'>{title}</h4>
+      
+      <div className='rating'>{rating ? `(${rating})` : '(0)'}<StarIcon /></div>
+      
+      <Link
+        component={LinkRouter}
+        to={`/profile/${freelanceId}`}
+        state={profile}
+        className="primary"
+      >
+        ראה יותר
+      </Link>
+
     </div>
   )
 }

@@ -36,8 +36,13 @@ function SearchField() {
             {data && <div class="dropdown">
                 <div class="dropdown-content">
                     {data.map(element => (
-                        <div key={element.id}>
-                            <Category category={element} className={'dropdwon-link'} >{element.name}</Category>
+                        <div key={element.id} >
+                            <Category
+                                category={element}
+                                className={'dropdwon-link'}
+                            >
+                                {element.name}
+                            </Category>
                         </div>
                     ))}
                 </div>
