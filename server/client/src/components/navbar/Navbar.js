@@ -22,6 +22,7 @@ function Navbar() {
                                     to={'/log-in'}>כניסה</RouterLink>
                             </div>
                         </div>
+                        <SearchField />
                         <div className='left-bar'>
                             <div className='nav-item'>
                                 <RouterLink className='link home-link'

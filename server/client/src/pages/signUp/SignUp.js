@@ -4,6 +4,7 @@ import SignUpFreelanceForm from './SignUpFreelanceForm'
 import api from '../../services/BaseURL'
 import { useNavigate } from 'react-router-dom'
 import useInput from '../../hooks/useInput'
+import Navbar from '../../components/navbar/Navbar'
 
 function SignUp() {
   const navigate = useNavigate()
@@ -56,7 +57,7 @@ function SignUp() {
       localStorage.setItem('currentUser', JSON.stringify(data))
       navigate('/')
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 
@@ -91,7 +92,8 @@ function SignUp() {
 
   return (
     <>
-      <div style={{ visibility: isFreelance ? 'hidden' : "" }}>
+      <Navbar />
+      <div style={{ display: isFreelance ? 'none' : 'flex', justifyContent: 'center' }}>
         <SignUpForm
           firstNameProps={firstNameProps}
           lastNameProps={lastNameProps}
@@ -103,7 +105,7 @@ function SignUp() {
           continueAsFreelance={continueAsFreelance}
         />
       </div>
-      <div style={{ visibility: !isFreelance ? 'hidden' : "" }}>
+      <div style={{ display: !isFreelance ? 'none' : 'flex', justifyContent: 'center' }}>
         <SignUpFreelanceForm
           cityProps={cityProps}
           streetProps={streetProps}

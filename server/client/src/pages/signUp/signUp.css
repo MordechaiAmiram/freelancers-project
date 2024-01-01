@@ -1,8 +1,3 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 
 .back-button{
   position: absolute;
@@ -10,25 +5,13 @@
   cursor: pointer;
 }
 
-/* #firstname {
-  width: 40%;
-  display: 'inline-block';
-  margin-left: 10;
-}
-
-#lastname {
-  width: 40%;
-  display: 'inline-block';
-} */
-
 .sign-up-form {
   height: 85%;
   width: 40%;
   min-width: 350px;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
