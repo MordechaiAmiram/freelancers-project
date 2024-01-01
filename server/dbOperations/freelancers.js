@@ -85,6 +85,7 @@ async function getFreelancersByCategory(categoryId) {
     SELECT title, about, service_location as serviceLocation, account_type as accountType, 
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
         phone, email, category_id as categoryId, profile_image_id as profileImageId,
+        number_of_ratings as numberOfRatings,
         ROUND((cumulative_rating / number_of_ratings), 1) as rating, parent_id
     FROM freelancers 
         JOIN users
@@ -107,8 +108,8 @@ async function getFreelance(freelanceId) {
     const sql = `
     SELECT title, about, service_location as serviceLocation, profile_image_id as profileImageId,
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
-        phone, email, category_id as categoryId,
-        (cumulative_rating / number_of_ratings) as rating
+        phone, email, category_id as categoryId, number_of_ratings as numberOfRatings,
+        ROUND((cumulative_rating / number_of_ratings), 1) as rating
     FROM freelancers f
         JOIN users
     USING(user_id)

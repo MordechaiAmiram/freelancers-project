@@ -2,14 +2,15 @@ import React from 'react'
 import './publicUserProfile.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import Navbar from '../../components/navbar/Navbar'
-import { Button, Rating } from '@mui/material'
+import StarIcon from '@mui/icons-material/Star'; 
 import Review from '../../components/review/Review'
 import AddReview from '../../components/addReview/AddReview'
 import GetImage from '../../components/GetImage'
 
 
 function PublicUserProfileForm({ profile, reviews }) {
-    const { firstName, lastName, title, rating, about, serviceLocation, phone, email, freelanceId, profileImageId } = profile
+    const { firstName, lastName, title, rating, about, serviceLocation, 
+        phone, email, freelanceId, profileImageId, numberOfRatings, } = profile
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
     return (
         <>
@@ -22,7 +23,9 @@ function PublicUserProfileForm({ profile, reviews }) {
                         <div className='name'><b>{`${firstName} ${lastName}`}</b></div>
 
                         <div className='rating'>
-                            <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+                        {numberOfRatings && `(${numberOfRatings}) `}
+                        {rating ? `${rating}` : '0'}
+                        <StarIcon fontSize='large' sx={{color: 'gold'}} />
                         </div> <br />
 
                         {/* <div className='category'><b>מקצוע</b></div><br /> */}

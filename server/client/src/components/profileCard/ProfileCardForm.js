@@ -1,5 +1,6 @@
 import React from 'react'
-import StarIcon from '@mui/icons-material/Star'; import './profileCard.css'
+import StarIcon from '@mui/icons-material/Star'; 
+import './profileCard.css'
 import { Link as LinkRouter } from 'react-router-dom'
 import { Link } from '@mui/material';
 import GetImage from '../GetImage';
@@ -20,7 +21,7 @@ function ProfileCardForm({ profile }) {
       
       <h4 className='title'>{title}</h4>
       
-      <div className='rating'>{rating ? `(${rating})` : '(0)'}<StarIcon /></div>
+      <div className='rating'>{rating ? `(${rating})` : '(0)'}<StarIcon sx={{color: 'gold'}} /></div>
       
       <Link
         component={LinkRouter}
