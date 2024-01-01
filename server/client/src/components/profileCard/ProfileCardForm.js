@@ -5,8 +5,7 @@ import { Link } from '@mui/material';
 import GetImage from '../GetImage';
 
 function ProfileCardForm({ profile }) {
-  const { firstName, lastName, title, rating, freelanceId, accountType } = profile
-
+  const { firstName, lastName, title, rating, freelanceId, accountType, profileImageId } = profile
   return (
 
     <div className="card-container">
@@ -15,8 +14,8 @@ function ProfileCardForm({ profile }) {
       
       {/* <img className="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" /> */}
       
-      <GetImage imageId={'n3sujdkbkz0qfbmlyyvj'} width={150} className={'round'} />
-      
+      <GetImage imageId={profileImageId} width={150} className={'round'} />
+
       <h3>{firstName + ' ' + lastName}</h3>
       
       <h4 className='title'>{title}</h4>

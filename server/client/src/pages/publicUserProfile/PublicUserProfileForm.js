@@ -9,7 +9,7 @@ import GetImage from '../../components/GetImage'
 
 
 function PublicUserProfileForm({ profile, reviews }) {
-    const { firstName, lastName, title, rating, about, serviceLocation, phone, email, freelanceId } = profile
+    const { firstName, lastName, title, rating, about, serviceLocation, phone, email, freelanceId, profileImageId } = profile
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
     return (
         <>
@@ -17,7 +17,7 @@ function PublicUserProfileForm({ profile, reviews }) {
             <CategoriesNavbar />
                 <div className='profile-container'>
                     <h2>{title}</h2>
-                    <GetImage imageId={'n3sujdkbkz0qfbmlyyvj'} width={200} className={'profile-picture'} />
+                    <GetImage imageId={profileImageId} width={200} className={'profile-picture'} />
                     <div className='profile-inner'>
                         <div className='name'><b>{`${firstName} ${lastName}`}</b></div>
 
