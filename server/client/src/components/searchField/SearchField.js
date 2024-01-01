@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import useInput from '../../hooks/useInput'
 import InputField from '../form/InputField'
 import api from '../../services/BaseURL'
 import './searchField.css'
 import Category from '../mainCategories/Category';
 
 function SearchField() {
-    const textProps = useInput('')
-    const [data, setData] = useState('')
+    const [value, setValue] = useState('')
+    const [data, setData] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
-            if (!textProps.value) {
+            if (!value) {
                 setData('')
                 return
             }
             try {
-                const { data } = await api.get(`/categories/search/?text=${textProps.value}`)
+                const { data } = await api.get(`/categories/search/?text=${value}`)
                 console.log(data);
                 setData(data)
             } catch (err) {
@@ -24,19 +23,29 @@ function SearchField() {
             }
         }
         fetchData()
-    }, [textProps.value])
+    }, [value])
+    
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    }
 
+    const initValues = () => {
+        setData('')
+        setValue('')
+    }
     return (
         <>
             <InputField
                 label='חפש'
                 name='search'
-                props={textProps}
+                value={value}
+                handleChange={handleChange}
                 sx={{ width: '30%', bgcolor: '#fff' }} />
+
             {data && <div class="dropdown">
                 <div class="dropdown-content">
                     {data.map(element => (
-                        <div key={element.id} >
+                        <div key={element.id} onClick={initValues}>
                             <Category
                                 category={element}
                                 className={'dropdwon-link'}
