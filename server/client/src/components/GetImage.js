@@ -14,7 +14,6 @@ const cld = new Cloudinary({
 function GetImage({ imageId, width, className }) {
 
     const [image, setImage] = useState(null);
-    console.log(imageId);
     useEffect(() => {
 
         const myImage = cld.image(imageId)

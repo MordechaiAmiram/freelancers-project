@@ -8,6 +8,7 @@ import PrivateUserProfile from '../pages/privateUserProfile/PrivateUserProfile';
 import PublicUserProfile from '../pages/publicUserProfile/PublicUserProfile';
 import CategoryPage from '../pages/categoryPage/CategoryPage';
 import Management from './management/Management';
+import NotFound from './NotFound';
 
 function AppRouting() {
     return (
@@ -20,6 +21,7 @@ function AppRouting() {
             <Route path='/profile/:freelanceId' element={<PublicUserProfile />} />
             <Route path='/categories/:categoryId' element={<CategoryPage />} />
             <Route path='/management' element={<Management />} />
+            <Route path='*' element={<NotFound />} />
         </Routes>
     )
 }

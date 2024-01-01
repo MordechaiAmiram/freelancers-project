@@ -4,7 +4,6 @@ import Category from '../mainCategories/Category'
 
 function CategoriesNavbar() {
     const [categories] = useFetch('/categories/parents')
-    console.log(categories);
     return (
         <div className='categories-navbar'>
             {categories &&
