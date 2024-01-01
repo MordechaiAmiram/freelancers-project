@@ -85,7 +85,7 @@ async function getFreelancersByCategory(categoryId) {
     SELECT title, about, service_location as serviceLocation, account_type as accountType, 
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
         phone, email, category_id as categoryId, profile_image_id as profileImageId,
-        ROUND((cumulative_rating / number_of_ratings), 1) as rating
+        ROUND((cumulative_rating / number_of_ratings), 1) as rating, parent_id
     FROM freelancers 
         JOIN users
     USING(user_id)
@@ -93,10 +93,13 @@ async function getFreelancersByCategory(categoryId) {
     USING(freelance_id)
 		LEFT JOIN rating_data
 	USING(freelance_id)
+        JOIN categories
+	USING (category_id)
     WHERE fce.category_id = ?
+    OR parent_id = ?
     AND is_confirmed = 1
     `
-    const [freelancers] = await pool.query(sql, [categoryId])
+    const [freelancers] = await pool.query(sql, [categoryId, categoryId])
     return freelancers
 }
 
