@@ -6,7 +6,8 @@ import StarIcon from '@mui/icons-material/Star';
 import Review from '../../components/review/Review'
 import AddReview from '../../components/addReview/AddReview'
 import GetImage from '../../components/GetImage'
-
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
 
 function PublicUserProfileForm({ profile, reviews }) {
     const { firstName, lastName, title, rating, about, serviceLocation, 
@@ -35,7 +36,7 @@ function PublicUserProfileForm({ profile, reviews }) {
                         variant='contained'
                         sx={{ width: 150 }}>צור קשר</Button> */}
                     </div>
-                    <div>{phone} <br /> {email}</div>
+                    <div><PhoneIcon />{phone} <br /><EmailIcon /> {email}</div>
                 </div>
             {/* <div className='portfolio'>תיקיית עבודות</div> */}
             {reviews?.length > 0 &&
