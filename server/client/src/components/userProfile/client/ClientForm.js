@@ -4,7 +4,6 @@ import React from 'react'
 function ClientForm({ profile, handleLogOut }) {
     return (
         <>
-            <div className='profile-picture'></div>
             <div>{`שם: ${profile.firstName} ${profile.lastName}`}</div>
             <div>{`דוא"ל: ${profile.email}`}</div>
             <div>{`טלפון: ${profile.phone}`}</div>

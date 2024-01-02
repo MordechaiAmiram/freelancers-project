@@ -1,12 +1,15 @@
 import React from 'react'
 import BasicTable from '../table/BasicTable'
+import Navbar from '../../components/navbar/Navbar'
+import './management.css'
 
 function ManagementForm({ usersOnHold, handleConfirm, sumOfFreelancers, sumOfUsers, handleUsersOnHold }) {
     return (
         <>
-            <div><b>סטטיסטיקה</b> <br />
-                {`מספר משתמשים רשומים: ${sumOfUsers} `}
-                {`מתוכם פרילנסרים : ${sumOfFreelancers}`}
+            <Navbar />
+            <div className='statistics'>
+                {`מספר משתמשים רשומים: ${sumOfUsers}  
+                מתוכם פרילנסרים : ${sumOfFreelancers}`}
             </div>
             <div><b>ממתינים לאישור</b>
                 {usersOnHold?.length > 0 &&

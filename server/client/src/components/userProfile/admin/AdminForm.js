@@ -5,7 +5,6 @@ function AdminForm({ handleLogOut, profile }) {
 
   return (
     <>
-      <div className='profile-picture'></div>
       <div>{`שם: ${profile.firstName} ${profile.lastName}`}</div>
       <div>{`דוא"ל: ${profile.email}`}</div>
       <div>{`טלפון: ${profile.phone}`}</div>
