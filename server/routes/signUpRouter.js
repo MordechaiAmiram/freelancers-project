@@ -8,9 +8,10 @@ router
         try {
             const { isFreelance, firstName, lastName, username, email, phone, password, city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId, imageId } = req.body
             const [message, isValid] = await validation(username, password)
+            
             if (isValid) {
                 const userId = await addUserGate(isFreelance, firstName, lastName, username, email, phone, password, city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId, imageId)
-                
+
                 if (userId) {
                     const user = await getClient(username, password)
                     res.status(201)
@@ -21,8 +22,8 @@ router
                     .send(message)
             }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err);
+            res.status(500)
         }
     })
 

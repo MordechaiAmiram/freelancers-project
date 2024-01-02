@@ -24,7 +24,7 @@ function SignUp() {
   const serviceLocationProps = useInput()
   const subcategoryProps = useInput()
 
-  const [imageId, setImageId] = useState('')
+  const [imageId, setImageId] = useState('person_place_holder2_fhahmn')
   const [categoriesList, setCategoriesList] = useState('')
   const [subcategoryList, setSubcategoryList] = useState('')
   const [isFreelance, setIsFreelance] = useState(false)

@@ -7,7 +7,6 @@ router
     .post(async (req, res) => {
         try {
             const [user, message, isValid] = await validation(req.body.username, req.body.password)
-            console.log(user);
             if (!isValid) {
                 res.status(400)
                     .send(message)

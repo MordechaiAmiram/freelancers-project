@@ -1,13 +1,18 @@
 const { pool } = require('../db')
-const { addAddress } = require('./addresses')
+const { addAddressSql } = require('./addresses')
 
 async function getClient(username, password) {
     const sql = `
     SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone,
-        is_admin as isAdmin, password, username, freelance_id as freelanceId
+        is_admin as isAdmin, password, username, freelance_id as freelanceId, 
+        title, about, account_type as accountType, 
+        service_location as serviceLocation, profile_image_id as profileImageId,
+        city, street, building, suite, zip_code as zipCode
     FROM users
         LEFT JOIN freelancers
     USING (user_id)
+        LEFT JOIN addresses
+    USING(user_id)
     WHERE username = ? AND password = ?
     `
     const [[client]] = await pool.query(sql, [username, password])
@@ -17,7 +22,7 @@ async function getClient(username, password) {
 async function getAllUsers() {
     const sql = `
     SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone, 
-        is_admin as isAdmin, password, username, freelance_id, title, about, account_type as accountType, 
+        is_admin as isAdmin, password, username, freelance_id as freelanceId, title, about, account_type as accountType, 
         service_location as serviceLocation, profile_image_id as profileImageId,
         city, street, building, suite, zip_code as zipCode
     FROM users
@@ -31,44 +36,52 @@ async function getAllUsers() {
 }
 
 async function addUserGate(isFreelance, firstName, lastName, username, email, phone, password,
-    city, street, building, suite, zipCode,
-    about, title, accountType, serviceLocation,
+    city, street, building, suite, zipCode, about, title, accountType, serviceLocation,
     categoryId, imageId) {
-    const userId = await addUser(firstName, lastName, username, email, phone, password)
-    if (isFreelance) {
-        const affectedRows = await addAddress(userId, city, street, building, suite, zipCode)
-        const freelanceId = await addFreelance(userId, about, title, accountType, serviceLocation, imageId)
-        await addfreelanceToCategory(freelanceId, categoryId)
+
+    let connection
+
+    try {
+        connection = await pool.getConnection()
+        await connection.beginTransaction()
+
+        const [{ insertId }] = await connection.query(addUserSql, [firstName, lastName, username, email, phone, password])
+
+        if (isFreelance) {
+            await connection.query(addAddressSql, [insertId, city, street, building, suite, zipCode])
+            const [freelanceId] = await connection.query(addFreelanceSql, [insertId, about, title, accountType, serviceLocation, imageId])
+            await connection.query(addfreelanceToCategorySql, [freelanceId?.insertId, categoryId])
+        }
+
+        await connection.commit()
+        return insertId
+
+    } catch (err) {
+        if (connection) {
+            await connection.rollback()
+        }
+        throw err
+    } finally {
+        if (connection) {
+            pool.releaseConnection(connection)
+        }
     }
-    return userId
 }
 
-async function addUser(firstName, lastName, username, email, phone, password) {
-    const sql = `
+const addUserSql = `
         INSERT INTO users (first_name, last_name, username, email, phone, password, registration_date)
         VALUES (?, ?, ?, ?, ?, ?, CURDATE())
     `
-    const [{ insertId }] = await pool.query(sql, [firstName, lastName, username, email, phone, password])
-    return insertId
-}
 
-async function addFreelance(userId, about, title, accountType, serviceLocation, imageId) {
-    const sql = `
+const addFreelanceSql = `
     INSERT INTO freelancers(user_id, about, title, account_type, service_location, profile_image_id)
     VALUES (?, ?, ?, ?, ?, ?)
     `
-    const [{ insertId }] = await pool.query(sql, [userId, about, title, accountType, serviceLocation, imageId])
-    return insertId
-}
 
-async function addfreelanceToCategory(freelanceId, categoryId) {
-    const sql = `
+const addfreelanceToCategorySql = `
     INSERT INTO freelance_category_enrollment(freelance_id, category_id)
     VALUES(?, ?)
     `
-    const [{ affectedRows }] = await pool.query(sql, [freelanceId, categoryId])
-    return affectedRows
-}
 
 async function updateUserDetails(userId, firstName, lastName, email, phone, password) {
 
