@@ -1,15 +1,16 @@
 const { pool } = require('../db')
 
-async function updateRatingData(freelanceId, currRating) {
-    const sql = `
+const updateRatingDataSql = `
     UPDATE rating_data
     SET number_of_ratings = number_of_ratings + 1,
         cumulative_rating = cumulative_rating + ?
     WHERE freelance_id = ?
     `
-    const [{ affectedRows }] = await pool.query(sql, [currRating, freelanceId])
-    return affectedRows
-}
+const addratingDataSql = `
+    INSERT INTO rating_data (freelance_id, number_of_ratings, cumulative_rating)
+    VALUES (
+        ?, ?, ?)
+    `
 
 async function decreaseRatingData(freelanceId, currRating) {
     const sql = `
@@ -25,16 +26,6 @@ async function decreaseRatingData(freelanceId, currRating) {
             deleteRatingData(freelanceId)
         }
     }
-    return affectedRows
-}
-
-async function addratingData(freelanceId, currRating) {
-    const sql = `
-    INSERT INTO rating_data (freelance_id, number_of_ratings, cumulative_rating)
-    VALUES (
-        ?, ?, ?)
-    `
-    const [{ affectedRows }] = await pool.query(sql, [freelanceId, 1, currRating])
     return affectedRows
 }
 
@@ -69,8 +60,8 @@ async function deleteRatingData(freelanceId) {
 
 
 module.exports = {
-    updateRatingData,
-    addratingData,
+    updateRatingDataSql,
+    addratingDataSql,
     getFreelanceRating,
     decreaseRatingData,
     getNumberOfRatings

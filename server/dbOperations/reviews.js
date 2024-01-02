@@ -1,5 +1,5 @@
 const { pool } = require('../db')
-const { updateRatingData, addratingData, getFreelanceRating, decreaseRatingData } = require('./ratingData')
+const { updateRatingDataSql, addratingDataSql, getFreelanceRating, decreaseRatingData } = require('./ratingData')
 
 async function updateReview(reviewId, reviewText, rating) {
     const newReviewText = reviewText || await getReviewText(reviewId)
@@ -67,17 +67,37 @@ async function getReviewerReviews(reviewerId) {
 
 async function addReview(text, rating, reviewerId, freelanceId) {
     const isRating = await getFreelanceRating(freelanceId)
-    const sql = `
+    const addReviewSql = `
     INSERT INTO reviews (review_text, rating, reviewer_id, freelance_id, review_date)
     VALUES(? ,? ,? ,? , CURDATE())
     `
-    const [{ affectedRows }] = await pool.query(sql, [text, rating, reviewerId, freelanceId])
-    if (isRating) {
-        await updateRatingData(freelanceId, rating)
-    } else {
-        await addratingData(freelanceId, rating)
+    
+    let connection
+    try {
+        connection = await pool.getConnection()
+        await connection.beginTransaction()
+        
+        const [{ affectedRows }] = await pool.query(addReviewSql, [text, rating, reviewerId, freelanceId])
+        
+        if (isRating) {
+            await connection.query(updateRatingDataSql, [freelanceId, rating]) 
+        } else {
+            await connection.query(addratingDataSql, [freelanceId, rating])
+        }
+        
+        await connection.commit()
+        return affectedRows
+
+    } catch (error) {
+        if (connection) {
+            await connection.rollback()
+        }
+        throw err
+    } finally {
+        if (connection) {
+            pool.releaseConnection(connection)
+        }
     }
-    return affectedRows
 }
 
 async function deleteReview(reviewId) {
