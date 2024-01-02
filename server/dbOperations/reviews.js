@@ -34,7 +34,7 @@ async function getRating(reviewId) {
     return rating?.rating
 }
 
-async function getFreelanceId(reviewId){
+async function getFreelanceId(reviewId) {
     const sql = `
     SELECT freelance_id freelanceId
     FROM reviews
@@ -71,20 +71,20 @@ async function addReview(text, rating, reviewerId, freelanceId) {
     INSERT INTO reviews (review_text, rating, reviewer_id, freelance_id, review_date)
     VALUES(? ,? ,? ,? , CURDATE())
     `
-    
+
     let connection
     try {
         connection = await pool.getConnection()
         await connection.beginTransaction()
-        
+
         const [{ affectedRows }] = await pool.query(addReviewSql, [text, rating, reviewerId, freelanceId])
-        
+
         if (isRating) {
-            await connection.query(updateRatingDataSql, [freelanceId, rating]) 
+            await connection.query(updateRatingDataSql, [rating, freelanceId])
         } else {
             await connection.query(addratingDataSql, [freelanceId, rating])
         }
-        
+
         await connection.commit()
         return affectedRows
 
@@ -103,7 +103,7 @@ async function addReview(text, rating, reviewerId, freelanceId) {
 async function deleteReview(reviewId) {
     const rating = await getRating(reviewId)
     const freelanceId = await getFreelanceId(reviewId)
-    
+
     const sql = `
     DELETE FROM reviews
     WHERE review_id = ?

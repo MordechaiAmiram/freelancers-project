@@ -9,7 +9,7 @@ const updateRatingDataSql = `
 const addratingDataSql = `
     INSERT INTO rating_data (freelance_id, number_of_ratings, cumulative_rating)
     VALUES (
-        ?, ?, ?)
+        ?, 1, ?)
     `
 
 async function decreaseRatingData(freelanceId, currRating) {
