@@ -6,16 +6,16 @@ function ReviewForm({ review, handleDelete }) {
     const isAdmin = JSON.parse(localStorage.getItem('currentUser'))?.isAdmin
 
     return (
-        <>
-            {isAdmin === true &&
+        <div className='review'>
+            {isAdmin === 1 &&
                 <Button onClick={handleDelete}>מחק</Button>
             }
             <div>{`נכתבה על ידי: ${firstName} ${lastName}`} <br />
-                {`נכתבה בתאריך: ${date}`} <br />
+                {`בתאריך: ${date}`} <br />
                 {text} <br />
                 <Rating name="read-only" value={rating} readOnly />
             </div>
-        </>
+        </div>
     )
 }
 

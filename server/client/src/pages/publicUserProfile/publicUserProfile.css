@@ -54,12 +54,17 @@ h2 {
 .reviews {
     width: 50%;
     margin-right: 5%;
+    margin-bottom: 2%;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 1px 1px 2px 2px #888888;
 }
+.review{
+    /* background-color: #888888; */
+    padding: 10px;
+}
 .separate-line {
     /* width: 80%; */
-    margin-top: 10px;
+   
     border-bottom: solid 1px gray;
 }

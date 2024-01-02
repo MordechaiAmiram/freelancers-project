@@ -19,14 +19,32 @@ async function decreaseRatingData(freelanceId, currRating) {
         cumulative_rating = cumulative_rating - ?
     WHERE freelance_id = ?
     `
-    const [{ affectedRows }] = await pool.query(sql, [currRating, freelanceId])
-    if (affectedRows) {
+    let connection
+    try {
+        connection = await pool.getConnection()
+        await connection.beginTransaction()
+
+        const [{ affectedRows }] = await pool.query(sql, [currRating, freelanceId])
+
         const numberOfRatings = await getNumberOfRatings(freelanceId)
+
         if (numberOfRatings <= 0) {
-            deleteRatingData(freelanceId)
+            await pool.query(deleteRatingDataSql, [freelanceId])
+        }
+
+        connection.commit()
+        return affectedRows
+
+    } catch (err) {
+        if (connection) {
+            await connection.rollback()
+        }
+        throw err
+    } finally {
+        if (connection) {
+            pool.releaseConnection(connection)
         }
     }
-    return affectedRows
 }
 
 async function getFreelanceRating(freelanceId) {
@@ -49,14 +67,10 @@ async function getNumberOfRatings(freelanceId) {
     return numberOfRatings?.numberOfRatings
 }
 
-async function deleteRatingData(freelanceId) {
-    const sql = `
+const deleteRatingDataSql = `
     DELETE FROM rating_data
     WHERE freelance_id = ?
     `
-    const [{ affectedRows }] = await pool.query(sql, [freelanceId])
-    return affectedRows
-}
 
 
 module.exports = {

@@ -49,7 +49,7 @@ function PublicUserProfileForm({ profile, reviews }) {
                                 review={review}
                             />
                             {index !== reviews.length - 1 &&
-                                <div className='separate-line' key={review.id}></div>}
+                                <div className='separate-line' key={Math.random()}></div>}
                         </>
                     ))}
                 </div>
