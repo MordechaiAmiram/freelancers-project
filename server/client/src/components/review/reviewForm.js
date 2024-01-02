@@ -4,10 +4,12 @@ import React from 'react'
 function ReviewForm({ review, handleDelete }) {
     const { firstName, lastName, rating, text, date } = review
     const isAdmin = JSON.parse(localStorage.getItem('currentUser'))?.isAdmin
-    
+
     return (
         <>
-            {isAdmin && <Button onClick={handleDelete}>מחק</Button>}
+            {isAdmin === true &&
+                <Button onClick={handleDelete}>מחק</Button>
+            }
             <div>{`נכתבה על ידי: ${firstName} ${lastName}`} <br />
                 {`נכתבה בתאריך: ${date}`} <br />
                 {text} <br />
