@@ -5,7 +5,7 @@ import api from '../../../services/BaseURL'
 import './freelance.css'
 
 function Freelance({ profile, handleLogOut }) {
-  const { freelanceId, firstName, lastName, email, phone, city, street, building, suite,
+  const { freelanceId, userId, firstName, lastName, email, phone, city, street, building, suite,
     accountType, profileImageId, serviceLocation, title, about, zipCode } = profile
 
   const [isUpdate, setIsUpdate] = useState(false)
@@ -30,23 +30,59 @@ function Freelance({ profile, handleLogOut }) {
 
   const handleSubmit = async () => {
     try {
-      const details = {
+      const userDetails = {
+        userId: userId,
+        firstName: firstNameProps.value,
+        lastName: lastNameProps.value,
+        email: emailProps.value,
+        phone: phoneProps.value,
+      }
+      const freelanceDetails = {
         freelanceId: freelanceId,
         title: titleProps.value,
         about: aboutProps.value,
         serviceLocation: serviceLocationProps.value,
         imageId: profileImageIdProps.value
       }
-      const { data } = await api.put('/freelance', details)
+      const addressDetails = {
+        userId: userId,
+        city: cityProps.value,
+        street: streetProps.value,
+        building: buildingProps.value,
+        suite: suiteProps.value,
+        zipCode: zipCodeProps.value
+      }
 
-      if (data === 'Succeeded!') {
-        const prevData = JSON.parse(localStorage.getItem('currentUser'))
+      const { data: user } = await api.put('users',userDetails)
+      const { data: freelance } = await api.put('/freelance', freelanceDetails)
+      const { data: address } = await api.put('/freelance/address', addressDetails)
+
+      const prevData = await JSON.parse(localStorage.getItem('currentUser'))
+
+      if (user === 'Succeeded!') {
+        prevData.firstName = firstNameProps.value
+        prevData.lastName = lastNameProps.value
+        prevData.email = emailProps.value
+        prevData.phone = phoneProps.value
+      }
+
+      if (freelance === 'Succeeded!') {
         prevData.title = titleProps.value
         prevData.about = aboutProps.value
         prevData.serviceLocation = serviceLocationProps.value
         prevData.imageId = profileImageIdProps.value
-        localStorage.setItem('currentUser', JSON.stringify(prevData))
       }
+
+      if (address === 'Succeeded!') {
+        prevData.city = cityProps.value
+        prevData.street = streetProps.value
+        prevData.building = buildingProps.value
+        prevData.suite = suiteProps.value
+        prevData.zipCode = zipCodeProps.value
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify(prevData))
+      setIsUpdate(false)
     } catch (err) {
       console.error(err)
     }

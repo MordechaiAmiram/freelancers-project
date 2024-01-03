@@ -1,13 +1,14 @@
-import { Button, TextField } from '@mui/material'
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import GetImage from '../../GetImage'
+import UploadWidget from '../../UploadWidget'
 import React from 'react'
 
 function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, valueProps, handleSubmit }) {
     const { firstName, lastName, email, phone, city, street, building, suite,
         accountType, profileImageId, serviceLocation, title, about, zipCode } = profile
 
-        const {firstNameProps, lastNameProps, emailProps, phoneProps, cityProps, streetProps,
-             buildingProps, suiteProps, zipCodeProps,titleProps, aboutProps, serviceLocationProps} = valueProps
+    const { firstNameProps, lastNameProps, emailProps, phoneProps, cityProps, streetProps,
+        buildingProps, suiteProps, zipCodeProps, titleProps, aboutProps, serviceLocationProps } = valueProps
 
     return (
         <>
@@ -125,7 +126,7 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, valuePro
                                 size='small'
                                 name='street'
                                 {...streetProps}
-                                sx={{width: '60%'}}
+                                sx={{ width: '60%' }}
                             /><br />
                             בנין: <TextField
                                 type='text'
@@ -143,7 +144,7 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, valuePro
                                 size='small'
                                 name='suite'
                                 {...suiteProps}
-                                sx={{width: '60%'}}
+                                sx={{ width: '60%' }}
                             />
                         </>
                         : `רחוב: ${street} ${building}/${suite}`}
@@ -158,7 +159,7 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, valuePro
                                 size='small'
                                 name='zipCode'
                                 {...zipCodeProps}
-                                sx={{width: '60%'}}
+                                sx={{ width: '60%' }}
                             />
                         </>
                         : `מיקוד: ${zipCode}`}
@@ -166,18 +167,24 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, valuePro
                 <div>
                     {isUpdate ?
                         <>
-                            אזור שירות: <TextField
-                                type='text'
-                                hiddenLabel
-                                variant="filled"
-                                size='small'
-                                name='serviceLocation'
-                                {...serviceLocationProps}
-                                sx={{width: '60%'}}
-                            />
+                            <FormControl variant="standard" sx={{ m: 1, minWidth: 200 }}>
+                                <InputLabel>בחר איזור שירות</InputLabel>
+                                <Select
+                                    name='serviceLocation'
+                                    {...serviceLocationProps}
+                                >
+                                    <MenuItem value={'ללא הגבלה'}>ללא הגבלת אזור</MenuItem>
+                                    <MenuItem value={'ירושלים והסביבה'}>ירושלים והסביבה</MenuItem>
+                                    <MenuItem value={'אזור המרכז'}>אזור המרכז</MenuItem>
+                                    <MenuItem value={'אזור הצפון'}>אזור הצפון</MenuItem>
+                                    <MenuItem value={'אזור הדרום'}>אזור הדרום</MenuItem>
+                                </Select>
+                            </FormControl>
                         </>
                         : `אזור שירות: ${serviceLocation}`}
                 </div>
+                {isUpdate && <><UploadWidget /> <br /></>}
+
                 {/* <div>הודעות</div>
                 <div> הזמנות</div>
                 <div>מי צפה בי</div> */}
@@ -188,7 +195,7 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, valuePro
                 {!isUpdate &&
                     <>
                         <Button onClick={handleLogOut}>יציאה</Button>
-                        <Button>מחיקת חשבון</Button>
+                        {/* <Button>מחיקת חשבון</Button> */}
                     </>
                 }
             </div>
