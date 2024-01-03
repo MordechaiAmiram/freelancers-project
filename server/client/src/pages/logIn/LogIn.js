@@ -7,8 +7,8 @@ import Navbar from '../../components/navbar/Navbar';
 
 function LogIn() {
   const navigate = useNavigate()
-  const passwordProps = useInput()
-  const usernameProps = useInput()
+  const passwordProps = useInput('')
+  const usernameProps = useInput('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()

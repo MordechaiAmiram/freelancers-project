@@ -2,9 +2,12 @@ import { Button, TextField } from '@mui/material'
 import GetImage from '../../GetImage'
 import React from 'react'
 
-function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNameProps }) {
+function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, valueProps, handleSubmit }) {
     const { firstName, lastName, email, phone, city, street, building, suite,
         accountType, profileImageId, serviceLocation, title, about, zipCode } = profile
+
+        const {firstNameProps, lastNameProps, emailProps, phoneProps, cityProps, streetProps,
+             buildingProps, suiteProps, zipCodeProps,titleProps, aboutProps, serviceLocationProps} = valueProps
 
     return (
         <>
@@ -14,20 +17,21 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                     {isUpdate ?
                         <> שם פרטי: <TextField
                             type='text'
-                            // label="שם"
-                            {...firstNameProps}
-                            variant="standard"
+                            hiddenLabel
+                            variant="filled"
                             size='small'
                             name='firstName'
-                            // value={firstName}
+                            {...firstNameProps}
+                            sx={{ width: '60%' }}
                         /> <br />
                             שם משפחה: <TextField
                                 type='text'
-                                // label="שם"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='lastName'
-                                value={lastName}
+                                {...lastNameProps}
+                                sx={{ width: '60%' }}
                             />
                         </>
                         : `שם: ${firstName} ${lastName}`}
@@ -37,11 +41,12 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                     {isUpdate ?
                         <>כותרת: <TextField
                             type='text'
-                            // label="כותרת"
-                            variant="standard"
+                            hiddenLabel
+                            variant="filled"
                             size='small'
                             name='title'
-                            value={title}
+                            {...titleProps}
+                            sx={{ width: '60%' }}
                         />
                         </>
                         : `כותרת: ${title}`}
@@ -52,11 +57,12 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                         <>
                             אודות: <TextField
                                 type='text'
-                                // label="כותרת"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='about'
-                                value={about}
+                                {...aboutProps}
+                                sx={{ width: '60%' }}
                             />
                         </>
                         : `אודות: ${about}`}
@@ -67,11 +73,12 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                         <>
                             דוא"ל: <TextField
                                 type='text'
-                                // label="כותרת"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='email'
-                                value={email}
+                                {...emailProps}
+                                sx={{ width: '60%' }}
                             />
                         </>
                         : `דוא"ל: ${email}`}
@@ -82,11 +89,12 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                         <>
                             טלפון: <TextField
                                 type='text'
-                                // label="כותרת"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='phone'
-                                value={phone}
+                                {...phoneProps}
+                                sx={{ width: '60%' }}
                             />
                         </>
                         : `טלפון: ${phone}`}
@@ -97,11 +105,12 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                         <>
                             עיר: <TextField
                                 type='text'
-                                // label="כותרת"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='city'
-                                value={city}
+                                {...cityProps}
+                                sx={{ width: '60%' }}
                             />
                         </>
                         : `עיר: ${city}`}
@@ -111,29 +120,31 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                         <>
                             רחוב: <TextField
                                 type='text'
-                                // label="כותרת"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='street'
-                                value={street}
+                                {...streetProps}
+                                sx={{width: '60%'}}
                             /><br />
-                            רחוב: <TextField
+                            בנין: <TextField
                                 type='text'
-                                // label="כותרת"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='building'
-                                value={building}
+                                {...buildingProps}
+                                sx={{ width: '60%' }}
                             /><br />
                             דירה: <TextField
                                 type='text'
-                                // label="כותרת"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='suite'
-                                value={suite}
+                                {...suiteProps}
+                                sx={{width: '60%'}}
                             />
-
                         </>
                         : `רחוב: ${street} ${building}/${suite}`}
                 </div>
@@ -142,11 +153,12 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                         <>
                             מיקוד: <TextField
                                 type='text'
-                                // label="כותרת"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='zipCode'
-                                value={zipCode}
+                                {...zipCodeProps}
+                                sx={{width: '60%'}}
                             />
                         </>
                         : `מיקוד: ${zipCode}`}
@@ -154,13 +166,14 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                 <div>
                     {isUpdate ?
                         <>
-                            מיקוד: <TextField
+                            אזור שירות: <TextField
                                 type='text'
-                                // label="כותרת"
-                                variant="standard"
+                                hiddenLabel
+                                variant="filled"
                                 size='small'
                                 name='serviceLocation'
-                                value={serviceLocation}
+                                {...serviceLocationProps}
+                                sx={{width: '60%'}}
                             />
                         </>
                         : `אזור שירות: ${serviceLocation}`}
@@ -168,10 +181,10 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, firstNam
                 {/* <div>הודעות</div>
                 <div> הזמנות</div>
                 <div>מי צפה בי</div> */}
-                <div>{`סוג חשבון: ${accountType}`}</div>
+                {!isUpdate && <div>{`סוג חשבון: ${accountType}`}</div>}
 
                 <Button onClick={handleUpdate}>{isUpdate ? 'ביטול' : `עריכת פרופיל`}</Button>
-
+                {isUpdate && <Button onClick={handleSubmit}>אישור</Button>}
                 {!isUpdate &&
                     <>
                         <Button onClick={handleLogOut}>יציאה</Button>

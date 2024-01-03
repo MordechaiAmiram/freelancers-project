@@ -19,10 +19,12 @@ router
     .put(async (req, res) => {
         try {
             const { freelanceId, title, about, serviceLocation, type, isConfirmed, imageId } = req.body
+            
+            console.log(req.body);
             const isEdited = await updateFreelance(freelanceId, title, about, serviceLocation, type, isConfirmed, imageId)
             if (isEdited) {
                 res.status(201)
-                    .send('Succedded!')
+                    .send('Succeeded!')
             } else {
                 res.status(400)
                     .send('Bad request')
