@@ -27,8 +27,8 @@ p {
 	padding-top: 30px;
     padding-bottom: 30px;
 	position: relative;
-	width: 300px;
-	max-width: 100%;
+	min-width: 300px;
+	/* max-width: 100%; */
 	text-align: center;
 }
 
@@ -55,7 +55,7 @@ p {
 .rating {
 	margin-bottom: 10px;
 }
-.primary {
+.profile-card-btn {
 	display: inline-flex;
 	background-color: #03BFCB;
 	border: 1px solid #03BFCB;
@@ -63,6 +63,9 @@ p {
 	color: #231E39;
 	text-decoration: none;
 	padding: 10px 25px;
+}
+.profile-card-btn:hover {
+	background-color: #85b1b5;
 }
 
 /* button.primary.ghost {
