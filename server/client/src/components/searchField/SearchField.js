@@ -42,8 +42,8 @@ function SearchField() {
                 handleChange={handleChange}
                 sx={{ width: '30%', bgcolor: '#fff' }} />
 
-            {data && <div class="dropdown">
-                <div class="dropdown-content">
+            {data && <div className="dropdown">
+                <div className="dropdown-content">
                     {data.map(element => (
                         <div key={element.id} onClick={initValues}>
                             <Category

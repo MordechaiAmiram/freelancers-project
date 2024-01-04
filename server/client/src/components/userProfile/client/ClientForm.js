@@ -1,4 +1,5 @@
 import { Button, TextField } from '@mui/material'
+import {Link as ReactLink} from 'react-router-dom'
 import React from 'react'
 
 function ClientForm({ profile, handleLogOut, valueProps, isUpdate, handleSubmit, handleUpdate }) {
@@ -73,6 +74,7 @@ function ClientForm({ profile, handleLogOut, valueProps, isUpdate, handleSubmit,
             {!isUpdate &&
                 <>
                     <Button onClick={handleLogOut}>יציאה</Button>
+                    <ReactLink to={'/sign-up'}>הירשם כפרילנס</ReactLink>
                     {/* <Button>מחיקת חשבון</Button> */}
                 </>
             }
