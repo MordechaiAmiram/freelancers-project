@@ -2,11 +2,13 @@ import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import './navbar.css'
 import SearchField from '../searchField/SearchField'
+import SideBarForm from '../sideBar/SideBarForm'
 
 function Navbar() {
     const profile = JSON.parse(localStorage.getItem('currentUser'))
     return (
         <>
+        <SideBarForm />
             <div className='up-bar'>
                 {!profile &&
                     <>
@@ -22,7 +24,7 @@ function Navbar() {
                                     to={'/log-in'}>כניסה</RouterLink>
                             </div>
                         </div>
-                        <SearchField />
+                        <div className='search-bar'><SearchField /></div>
                         <div className='left-bar'>
                             <div className='nav-item'>
                                 <RouterLink className='link home-link'

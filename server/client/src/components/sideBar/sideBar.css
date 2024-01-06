@@ -1,4 +1,5 @@
 .side-bar {
+
     /*-webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     background-color: #9e3a3a;
@@ -20,4 +21,27 @@
     transition: all .3s ease;
     width: 272px;
     z-index: 10001;*/
+}
+
+.side-bar {
+    display: flex;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 20px;
+}
+
+.slider {
+
+}
+
+
+.search-side-bar {
+    width: 100%;
+    margin-left: 20px;
+}
+
+@media screen and (min-width: 701px) {
+    .side-bar {
+        display: none;
+    }
 }
