@@ -64,7 +64,8 @@ h2 {
     padding: 10px;
 }
 .separate-line {
-    /* width: 80%; */
+    width: 80%;
+    margin: auto;
    
     border-bottom: solid 1px gray;
 }

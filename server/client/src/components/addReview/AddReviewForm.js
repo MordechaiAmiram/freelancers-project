@@ -2,6 +2,7 @@ import React from 'react'
 import './addReview.css'
 import BasicRating from '../rating/BasicRating'
 import { Button, TextareaAutosize } from '@mui/material'
+import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
 function AddReviewForm({ textProps, handleClick, handleChange, value }) {
     return (
@@ -14,11 +15,12 @@ function AddReviewForm({ textProps, handleClick, handleChange, value }) {
             <TextareaAutosize
                 aria-label="empty textarea"
                 minRows={8}
+                // sx={{innerWidth: '100%'}}
                 placeholder="הוסף ביקורת"
                 {...textProps}
             />
             <br />
-            <Button onClick={handleClick}>שלח</Button>
+            <Button onClick={handleClick}><SendOutlinedIcon /></Button>
         </div>
     )
 }

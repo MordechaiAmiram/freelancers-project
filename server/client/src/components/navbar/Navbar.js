@@ -47,7 +47,7 @@ function Navbar() {
                                 </div>
                             }
                         </div>
-                        <SearchField />
+                        <div className='search-bar'><SearchField /></div>
                         <div className='left-bar'>
                             <div className='nav-item'>
                                 <RouterLink className='link home-link'

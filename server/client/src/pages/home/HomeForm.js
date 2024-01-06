@@ -9,7 +9,7 @@ function HomeForm({ categories }) {
         <>
             <Navbar />
             <h1>Freeלאנ"ש</h1>
-            <SearchField />
+            <div className='search-home'><SearchField /></div>
             <MainCategories
                 categories={categories}
             />

@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20%;
+    margin-top: 10%;
     margin-left: 10%;
     margin-right: 10%;
     /* width: 70%; */
@@ -24,4 +24,10 @@
 
 .main-categories-link:hover {
     outline: solid 2px green;
+}
+
+@media only screen and (max-width: 1400px) {
+    .main-categories-link {
+        font-size: large;
+    }
 }

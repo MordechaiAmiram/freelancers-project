@@ -40,7 +40,8 @@ function SearchField() {
                 name='search'
                 value={value}
                 handleChange={handleChange}
-                sx={{ width: '30%', bgcolor: '#fff' }} />
+                sx={{ width: '100%',  bgcolor: '#fff' }}
+                 />
 
             {data && <div className="dropdown">
                 <div className="dropdown-content">
