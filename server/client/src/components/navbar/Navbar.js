@@ -8,7 +8,7 @@ function Navbar() {
     const profile = JSON.parse(localStorage.getItem('currentUser'))
     return (
         <>
-        <SideBarForm />
+        <SideBarForm profile={profile} />
             <div className='up-bar'>
                 {!profile &&
                     <>
@@ -43,7 +43,7 @@ function Navbar() {
                                 <RouterLink className='link'
                                     to={'/my-profile/:userId'}>הפרופיל שלי</RouterLink>
                             </div>
-                            {profile?.isAdmin &&
+                            {profile?.isAdmin === 1 &&
                                 <div className='nav-item'>
                                     <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
                                 </div>
