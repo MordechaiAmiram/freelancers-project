@@ -1,7 +1,16 @@
 .add-review-container{
     width: 50%;
+    min-width: 300px;
     margin-right: 5%;
+    margin-bottom: 50px;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 1px 1px 2px 2px #888888;
+}
+
+@media screen and (max-width: 700px) {
+    .add-review-container{
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

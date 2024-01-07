@@ -22,9 +22,11 @@ async function getChildren(categoryId) {
 
 async function getCategory(categoryId) {
     const sql = `
-    SELECT category_id as id, category_name as name 
-    FROM categories
-    WHERE category_id = ?
+    SELECT c1.category_id as categoryId, c1.category_name as categoryName, c2.category_id as parentId, c2.category_name as parentName
+    FROM categories c1
+    LEFT JOIN categories c2 
+    ON c1.parent_id = c2.category_id 
+    WHERE c1.category_id = ?
     `
     const [category] = await pool.query(sql, [categoryId])
     return category

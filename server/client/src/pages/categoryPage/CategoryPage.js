@@ -14,17 +14,19 @@ function CategoryPage() {
 
     useEffect(() => {
         if (category) {
-            setCategoryName(category.name)
+            setCategoryName(category.categoryName)
         }
     }, [category])
 
     return (
         <>
-            <CategoryPageForm
-                categoryName={categoryName}
-                profiles={profiles}
-                subcategories={subcategories}
-            />
+            {category &&
+                <CategoryPageForm
+                    categoryName={categoryName}
+                    category={category}
+                    profiles={profiles}
+                    subcategories={subcategories}
+                />}
         </>
     )
 }

@@ -31,3 +31,14 @@
     width: 90%;
     margin: auto;
 }
+
+.inner-router{
+    position: absolute;
+    margin-right: 20px;
+    margin-top: -30px;
+    font-size: large;
+}
+
+.inner-router a{
+    text-decoration: none;
+}
