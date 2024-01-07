@@ -1,11 +1,3 @@
-.private-profile-container {
-    display: inline-block;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px 3px gray;
-    width: 500px;    
-}
 
 .private-profile-image {
     border: 1px solid #03BFCB;
@@ -13,6 +5,3 @@
 	padding: 7px;
 }
 
-.private-profile-container div {
-    margin-top: 5px;
-}

@@ -8,3 +8,16 @@
     background-color: aqua;
     display: inline-block;
 }
+.private-profile-container {
+    display: inline-block;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px 3px gray;
+    width: 30%;
+    min-width: 300px;    
+}
+
+.private-profile-container div {
+    margin-top: 5px;
+}

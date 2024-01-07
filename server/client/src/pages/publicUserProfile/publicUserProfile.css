@@ -22,6 +22,12 @@ h2 {
     text-align: right;
 }
 
+.profile-page-router {
+    display: flex;
+    margin-right: 2%;
+    margin-top: 10px;
+}
+
 .profile-picture {
     border: 1px solid #03BFCB;
     border-radius: 50%;

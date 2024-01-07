@@ -83,10 +83,12 @@ async function getImageId(freelanceId) {
 async function getFreelancersByCategory(categoryId) {
     const sql = `
     SELECT title, about, service_location as serviceLocation, account_type as accountType, 
-        freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
-        phone, email, category_id as categoryId, profile_image_id as profileImageId,
+        freelance_id as freelanceId, first_name as firstName, last_name as lastName, phone, email,
+        profile_image_id as profileImageId,
         number_of_ratings as numberOfRatings,
-        ROUND((cumulative_rating / number_of_ratings), 1) as rating, parent_id
+        ROUND((cumulative_rating / number_of_ratings), 1) as rating,
+		c1.category_id as categoryId, c1.category_name as categoryName,
+        c1.parent_id, c2.category_name as parentName
     FROM freelancers 
         JOIN users
     USING(user_id)
@@ -94,10 +96,12 @@ async function getFreelancersByCategory(categoryId) {
     USING(freelance_id)
 		LEFT JOIN rating_data
 	USING(freelance_id)
-        JOIN categories
+       LEFT JOIN categories c1
 	USING (category_id)
+		LEFT JOIN categories c2
+    ON c1.parent_id = c2.category_id 
     WHERE fce.category_id = ?
-    OR parent_id = ?
+    OR c1.parent_id = ?
     AND is_confirmed = 1
     `
     const [freelancers] = await pool.query(sql, [categoryId, categoryId])
@@ -108,8 +112,10 @@ async function getFreelance(freelanceId) {
     const sql = `
     SELECT title, about, service_location as serviceLocation, profile_image_id as profileImageId,
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
-        phone, email, category_id as categoryId, number_of_ratings as numberOfRatings,
-        ROUND((cumulative_rating / number_of_ratings), 1) as rating
+        phone, email, number_of_ratings as numberOfRatings,
+        ROUND((cumulative_rating / number_of_ratings), 1) as rating,
+		c1.category_id as categoryId, c1.category_name as categoryName,
+        c1.parent_id as parentId, c2.category_name as parentName
     FROM freelancers f
         JOIN users
     USING(user_id)
@@ -117,6 +123,10 @@ async function getFreelance(freelanceId) {
     USING(freelance_id)
 		LEFT JOIN rating_data
 	USING(freelance_id)
+       LEFT JOIN categories c1
+	USING (category_id)
+		LEFT JOIN categories c2
+    ON c1.parent_id = c2.category_id 
     WHERE f.freelance_id = ?
     `
     const [[freelancers]] = await pool.query(sql, [freelanceId])
