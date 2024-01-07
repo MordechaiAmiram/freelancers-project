@@ -23,21 +23,31 @@
     z-index: 10001;*/
 }
 
-.side-bar {
+.header-title {
     display: flex;
-    align-items: center;
-    background-color: antiquewhite;
-    padding: 20px;
+    justify-content: center;
+    flex-basis: 100%;
 }
 
-.slider {
-
+.side-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 0px 20px 20px 20px;
+}
+.home-link-side-bar {
+    color: black;
+}
+.slider-btn {
+    display: flex;
 }
 
 
 .search-side-bar {
-    width: 100%;
     margin-left: 20px;
+    display: flex;
+    flex-grow: 10;
 }
 
 @media screen and (min-width: 701px) {
