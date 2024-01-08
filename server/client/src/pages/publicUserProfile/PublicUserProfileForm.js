@@ -1,7 +1,6 @@
 import React from 'react'
 import './publicUserProfile.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
-import Navbar from '../../components/navbar/Navbar'
 import StarIcon from '@mui/icons-material/Star';
 import Review from '../../components/review/Review'
 import AddReview from '../../components/addReview/AddReview'
@@ -12,16 +11,14 @@ import InnerRouter from '../../components/innerRouter/InnerRouter';
 // import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 // import { Link as RouterLink } from 'react-router-dom'
 
-function PublicUserProfileForm({ profile, reviews }) {
+function PublicUserProfileForm({ profile, reviews, handleMouseOver, showNumberOfRatings, handleMouseLeave }) {
     const { firstName, lastName, title, rating, about, serviceLocation,
         phone, email, freelanceId, profileImageId, numberOfRatings, categoryName,
-        parentName, parentId } = profile
+        parentName, parentId, categoryId } = profile
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-    console.log(currentUser);
 
     return (
         <>
-            <Navbar />
             <CategoriesNavbar />
             {parentName &&
                 <div className='profile-page-router'>
@@ -29,6 +26,8 @@ function PublicUserProfileForm({ profile, reviews }) {
                         parentName={parentName}
                         parentId={parentId}
                         categoryName={categoryName}
+                        categoryId={categoryId}
+                        freelanceName={`${firstName} ${lastName}`}
                     />
                 </div>
             }
@@ -45,13 +44,21 @@ function PublicUserProfileForm({ profile, reviews }) {
 
                         <div className='rating'>
                             <div>
-                                {numberOfRatings && `(${numberOfRatings}) `}
-                                <div className='rating-digit'>{rating ? `${rating}` : '0'}</div>
+                                <div className='number-of-ratings'
+                                    onMouseOver={handleMouseOver}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    {numberOfRatings && `(${numberOfRatings}) `}
+                                </div>
+                                <div className='rating-digit'>
+                                    {rating ? `${rating}` : '0'}
+                                </div>
                             </div>
                             <div>
                                 <StarIcon fontSize='large' sx={{ color: 'gold' }} />
                             </div>
                         </div>
+                        <div className={`number-of-ratings-hover ${showNumberOfRatings ? 'number-of-ratings-hover-active' : ''}`}>מספר מדרגים</div>
                     </div>
 
                     <div className='work-in-area'>{`מבצע/ת עבודות באזור: ${serviceLocation}`}</div><br />

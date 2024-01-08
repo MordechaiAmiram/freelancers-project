@@ -4,7 +4,6 @@ import SignUpFreelanceForm from './SignUpFreelanceForm'
 import api from '../../services/BaseURL'
 import { useNavigate } from 'react-router-dom'
 import useInput from '../../hooks/useInput'
-import Navbar from '../../components/navbar/Navbar'
 
 function SignUp() {
   const navigate = useNavigate()
@@ -92,7 +91,6 @@ function SignUp() {
 
   return (
     <>
-      <Navbar />
       <div style={{ display: isFreelance ? 'none' : 'flex', justifyContent: 'center' }}>
         <SignUpForm
           firstNameProps={firstNameProps}

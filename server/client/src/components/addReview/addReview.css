@@ -16,9 +16,16 @@
 }
 
 .add-review-title{
+    display: flex;
     cursor: pointer;
     width: 100%;
     font-weight: 700;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-review-title > div {
+    display: flex;
 }
 
 @media screen and (max-width: 700px) {

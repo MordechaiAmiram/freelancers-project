@@ -9,9 +9,19 @@ function PublicUserProfile() {
     const [data] = useFetch(`/freelance/${splitURL[splitURL.length - 1]}`)
     const [reviews] = useFetch(`/reviews/by-freelance/${splitURL[splitURL.length - 1]}`)
     const [freelance, setFreelance] = useState(state)
-    
+
+    const [showNumberOfRatings, setShowNumberOfRatings] = useState(false)
+
+    const handleMouseOver = () => {
+        setShowNumberOfRatings(true)
+    }
+
+    const handleMouseLeave =() =>{
+        setShowNumberOfRatings(false)
+    }
+
     useEffect(() => {
-        if ( data) {
+        if (data) {
             setFreelance(data)
         }
     }, [data])
@@ -22,6 +32,9 @@ function PublicUserProfile() {
                 <PublicUserProfileForm
                     profile={freelance}
                     reviews={reviews}
+                    handleMouseOver={handleMouseOver}
+                    showNumberOfRatings={showNumberOfRatings}
+                    handleMouseLeave={handleMouseLeave}
                 />}
         </>
     )

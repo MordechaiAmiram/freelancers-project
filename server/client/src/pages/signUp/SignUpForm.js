@@ -74,7 +74,7 @@ function SignUpForm({ firstNameProps, lastNameProps, usernameProps, emailProps, 
                     <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>
                 </div> */}
             </form>
-        </div >
+        </div>
     )
 }
 

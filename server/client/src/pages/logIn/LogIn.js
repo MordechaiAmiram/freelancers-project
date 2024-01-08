@@ -3,7 +3,6 @@ import LogInForm from './LogInForm'
 import api from '../../services/BaseURL'
 import { useNavigate } from 'react-router-dom';
 import useInput from '../../hooks/useInput';
-import Navbar from '../../components/navbar/Navbar';
 
 function LogIn() {
   const navigate = useNavigate()
@@ -27,7 +26,6 @@ function LogIn() {
 
   return (
     <>
-    <Navbar />
       <LogInForm
         usernameProps={usernameProps}
         passwordProps={passwordProps}

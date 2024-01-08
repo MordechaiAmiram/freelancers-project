@@ -24,7 +24,7 @@ function SearchField() {
         }
         fetchData()
     }, [value])
-    
+
     const handleChange = (e) => {
         setValue(e.target.value);
     }
@@ -40,21 +40,23 @@ function SearchField() {
                 name='search'
                 value={value}
                 handleChange={handleChange}
-                sx={{ width: '100%',  bgcolor: '#fff' }}
-                 />
+                sx={{ width: '100%', bgcolor: '#fff' }}
+            />
 
             {data && <div className="dropdown">
-                <div className="dropdown-content">
-                    {data.map(element => (
-                        <div key={element.id} onClick={initValues}>
-                            <Category
-                                category={element}
-                                className={'dropdwon-link'}
-                            >
-                                {element.name}
-                            </Category>
-                        </div>
-                    ))}
+                <div className='dropdown-container'>
+                    <div className="dropdown-content">
+                        {data.map(element => (
+                            <div key={element.id} onClick={initValues}>
+                                <Category
+                                    category={element}
+                                    className={'dropdwon-link'}
+                                >
+                                    {element.name}
+                                </Category>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>}
 

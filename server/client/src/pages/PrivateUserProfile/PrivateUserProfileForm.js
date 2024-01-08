@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Navbar from '../../components/navbar/Navbar'
-import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import './privateUserProfile.css'
 import Freelance from '../../components/userProfile/freelance/Freelance'
 import Client from '../../components/userProfile/client/Client'
@@ -96,8 +94,6 @@ function PrivateUserProfileForm({ profile, handleLogOut }) {
 
   return (
     <>
-      <Navbar />
-      <CategoriesNavbar />
       {/* {isAdmin ?
         <Admin
           profile={profile}

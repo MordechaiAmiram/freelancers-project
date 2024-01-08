@@ -18,7 +18,7 @@ function ProfileCardForm({ profile }) {
       
       <h4 className='title'>{title}</h4>
       
-      <div className='rating'>{rating ? `(${rating})` : '(0)'}<StarIcon sx={{color: 'gold'}} /></div>
+      <div className='profile-card-rating'>{rating ? `(${rating})` : '(0)'}<StarIcon sx={{color: 'gold'}} /></div>
       
       <LinkRouter
         to={`/profile/${freelanceId}`}

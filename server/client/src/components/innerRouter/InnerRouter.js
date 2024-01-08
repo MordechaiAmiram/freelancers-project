@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import './innerRouter.css'
 
-function InnerRouter({ parentName, parentId, categoryName }) {
+function InnerRouter({ parentName, parentId, categoryName, categoryId, freelanceName }) {
 
     return (
         <>
@@ -18,7 +18,14 @@ function InnerRouter({ parentName, parentId, categoryName }) {
                         </RouterLink> /
                     </>
                 }
-                {` ${categoryName}`}
+                {categoryId ?
+                    <>
+                        <RouterLink to={`/categories/${categoryId}`}>
+                            {` ${categoryName}`}
+                        </RouterLink> / {freelanceName}
+                    </>
+                    :
+                    ` ${categoryName}`}
             </div>
         </>
     )
