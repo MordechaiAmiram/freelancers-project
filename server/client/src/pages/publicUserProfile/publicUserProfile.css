@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-h2 {
+.profile-container  > h2 {
     padding-top: 3%;
     margin-right: 5%;
 }

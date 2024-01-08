@@ -25,12 +25,12 @@ function SideBarForm({ profile }) {
         <div className='search-side-bar'><SearchField /></div>
 
       </div>
-      {showItmes &&
-        <div className='side-bar-items'>
+      {
+        <div className={`side-bar-items ${showItmes ? 'active' : ''}`}>
           <div className='close-btn' onClick={HandleHideItmes}><CloseRoundedIcon /></div>
 
           {!profile && <>
-            <div className='side-bar-item'>
+            <div className='side-bar-item' >
               <RouterLink className='link'
                 to={'/sign-up'}>הרשמה</RouterLink>
             </div>
