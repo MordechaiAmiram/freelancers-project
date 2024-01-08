@@ -16,7 +16,7 @@ function PublicUserProfile() {
         setShowNumberOfRatings(true)
     }
 
-    const handleMouseLeave =() =>{
+    const handleMouseLeave = () => {
         setShowNumberOfRatings(false)
     }
 

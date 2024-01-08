@@ -71,15 +71,18 @@
 }
 
 .number-of-ratings-hover {
-    position: relative;
-    right: -70%;
-    top: -20px;
+    position: absolute;
+    /* right: 18%; */
+    /* top: 52%; */
+    display: inline-block;
+    height: fit-content;
+    font-size: small;
+    /* bottom: 5px; */
     padding: 2px;
-    align-items: center;
     border: solid 1px gray;
     border-radius: 3px;
     opacity: 0;
-    background-color: rgb(231, 231, 231);
+    background-color: rgb(240, 240, 240);
     transition: opacity 0.7s ease;
 }
 

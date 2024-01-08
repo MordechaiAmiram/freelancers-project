@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import './publicUserProfile.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
 import StarIcon from '@mui/icons-material/Star';
@@ -8,15 +8,21 @@ import GetImage from '../../components/GetImage'
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import InnerRouter from '../../components/innerRouter/InnerRouter';
-// import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-// import { Link as RouterLink } from 'react-router-dom'
 
 function PublicUserProfileForm({ profile, reviews, handleMouseOver, showNumberOfRatings, handleMouseLeave }) {
     const { firstName, lastName, title, rating, about, serviceLocation,
         phone, email, freelanceId, profileImageId, numberOfRatings, categoryName,
         parentName, parentId, categoryId } = profile
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 
+    const [tooltipPosition, setTooltipPosition] = useState({ left: 0, top: 0 });
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    const tooltip = useRef()
+
+    const handleToolTip = (e) => {
+        setTooltipPosition({ left: e.pageX + 10, top: e.pageY + 10 });
+    }
+    
     return (
         <>
             <CategoriesNavbar />
@@ -45,7 +51,10 @@ function PublicUserProfileForm({ profile, reviews, handleMouseOver, showNumberOf
                         <div className='rating'>
                             <div>
                                 <div className='number-of-ratings'
-                                    onMouseOver={handleMouseOver}
+                                    onMouseOver={(e) => {
+                                        handleToolTip(e);
+                                        handleMouseOver();
+                                    }}
                                     onMouseLeave={handleMouseLeave}
                                 >
                                     {numberOfRatings && `(${numberOfRatings}) `}
@@ -58,7 +67,10 @@ function PublicUserProfileForm({ profile, reviews, handleMouseOver, showNumberOf
                                 <StarIcon fontSize='large' sx={{ color: 'gold' }} />
                             </div>
                         </div>
-                        <div className={`number-of-ratings-hover ${showNumberOfRatings ? 'number-of-ratings-hover-active' : ''}`}>מספר מדרגים</div>
+                        <div ref={tooltip}
+                            className={`number-of-ratings-hover ${showNumberOfRatings ? 'number-of-ratings-hover-active' : ''}`}
+                            style={{ left: tooltipPosition.left, top: tooltipPosition.top }}>
+                            מספר מדרגים</div>
                     </div>
 
                     <div className='work-in-area'>{`מבצע/ת עבודות באזור: ${serviceLocation}`}</div><br />
