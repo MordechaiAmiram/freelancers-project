@@ -17,12 +17,13 @@ function PublicUserProfileForm({ profile, reviews }) {
         phone, email, freelanceId, profileImageId, numberOfRatings, categoryName,
         parentName, parentId } = profile
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    console.log(currentUser);
 
     return (
         <>
             <Navbar />
             <CategoriesNavbar />
-                {parentName &&
+            {parentName &&
                 <div className='profile-page-router'>
                     <InnerRouter
                         parentName={parentName}
@@ -30,7 +31,7 @@ function PublicUserProfileForm({ profile, reviews }) {
                         categoryName={categoryName}
                     />
                 </div>
-                }
+            }
 
             <div className='profile-container'>
                 <h2>{title}</h2>
@@ -69,7 +70,10 @@ function PublicUserProfileForm({ profile, reviews }) {
                     ))}
                 </div>
             }
-            {currentUser && <AddReview freelanceId={freelanceId} />}
+            {currentUser &&
+                freelanceId !== currentUser.freelanceId &&
+                <AddReview freelanceId={freelanceId}
+                />}
         </>
     )
 }

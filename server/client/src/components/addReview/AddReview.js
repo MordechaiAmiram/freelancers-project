@@ -5,7 +5,7 @@ import api from '../../services/BaseURL'
 
 function AddReview({ freelanceId }) {
     const reviewerId = JSON.parse(localStorage.getItem('currentUser')).userId
-    const [addReview, setAddReview] = useState(true)
+    const [addReview, setAddReview] = useState(false)
     const textProps = useInput('')
 
     const [rating, setRating] = useState(0)
