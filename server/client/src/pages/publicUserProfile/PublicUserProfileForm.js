@@ -34,25 +34,36 @@ function PublicUserProfileForm({ profile, reviews }) {
             }
 
             <div className='profile-container'>
+
                 <h2>{title}</h2>
+
                 <GetImage imageId={profileImageId} width={200} className={'profile-picture'} />
+
                 <div className='profile-inner'>
-                    <div className='name'><b>{`${firstName} ${lastName}`}</b></div>
+                    <div className='name-and-rating-container'>
+                        <div className='name'>{`${firstName} ${lastName}`}</div>
 
-                    <div className='rating'>
-                        {numberOfRatings && `(${numberOfRatings}) `}
-                        {rating ? `${rating}` : '0'}
-                        <StarIcon fontSize='large' sx={{ color: 'gold' }} />
-                    </div> <br />
+                        <div className='rating'>
+                            <div>
+                                {numberOfRatings && `(${numberOfRatings}) `}
+                                <div className='rating-digit'>{rating ? `${rating}` : '0'}</div>
+                            </div>
+                            <div>
+                                <StarIcon fontSize='large' sx={{ color: 'gold' }} />
+                            </div>
+                        </div>
+                    </div>
 
-                    {/* <div className='category'><b>מקצוע</b></div><br /> */}
                     <div className='work-in-area'>{`מבצע/ת עבודות באזור: ${serviceLocation}`}</div><br />
-                    <div className='about'><b>{about}</b></div>
-                    {/* <Button className='contact'
-                        variant='contained'
-                        sx={{ width: 150 }}>צור קשר</Button> */}
+
+                    <div className='about'>{about}</div>
+
+                    <div className='contact'>
+                        <div><PhoneIcon />{phone} </div>
+                        <div><EmailIcon /> {email}</div>
+                    </div>
+
                 </div>
-                <div><PhoneIcon />{phone} <br /><EmailIcon /> {email}</div>
             </div>
             {/* <div className='portfolio'>תיקיית עבודות</div> */}
             {reviews?.length > 0 &&
