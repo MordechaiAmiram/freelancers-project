@@ -1,4 +1,4 @@
-.add-review-container{
+.add-review-container {
     width: 50%;
     min-width: 300px;
     margin-right: 5%;
@@ -6,10 +6,23 @@
     border-radius: 5px;
     padding: 10px;
     box-shadow: 1px 1px 2px 2px #888888;
+    max-height: 40px;
+    overflow: hidden;
+    transition: max-height 0.8s ease;
+}
+
+.add-review-container.active-review {
+    max-height: 500px;
+}
+
+.add-review-title{
+    cursor: pointer;
+    width: 100%;
+    font-weight: 700;
 }
 
 @media screen and (max-width: 700px) {
-    .add-review-container{
+    .add-review-container {
         margin-left: auto;
         margin-right: auto;
     }

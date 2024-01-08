@@ -5,12 +5,17 @@ import api from '../../services/BaseURL'
 
 function AddReview({ freelanceId }) {
     const reviewerId = JSON.parse(localStorage.getItem('currentUser')).userId
+    const [addReview, setAddReview] = useState(true)
     const textProps = useInput('')
 
     const [rating, setRating] = useState(0)
 
     const handleChange = (newValue) => {
         setRating(newValue)
+    }
+
+    const handleAddReview = () =>{
+        setAddReview(!addReview)
     }
 
     const handleClick = async () => {
@@ -34,6 +39,8 @@ function AddReview({ freelanceId }) {
                 textProps={textProps}
                 handleClick={handleClick}
                 handleChange={handleChange}
+                addReview={addReview}
+                handleAddReview={handleAddReview}
                 value={rating}
             />
         </>
