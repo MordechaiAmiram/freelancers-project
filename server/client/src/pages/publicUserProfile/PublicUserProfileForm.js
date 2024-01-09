@@ -7,7 +7,7 @@ import GetImage from '../../components/GetImage'
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import InnerRouter from '../../components/innerRouter/InnerRouter';
-import { Tooltip } from '@mui/material';
+import { Divider, Tooltip } from '@mui/material';
 
 function PublicUserProfileForm({ profile, reviews, handleMouseOver, showNumberOfRatings, handleMouseLeave }) {
     const { firstName, lastName, title, rating, about, serviceLocation,
@@ -96,7 +96,8 @@ function PublicUserProfileForm({ profile, reviews, handleMouseOver, showNumberOf
                                 review={review}
                             />
                             {index !== reviews.length - 1 &&
-                                <div className='separate-line' key={Math.random()}></div>}
+                                <Divider variant="middle" key={Math.random()}/>
+                                }
                         </>
                     ))}
                 </div>

@@ -1,6 +1,7 @@
 import { Button, Rating } from '@mui/material'
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import React from 'react'
+import './review.css'
 
 function ReviewForm({ review, handleDelete }) {
     const { firstName, lastName, rating, text, date } = review
@@ -11,9 +12,10 @@ function ReviewForm({ review, handleDelete }) {
             {isAdmin === 1 &&
                 <Button onClick={handleDelete}><DeleteOutlineRoundedIcon /></Button>
             }
-            <div>{`נכתבה על ידי: ${firstName} ${lastName}`} <br />
-                {`בתאריך: ${splitDate[0]}`} <br />
-                {text} <br />
+            <div>
+                <div className='review-details'> {`נכתבה על ידי: ${firstName} ${lastName}`}</div>
+                <div className='review-details'>{`בתאריך: ${splitDate[0]}`}</div>
+                <div className='review-text'>{text}</div>
                 <Rating name="read-only" value={rating} readOnly />
             </div>
         </div>
