@@ -1,12 +1,11 @@
 import './publicUserProfile.css'
 import CategoriesNavbar from '../../components/navbar/CategoriesNavbar'
-import Review from '../../components/review/Review'
 import AddReview from '../../components/addReview/AddReview'
 import InnerRouter from '../../components/innerRouter/InnerRouter'
-import { Divider } from '@mui/material'
 import FreelanceDetails from '../../components/freelanceDetails/FreelanceDetails'
+import Reviews from '../../components/reviews/Reviews'
 
-function PublicUserProfileForm({ profile, reviews }) {
+function PublicUserProfileForm({ profile }) {
 
     const { firstName, lastName, freelanceId, categoryName, parentName, parentId, categoryId } = profile
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
@@ -30,23 +29,8 @@ function PublicUserProfileForm({ profile, reviews }) {
             />
 
             {/* <div className='portfolio'>תיקיית עבודות</div> */}
-
-            {reviews?.length > 0 &&
-                <div className='reviews'>
-                    <b>ביקורות</b>
-                    {reviews.map((review, index) => (
-                        <>
-                            <Review
-                                key={review.id}
-                                review={review}
-                            />
-                            {index !== reviews.length - 1 &&
-                                <Divider variant="middle" key={Math.random()} />
-                            }
-                        </>
-                    ))}
-                </div>
-            }
+            <Reviews />
+            
             {currentUser &&
                 freelanceId !== currentUser.freelanceId &&
                 <AddReview freelanceId={freelanceId}
