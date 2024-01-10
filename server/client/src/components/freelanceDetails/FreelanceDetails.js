@@ -4,6 +4,7 @@ import { Tooltip } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
+import './freelanceDetails.css'
 
 function FreelanceDetails({ profile }) {
     const { firstName, lastName, title, rating, about, serviceLocation,

@@ -6,9 +6,9 @@ CREATE TABLE `freelancers`(
     `about` VARCHAR(255) NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `account_type` VARCHAR(255) NOT NULL,
-    `service_location` VARCHAR(255) NOT NULL ,
+    `service_location` VARCHAR(255) NOT NULL,
     `is_confirmed` TINYINT NOT NULL DEFAULT 0,
-    `profile_image_id` VARCHAR(255)
+    `profile_image_id` VARCHAR(255) DEFAULT `person_place_holder2_fhahmn`,
 );
 
 CREATE TABLE `users`(
@@ -17,7 +17,7 @@ CREATE TABLE `users`(
     `last_name` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL UNIQUE,
     `phone` VARCHAR(255) NOT NULL,
-    `registeretion_date` TIMESTAMP NOT NULL,
+    `registration_date` TIMESTAMP NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `username` VARCHAR(255) NOT NULL UNIQUE,
     `is_admin` TINYINT NOT NULL
