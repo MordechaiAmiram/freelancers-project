@@ -61,6 +61,21 @@ CREATE TABLE `rating_data`(
     `cumulative_rating` BIGINT NOT NULL
 );
 
+CREATE TABLE freelancers_portfolios (
+    portfolio_id INT PRIMARY KEY auto_increment,
+    freelancer_id INT,
+    title VARCHAR(255),
+    description TEXT,
+    project_url VARCHAR(255),
+    creation_date DATE
+);
+
+CREATE TABLE portfolio_images (
+    image_id INT PRIMARY KEY auto_increment,
+    portfolio_id INT,
+    image_url VARCHAR(255)
+);
+
 ALTER TABLE
     `freelance_category_enrollment`
 ADD
@@ -95,3 +110,4 @@ ALTER TABLE
     `freelance`
 ADD
     CONSTRAINT `freelance_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `reviews`(`reviewer_id`);
+
