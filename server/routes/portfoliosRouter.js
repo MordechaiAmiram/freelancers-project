@@ -3,7 +3,7 @@ const router = express.Router()
 const { getFreelancePortfolios } = require('../dbOperations/portfolios')
 
 router
-    .route('/')
+    .route('/:freelanceId')
     .get(async (req, res) => {
         try {
             const portfolios = await getFreelancePortfolios(req.params.freelancId)
@@ -19,3 +19,5 @@ router
             res.status(500)
         }
     })
+
+module.exports = router
