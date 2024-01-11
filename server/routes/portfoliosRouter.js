@@ -6,7 +6,7 @@ router
     .route('/:freelanceId')
     .get(async (req, res) => {
         try {
-            const portfolios = await getFreelancePortfolios(req.params.freelancId)
+            const portfolios = await getFreelancePortfolios(req.params.freelanceId)
             if (portfolios) {
                 res.status(200)
                     .send(portfolios)
