@@ -7,8 +7,10 @@ function PublicUserProfile() {
     const { state } = useLocation() //freelnace data
     const location = useLocation()
     const splitURL = location.pathname.split('/')
-    const [data] = useFetch(`/freelance/${splitURL[splitURL.length - 1]}`)
+    const freelanceId = splitURL[splitURL.length - 1]
+    const [data] = useFetch(`/freelance/${freelanceId}`)
     const [freelance, setFreelance] = useState(state)
+    const [portfolios] = useFetch(`/portfolios/${freelanceId}`)
 
     useEffect(() => {
         if (data) {
@@ -21,6 +23,7 @@ function PublicUserProfile() {
             {freelance &&
                 <PublicUserProfileForm
                     profile={freelance}
+                    portfolios={portfolios}
                 />}
         </>
     )

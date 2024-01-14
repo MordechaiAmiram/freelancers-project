@@ -1,0 +1,10 @@
+.portfolio-image {
+    display: flex;
+}
+.portfolio-images-flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+

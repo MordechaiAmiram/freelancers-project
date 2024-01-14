@@ -4,9 +4,9 @@ import AddReview from '../../components/addReview/AddReview'
 import InnerRouter from '../../components/innerRouter/InnerRouter'
 import FreelanceDetails from '../../components/freelanceDetails/FreelanceDetails'
 import Reviews from '../../components/reviews/Reviews'
+import Portfolios from '../../components/portfolios/Portfolios'
 
-function PublicUserProfileForm({ profile }) {
-
+function PublicUserProfileForm({ profile, portfolios }) {
     const { firstName, lastName, freelanceId, categoryName, parentName, parentId, categoryId } = profile
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 
@@ -28,13 +28,16 @@ function PublicUserProfileForm({ profile }) {
                 profile={profile}
             />
 
-            {/* <div className='portfolio'>תיקיית עבודות</div> */}
             <Reviews />
-            
+
             {currentUser &&
                 freelanceId !== currentUser.freelanceId &&
                 <AddReview freelanceId={freelanceId}
                 />}
+
+            {portfolios?.length > 0 && <div className='portfolios'>
+                <Portfolios portfolios={portfolios} />
+            </div>}
         </>
     )
 }

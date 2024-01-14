@@ -8,7 +8,7 @@ async function getFreelancePortfolios(freelanceId) {
     p.description,
     p.project_url as projectUrl,
     p.creation_date as creationDate,
-    GROUP_CONCAT(i.image_url) AS imageUrls
+    GROUP_CONCAT(i.image_code) AS imageCodes
     FROM
         freelancers_portfolios p
     LEFT JOIN
