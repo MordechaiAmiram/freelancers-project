@@ -22,7 +22,7 @@ async function getFreelancePortfolios(freelanceId) {
     return portfilios
 }
 
-async function createPortfolio( freelanceId, title, description, projectUrl ) {
+async function createPortfolio(freelanceId, title, description, projectUrl) {
     const sql = `
     INSERT INTO freelancers_portfolios (
         freelance_id, title, description, project_url, creation_date)
@@ -31,8 +31,17 @@ async function createPortfolio( freelanceId, title, description, projectUrl ) {
     const [{ affectedRows }] = await pool.query(sql, [freelanceId, title, description, projectUrl])
     return affectedRows
 }
+async function addImage(portfolioId, imageCode) {
+    const sql = `
+    INSERT INTO portfolio_images (portfolio_id, image_code)
+    VALUES(?, ?)
+    `
+    const [{ affectedRows }] = await pool.query(sql, [portfolioId, imageCode])
+    return affectedRows
+}
 
 module.exports = {
     getFreelancePortfolios,
-    createPortfolio
+    createPortfolio,
+    addImage
 }
