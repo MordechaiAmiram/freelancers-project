@@ -1,11 +1,13 @@
 import { Button, Rating } from '@mui/material'
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
-import React from 'react'
+import React, { useContext } from 'react'
 import './review.css'
+import { userContext } from '../../App';
 
 function ReviewForm({ review, handleDelete }) {
     const { firstName, lastName, rating, text, date } = review
-    const isAdmin = JSON.parse(localStorage.getItem('currentUser'))?.isAdmin
+    const {currentUser} = useContext(userContext)
+    const isAdmin = currentUser?.isAdmin
     const splitDate = date.split('T')
     return (
         <div className='review'>

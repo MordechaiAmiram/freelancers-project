@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import LogInForm from './LogInForm'
 import api from '../../services/BaseURL'
 import { useNavigate } from 'react-router-dom';
 import useInput from '../../hooks/useInput';
+import { userContext } from '../../App';
 
 function LogIn() {
   const navigate = useNavigate()
   const passwordProps = useInput('')
   const usernameProps = useInput('')
+  const { setCurrentUser } = useContext(userContext)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -18,6 +21,7 @@ function LogIn() {
       })
       console.log(data);
       localStorage.setItem('currentUser', JSON.stringify(data))
+      setCurrentUser(data)
       navigate('/')
     } catch (err) {
       console.error(err);

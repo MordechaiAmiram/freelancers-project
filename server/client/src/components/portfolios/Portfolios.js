@@ -4,8 +4,8 @@ import TabList from '@mui/joy/TabList';
 import Tab, { tabClasses } from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import PortfolioImages from './PortfolioImages';
-import './portfolios.css'
 import Typography from '@mui/joy/Typography';
+import './portfolios.css'
 
 export default function Portfolios({ portfolios }) {
 

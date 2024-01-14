@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import SignUpForm from './SignUpForm'
 import SignUpFreelanceForm from './SignUpFreelanceForm'
 import api from '../../services/BaseURL'
 import { useNavigate } from 'react-router-dom'
 import useInput from '../../hooks/useInput'
+import { userContext } from '../../App';
 
 function SignUp() {
   const navigate = useNavigate()
+  const { setCurrentUser } = useContext(userContext)
   const firstNameProps = useInput('')
   const lastNameProps = useInput('')
   const usernameProps = useInput('')
@@ -54,6 +56,7 @@ function SignUp() {
       const { data } = await api.post('/users/sign-up', user)
       console.log(data);
       localStorage.setItem('currentUser', JSON.stringify(data))
+      setCurrentUser(data)
       navigate('/')
     } catch (err) {
       console.error(err);

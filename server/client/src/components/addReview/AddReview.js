@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import AddReviewForm from './AddReviewForm'
 import useInput from '../../hooks/useInput'
 import api from '../../services/BaseURL'
+import { userContext } from '../../App'
 
 function AddReview({ freelanceId }) {
-    const reviewerId = JSON.parse(localStorage.getItem('currentUser')).userId
+    const {currentUser} = useContext(userContext)
+    const reviewerId = currentUser?.userId
+
     const [addReview, setAddReview] = useState(false)
     const textProps = useInput('')
 

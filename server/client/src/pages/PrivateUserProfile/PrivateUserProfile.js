@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PrivateUserProfileForm from './PrivateUserProfileForm'
 import { useNavigate } from 'react-router-dom';
+import { userContext } from '../../App';
 
 function PrivateUserProfile() {
   const navigate = useNavigate()
-  const profile = JSON.parse(localStorage.getItem('currentUser'))
+  const { currentUser, setCurrentUser } = useContext(userContext)
 
   const handleLogOut = () => {
     localStorage.setItem('currentUser', JSON.stringify(""))
+    setCurrentUser('')
     navigate('/')
   }
   return (
     <>
-      {profile && <PrivateUserProfileForm
-        profile={profile}
+      {currentUser && <PrivateUserProfileForm
+        profile={currentUser}
         handleLogOut={handleLogOut}
       />}
     </>

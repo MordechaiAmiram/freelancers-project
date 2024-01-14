@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import './navbar.css'
 import SearchField from '../searchField/SearchField'
 import SideBarForm from '../sideBar/SideBarForm'
+import { userContext } from '../../App'
 
 function Navbar() {
-    const profile = JSON.parse(localStorage.getItem('currentUser'))
+    const {currentUser} = useContext(userContext)
     return (
         <>
-        <SideBarForm profile={profile} />
+        <SideBarForm profile={currentUser} />
             <div className='up-bar'>
-                {!profile &&
+                {!currentUser &&
                     <>
                         <div className='right-bar'>
                             <div className='hello'>
@@ -33,17 +34,17 @@ function Navbar() {
                         </div>
                     </>
                 }
-                {profile &&
+                {currentUser &&
                     <>
                         <div className='right-bar'>
                             <div className='hello'>
-                                {`שלום ${profile.firstName}`}
+                                {`שלום ${currentUser.firstName}`}
                             </div>
                             <div className='nav-item'>
                                 <RouterLink className='link'
                                     to={'/my-profile/:userId'}>הפרופיל שלי</RouterLink>
                             </div>
-                            {profile?.isAdmin === 1 &&
+                            {currentUser?.isAdmin === 1 &&
                                 <div className='nav-item'>
                                     <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
                                 </div>

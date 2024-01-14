@@ -5,10 +5,12 @@ import InnerRouter from '../../components/innerRouter/InnerRouter'
 import FreelanceDetails from '../../components/freelanceDetails/FreelanceDetails'
 import Reviews from '../../components/reviews/Reviews'
 import Portfolios from '../../components/portfolios/Portfolios'
-
+import {userContext} from '../../App'
+import { useContext } from 'react'
 function PublicUserProfileForm({ profile, portfolios }) {
     const { firstName, lastName, freelanceId, categoryName, parentName, parentId, categoryId } = profile
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    const { currentUser } = useContext(userContext)
+
 
     return (
         <>

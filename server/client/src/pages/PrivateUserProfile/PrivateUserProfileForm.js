@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './privateUserProfile.css'
 import Freelance from '../../components/userProfile/freelance/Freelance'
 import Client from '../../components/userProfile/client/Client'
 import useInput from '../../hooks/useInput'
 import api from '../../services/BaseURL'
+import { userContext } from '../../App'
 
 function PrivateUserProfileForm({ profile, handleLogOut }) {
-  const { freelanceId, isAdmin, userId, firstName, lastName, email, phone, city, street, building, suite,
+  const {currentUser, setCurrentUser} = useContext(userContext)
+  const { freelanceId, userId, firstName, lastName, email, phone, city, street, building, suite,
     accountType, profileImageId, serviceLocation, title, about, zipCode } = profile
 
   const [isUpdate, setIsUpdate] = useState(false)
@@ -52,8 +54,7 @@ function PrivateUserProfileForm({ profile, handleLogOut }) {
         suite: suiteProps.value,
         zipCode: zipCodeProps.value
       }
-      const prevData = await JSON.parse(localStorage.getItem('currentUser'))
-
+      const prevData = currentUser
       const { data: user } = await api.put('users', userDetails)
 
       if (user === 'Succeeded!') {
@@ -85,6 +86,7 @@ function PrivateUserProfileForm({ profile, handleLogOut }) {
       }
 
       localStorage.setItem('currentUser', JSON.stringify(prevData))
+      setCurrentUser(prevData)
       setIsUpdate(false)
 
     } catch (err) {
