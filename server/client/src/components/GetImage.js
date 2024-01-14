@@ -19,7 +19,6 @@ function GetImage({ imageId, width, className }) {
         const myImage = cld.image(imageId)
         myImage
             .resize(thumbnail().width(500).height(500).gravity(focusOn(FocusOn.face())))
-            .roundCorners(byRadius(1));
         const url = myImage.toURL()
         setImage(url)
     }, [imageId]);

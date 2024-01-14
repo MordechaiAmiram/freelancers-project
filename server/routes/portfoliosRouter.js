@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getFreelancePortfolios } = require('../dbOperations/portfolios')
+const { getFreelancePortfolios, createPortfolio } = require('../dbOperations/portfolios')
 
 router
     .route('/:freelanceId')
@@ -16,6 +16,24 @@ router
             }
         } catch (err) {
             console.error(err.message)
+            res.status(500)
+        }
+    })
+router
+    .route('/')
+    .post(async (req, res) => {
+        try {
+            const { freelanceId, title, description, projectUrl } = req.body
+            const isCreated = await createPortfolio(freelanceId, title, description, projectUrl)
+            if (isCreated) {
+                res.status(201)
+                    .send('Portfolio was created')
+            } else {
+                res.status(400)
+                    .send('Bad request')
+            }
+        } catch (err) {
+            console.log(err.message)
             res.status(500)
         }
     })

@@ -14,7 +14,7 @@ async function getFreelancePortfolios(freelanceId) {
     LEFT JOIN
         portfolio_images i ON p.portfolio_id = i.portfolio_id
     WHERE
-        p.freelancer_id = ?
+        p.freelance_id = ?
     GROUP BY
     p.portfolio_id;
     `
@@ -22,6 +22,17 @@ async function getFreelancePortfolios(freelanceId) {
     return portfilios
 }
 
+async function createPortfolio( freelanceId, title, description, projectUrl ) {
+    const sql = `
+    INSERT INTO freelancers_portfolios (
+        freelance_id, title, description, project_url, creation_date)
+    VALUES (?, ?, ?, ?,  CURDATE());
+    `
+    const [{ affectedRows }] = await pool.query(sql, [freelanceId, title, description, projectUrl])
+    return affectedRows
+}
+
 module.exports = {
-    getFreelancePortfolios
+    getFreelancePortfolios,
+    createPortfolio
 }

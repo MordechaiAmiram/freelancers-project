@@ -4,6 +4,7 @@ const { getClient, getAllUsers, addUserGate, getFirstName, getLastName, getEmail
 const { getFreelanceRating, getNumberOfRatings } = require('./dbOperations/ratingData')
 const { addReview, getFreelanceReviews, getReviewerReviews, updateReview, getReviewText, getRating, getFreelanceId, deleteReview } = require('./dbOperations/reviews')
 const { getChildren, getParentsCategories, addCategory, updateCategory, searchForCategory } = require('./dbOperations/categories')
+const { createPortfolio } = require('./dbOperations/portfolios')
 
 async function test() {
     try {
@@ -11,7 +12,7 @@ async function test() {
         // const test = await addUserGate(true, 'שירה', 'אוחנה', 'shira_ochana', 'shira.ochana@gamil.com','0578656555',
         // 'shira43', 'אלעד', 'רבי מאיר', 25, 2, '122235', 'צלמת בעלת נסיון מעל 10 שנים במגוון סגנונות, אלופה בצילומי חוץ', 'צלמת מקצועית',
         // 'pro', 'ללא הגבלה', 1)const 
-        const test = await searchForCategory('צ')
+        const test = await createPortfolio(22, 'צילומי ילדים', "", "")
         console.log(test);
     } catch (error) {
         console.log(error);
