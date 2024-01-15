@@ -1,15 +1,51 @@
-.freelance-page {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.freelance-page {}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
 }
+
 .profile-page-router {
     display: flex;
     margin-right: 2%;
     margin-top: 10px;
 }
+
 .portfolios {
-    /* position: absolute;
-    top: 150px;
-    left: 20px; */
+    grid-row: span 3;
 }
+
+/* .parent {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+} */
+
+/* .parent {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+} */
+
+/* .div1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.div2 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.div3 {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.div4 {
+    grid-area: 1 / 2 / 2 / 3;
+} */

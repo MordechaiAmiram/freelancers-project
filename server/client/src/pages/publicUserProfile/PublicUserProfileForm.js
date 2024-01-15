@@ -16,32 +16,33 @@ function PublicUserProfileForm({ profile, portfolios }) {
         <>
             <CategoriesNavbar />
             <div className='freelance-page max-width-container'>
-                {parentName &&
-                    <div className='profile-page-router'>
-                        <InnerRouter
-                            parentName={parentName}
-                            parentId={parentId}
-                            categoryName={categoryName}
-                            categoryId={categoryId}
-                            freelanceName={`${firstName} ${lastName}`}
-                        />
-                    </div>
-                }
-                <FreelanceDetails
-                    profile={profile}
-                />
-                
-                   {portfolios?.length > 0 && <div className='portfolios'>
-                    <Portfolios portfolios={portfolios} />
-                </div>}
+                    {parentName &&
+                        <div className='profile-page-router'>
+                            <InnerRouter
+                                parentName={parentName}
+                                parentId={parentId}
+                                categoryName={categoryName}
+                                categoryId={categoryId}
+                                freelanceName={`${firstName} ${lastName}`}
+                            />
+                        </div>
+                    }
+                    <div className='grid-container'>
+                    <FreelanceDetails
+                        profile={profile}
+                    />
 
-                <Reviews />
+                    {<div className='portfolios'>
+                        <Portfolios portfolios={portfolios} />
+                    </div>}
 
-                {currentUser &&
-                    freelanceId !== currentUser.freelanceId &&
-                    <AddReview freelanceId={freelanceId}
-                    />}
+                    <Reviews />
 
+                    {currentUser &&
+                        freelanceId !== currentUser.freelanceId &&
+                        <AddReview freelanceId={freelanceId}
+                        />}
+                </div>
             </div>
         </>
     )

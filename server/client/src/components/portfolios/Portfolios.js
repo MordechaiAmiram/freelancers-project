@@ -8,55 +8,57 @@ import Typography from '@mui/joy/Typography';
 import './portfolios.css'
 
 export default function Portfolios({ portfolios }) {
-
   return (
-    <Tabs
-      variant="outlined"
-      aria-label="Pricing plan"
-      defaultValue={0}
-      sx={{
-        width: 500,
-        borderRadius: 'lg',
-        boxShadow: 'sm',
-        overflow: 'auto',
-      }}
-    >
-      <TabList
-        disableUnderline
-        tabFlex={1}
-        sx={{
-          [`& .${tabClasses.root}`]: {
-            fontSize: 'sm',
-            fontWeight: 'lg',
-            [`&[aria-selected="true"]`]: {
-              color: 'primary.500',
-              bgcolor: 'background.surface',
-            },
-            [`&.${tabClasses.focusVisible}`]: {
-              outlineOffset: '-4px',
-            },
-          },
-        }}
-      >
-        {portfolios?.map(portfolio => (
-          <Tab key={portfolio.portfolioId}
-            disableIndicator variant="soft" sx={{ flexGrow: 1 }}>
-            {portfolio.title}
-          </Tab>
-        ))}
-      </TabList>
-      {portfolios?.map((portfolio, index) => (
-        <TabPanel key={portfolio.portfolioId}
-          value={index}>
-          <Typography>
-            {portfolio.description}
-          </Typography>
-          <div className='portfolio-images-flexbox'>
-            <PortfolioImages portfolio={portfolio} />
-          </div>
+    <>
+      {portfolios?.length > 0 &&
+        <Tabs
+          variant="outlined"
+          aria-label="Pricing plan"
+          defaultValue={0}
+          sx={{
+            width: 500,
+            borderRadius: 'lg',
+            boxShadow: 'sm',
+            overflow: 'auto',
+          }}
+        >
+          <TabList
+            disableUnderline
+            tabFlex={1}
+            sx={{
+              [`& .${tabClasses.root}`]: {
+                fontSize: 'sm',
+                fontWeight: 'lg',
+                [`&[aria-selected="true"]`]: {
+                  color: 'primary.500',
+                  bgcolor: 'background.surface',
+                },
+                [`&.${tabClasses.focusVisible}`]: {
+                  outlineOffset: '-4px',
+                },
+              },
+            }}
+          >
+            {portfolios?.map(portfolio => (
+              <Tab key={portfolio.portfolioId}
+                disableIndicator variant="soft" sx={{ flexGrow: 1 }}>
+                {portfolio.title}
+              </Tab>
+            ))}
+          </TabList>
+          {portfolios?.map((portfolio, index) => (
+            <TabPanel key={portfolio.portfolioId}
+              value={index}>
+              <Typography>
+                {portfolio.description}
+              </Typography>
+              <div className='portfolio-images-flexbox'>
+                <PortfolioImages portfolio={portfolio} />
+              </div>
 
-        </TabPanel>
-      ))}
-    </Tabs>
+            </TabPanel>
+          ))}
+        </Tabs>}
+    </>
   );
 }
