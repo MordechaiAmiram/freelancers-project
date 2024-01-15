@@ -3,6 +3,7 @@ import GetImage from '../../GetImage'
 import UploadWidget from '../../UploadWidget'
 import React from 'react'
 import LogOut from '../../LogOut'
+import PortfolioManagement from '../../portfolioManagement/PortfolioManagement'
 
 function FreelanceForm({ profile, isUpdate, handleUpdate, valueProps, handleSubmit }) {
     const { firstName, lastName, email, phone, city, street, building, suite,
@@ -199,6 +200,7 @@ function FreelanceForm({ profile, isUpdate, handleUpdate, valueProps, handleSubm
                         {/* <Button>מחיקת חשבון</Button> */}
                     </>
                 }
+                <PortfolioManagement />
             </div>
         </>
     )

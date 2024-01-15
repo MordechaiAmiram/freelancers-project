@@ -17,7 +17,7 @@ const UploadWidget = ({ handleImageId }) => {
     }, [])
     return (
         <Button onClick={()=> widgetRef.current.open()}>
-            טעינת תמונת פרופיל
+            טעינת תמונה
         </Button>
     )
 }
