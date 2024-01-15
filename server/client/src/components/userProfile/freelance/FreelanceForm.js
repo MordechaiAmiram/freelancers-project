@@ -2,8 +2,9 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@m
 import GetImage from '../../GetImage'
 import UploadWidget from '../../UploadWidget'
 import React from 'react'
+import LogOut from '../../LogOut'
 
-function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, valueProps, handleSubmit }) {
+function FreelanceForm({ profile, isUpdate, handleUpdate, valueProps, handleSubmit }) {
     const { firstName, lastName, email, phone, city, street, building, suite,
         accountType, profileImageId, serviceLocation, title, about, zipCode } = profile
 
@@ -194,7 +195,7 @@ function FreelanceForm({ profile, handleLogOut, isUpdate, handleUpdate, valuePro
                 {isUpdate && <Button onClick={handleSubmit}>אישור</Button>}
                 {!isUpdate &&
                     <>
-                        <Button onClick={handleLogOut}>יציאה</Button>
+                        <LogOut />
                         {/* <Button>מחיקת חשבון</Button> */}
                     </>
                 }
