@@ -7,7 +7,9 @@ function HomeForm({ categories }) {
     return (
         <>
             <h1>Freeלַאנְ"שׂ</h1>
-            <div className='search-home'><SearchField /></div>
+            <div className='search-home'>
+                <SearchField />
+            </div>
             <MainCategories
                 categories={categories}
             />

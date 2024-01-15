@@ -4,15 +4,17 @@ import { Button } from '@mui/material'
 import api from '../../services/BaseURL'
 
 function Portfolio({ portfolio }) {
-    const [isClicked, setIsClicked] = useState(false)
+    const [isUpload, setIsUpload] = useState(false)
     const [imageId, setImageId] = useState('')
 
-    const handleClick = () => {
-        setIsClicked(prev => !prev)
+    const handleUpload = () => {
+        setIsUpload(prev => !prev)
     }
+
     const handleImageId = (id) =>{
         setImageId(id)
     }
+
     const handleSubmit = async () => {
         try {
             const body = {
@@ -25,10 +27,10 @@ function Portfolio({ portfolio }) {
         }
     }
     return (
-        <div style={{ width: 200, height: 200, border: 'solid 1px' }}>
+        <div style={{ width: 200, height: 100, border: 'solid 1px' }}>
             {portfolio.title}
-            <div onClick={handleClick}>{!isClicked ? 'הוספת תמונה חדשה' : 'ביטול'}</div>
-            {isClicked &&
+            <div onClick={handleUpload}>{!isUpload ? 'הוספת תמונה חדשה' : 'ביטול'}</div>
+            {isUpload &&
                 <>
                     <UploadWidget handleImageId={handleImageId}/>
                     <Button onClick={handleSubmit}>אישור</Button>

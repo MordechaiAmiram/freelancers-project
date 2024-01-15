@@ -10,30 +10,32 @@ function CategoryPageFrom({ categoryName, category, profiles, subcategories }) {
     return (
         <>
             <CategoryNavbar />
-            <div className='category-page-router'>
-                <InnerRouter
-                    parentId={category.parentId}
-                    parentName={category.parentName}
-                    categoryName={categoryName}
-                />
-            </div>
-            <h1>{categoryName}</h1>
-            {subcategories &&
-                <div className='categories-container'>
-                    {subcategories.map(category => (
-                        <Category key={category.id} category={category} className={'category-page-link'} />
-                    ))}
+            <div className='categories-page-main max-width-container'>
+                <div className='category-page-router'>
+                    <InnerRouter
+                        parentId={category.parentId}
+                        parentName={category.parentName}
+                        categoryName={categoryName}
+                    />
                 </div>
-            }
-            {profiles &&
-                <div className='profiles-flex'>
-                    {profiles.map(profile => (
-                        <ProfileCard
-                            profile={profile}
-                            key={profile.freelanceId}
-                        />
-                    ))}
-                </div>}
+                <h1>{categoryName}</h1>
+                {subcategories &&
+                    <div className='categories-container'>
+                        {subcategories.map(category => (
+                            <Category key={category.id} category={category} className={'category-page-link'} />
+                        ))}
+                    </div>
+                }
+                {profiles &&
+                    <div className='profiles-flex'>
+                        {profiles.map(profile => (
+                            <ProfileCard
+                                profile={profile}
+                                key={profile.freelanceId}
+                            />
+                        ))}
+                    </div>}
+            </div>
         </>
     )
 }

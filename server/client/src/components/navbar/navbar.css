@@ -1,14 +1,16 @@
+.nav-bar-wrapper{
+}
+
 .up-bar {
     width: 100%;
-    background-color: rgb(0, 0, 0);
-    line-height: 50px;
-    /* padding-top: 10px;
-    padding-bottom: 10px; */
+    /* background-color: rgb(0, 0, 0); */
+    line-height: 80px;
+    font-weight: 600;
+    color: rgb(85, 85, 85);
     display: flex;
 }
 
 .hello {
-    color: white;
     padding: 5px;
     margin-left: 20px;
     height: 100%;
@@ -41,13 +43,14 @@
 .categories-navbar {
     display: flex;
     justify-content: space-around;
-    background-color: lightgray;
-    line-height: 35px;
+    line-height: 40px;
     flex-grow: 1;
 }
 
 .category-link-bar {
     flex-grow: 1;
+    font-weight: 600;
+    color: rgb(85, 85, 85);
     text-decoration: none;
     border-bottom: 3px solid transparent;
 }
@@ -58,7 +61,7 @@
     align-items: center;
     padding-right: 10px;
     padding-left: 10px;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid rgba(0, 0, 0, 0);
     margin-left: 10px;
 }
 
@@ -69,7 +72,7 @@
 
 
 .link {
-    color: white;
+    color: rgb(85, 85, 85);
     text-decoration: none;
 }
 

@@ -5,7 +5,9 @@ import useFetch from '../../hooks/useFetch'
 function Home() {
     const [data] = useFetch('/categories/parents')
     return (
-        <HomeForm categories={data}/>
+        <div className='home-page max-width-container'>
+            <HomeForm categories={data} />
+        </div>
     )
 }
 

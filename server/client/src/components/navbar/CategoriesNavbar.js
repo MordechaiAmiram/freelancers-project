@@ -3,6 +3,7 @@ import useFetch from '../../hooks/useFetch'
 import Category from '../mainCategories/Category'
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import { Divider } from '@mui/material';
 
 function CategoriesNavbar() {
     const [categories] = useFetch('/categories/parents')
@@ -17,26 +18,28 @@ function CategoriesNavbar() {
     }
 
     return (
-        <div className='categories-flex-container'>
-            <button className='slide-btns' id="slideRight"
-                onClick={rightClick}
+        <div className='nav-bar-wrapper'>
+            <div className='categories-flex-container max-width-container'>
+                <button className='slide-btns' id="slideRight"
+                    onClick={rightClick}
                 >
-                <KeyboardDoubleArrowRightIcon onClick={rightClick} />
-            </button>
-            <div className='categories-navbar' ref={navRef}>
-                {categories &&
-                    categories.map(category => (
-                        <>
-                            <Category key={category.id} category={category} className={'category-link-bar'} />
-                        </>
-                    ))}
+                    <KeyboardDoubleArrowRightIcon onClick={rightClick} />
+                </button>
+                <div className='categories-navbar' ref={navRef}>
+                    {categories &&
+                        categories.map(category => (
+                            <>
+                                <Category key={category.id} category={category} className={'category-link-bar'} />
+                            </>
+                        ))}
+                </div>
+                <button className='slide-btns' id="slideLeft"
+                    onClick={leftClick}>
+                    <KeyboardDoubleArrowLeftIcon onClick={leftClick} />
+                </button>
             </div>
-            <button className='slide-btns' id="slideLeft"
-                onClick={leftClick}>
-                <KeyboardDoubleArrowLeftIcon onClick={leftClick} />
-            </button>
+            <Divider />
         </div>
-
     )
 }
 

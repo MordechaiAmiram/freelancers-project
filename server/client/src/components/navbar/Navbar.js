@@ -4,13 +4,15 @@ import './navbar.css'
 import SearchField from '../searchField/SearchField'
 import SideBarForm from '../sideBar/SideBarForm'
 import { userContext } from '../../App'
+import { Divider } from '@mui/material'
 
 function Navbar() {
     const {currentUser} = useContext(userContext)
     return (
         <>
         <SideBarForm profile={currentUser} />
-            <div className='up-bar'>
+        <div className='nav-bar-wrapper'>
+            <div className='up-bar max-width-container'>
                 {!currentUser &&
                     <>
                         <div className='right-bar'>
@@ -59,6 +61,8 @@ function Navbar() {
                         </div>
                     </>}
             </div>
+            <Divider />
+        </div>
         </>
     )
 }

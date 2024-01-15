@@ -4,6 +4,7 @@ import DensityMediumRoundedIcon from '@mui/icons-material/DensityMediumRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import './sideBar.css'
 import SearchField from '../searchField/SearchField'
+import { Divider } from '@mui/material';
 
 function SideBarForm({ profile }) {
   const [showItmes, setShowItems] = useState(false)
@@ -52,7 +53,7 @@ function SideBarForm({ profile }) {
             }
 
           </>}
-
+          <Divider />
         </div>}
     </>
   )

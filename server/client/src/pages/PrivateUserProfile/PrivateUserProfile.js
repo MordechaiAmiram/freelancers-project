@@ -97,7 +97,7 @@ function PrivateUserProfile() {
   }
 
   return (
-    <>
+    <div className='private-profile-main max-width-container'>
       {freelanceId ?
         <Freelance
           profile={currentUser}
@@ -136,7 +136,7 @@ function PrivateUserProfile() {
             }
           }
         />}
-    </>
+    </div>
   )
 }
 

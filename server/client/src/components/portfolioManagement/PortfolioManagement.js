@@ -13,7 +13,7 @@ function PortfolioManagement() {
             <CreatePortfolio />
             {portfolios?.length > 0 &&
                 <div>
-                    תיקי עבודות
+                    התיקים שלך
                     {portfolios.map(portfolio => (
                         <Portfolio
                             key={portfolio.portfolioId}
