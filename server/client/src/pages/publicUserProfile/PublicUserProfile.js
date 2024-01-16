@@ -11,6 +11,8 @@ function PublicUserProfile() {
     const [data] = useFetch(`/freelance/${freelanceId}`)
     const [freelance, setFreelance] = useState(state)
     const [portfolios] = useFetch(`/portfolios/${freelanceId}`)
+    const [reviews, setReviews] = useFetch(`/reviews/by-freelance/${splitURL[splitURL.length - 1]}`)
+
 
     useEffect(() => {
         if (data) {
@@ -24,6 +26,8 @@ function PublicUserProfile() {
                 <PublicUserProfileForm
                     profile={freelance}
                     portfolios={portfolios}
+                    setReviews={setReviews}
+                    reviews={reviews}
                 />}
         </>
     )

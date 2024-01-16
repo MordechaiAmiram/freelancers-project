@@ -1,15 +1,10 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
-import useFetch from '../../hooks/useFetch'
 import { Divider } from '@mui/material'
 import Review from '../review/Review'
 import './reviews.css'
 
-function Reviews() {
-    const location = useLocation()
-    const splitURL = location.pathname.split('/')
-    const [reviews] = useFetch(`/reviews/by-freelance/${splitURL[splitURL.length - 1]}`)
-
+function Reviews({reviews}) {
+    
     return (
         <>
             {reviews?.length > 0 &&

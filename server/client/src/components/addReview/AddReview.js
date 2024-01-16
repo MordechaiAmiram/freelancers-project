@@ -4,8 +4,8 @@ import useInput from '../../hooks/useInput'
 import api from '../../services/BaseURL'
 import { userContext } from '../../App'
 
-function AddReview({ freelanceId }) {
-    const {currentUser} = useContext(userContext)
+function AddReview({ freelanceId, setReviews }) {
+    const { currentUser } = useContext(userContext)
     const reviewerId = currentUser?.userId
 
     const [addReview, setAddReview] = useState(false)
@@ -17,7 +17,7 @@ function AddReview({ freelanceId }) {
         setRating(newValue)
     }
 
-    const handleAddReview = () =>{
+    const handleAddReview = () => {
         setAddReview(!addReview)
     }
 
@@ -30,6 +30,10 @@ function AddReview({ freelanceId }) {
                 freelanceId: freelanceId
             }
             const { data } = await api.post('/reviews', review)
+            setReviews(prev => {
+                console.log(prev);
+                return [...prev, review]
+            })
         } catch (err) {
             console.error(err.message);
         }
