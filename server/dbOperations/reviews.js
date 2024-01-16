@@ -66,18 +66,19 @@ async function getReviewerReviews(reviewerId) {
 }
 
 async function addReview(text, rating, reviewerId, freelanceId) {
-    const isRating = await getFreelanceRating(freelanceId)
     const addReviewSql = `
     INSERT INTO reviews (review_text, rating, reviewer_id, freelance_id, review_date)
     VALUES(? ,? ,? ,? , CURDATE())
     `
-
+    
     let connection
     try {
+        const isRating = await getFreelanceRating(freelanceId)
+        console.log(isRating, 'is rating');
         connection = await pool.getConnection()
         await connection.beginTransaction()
 
-        const [{ affectedRows }] = await pool.query(addReviewSql, [text, rating, reviewerId, freelanceId])
+        const [{ affectedRows }] = await connection.query(addReviewSql, [text, rating, reviewerId, freelanceId])
 
         if (isRating) {
             await connection.query(updateRatingDataSql, [rating, freelanceId])
@@ -92,7 +93,7 @@ async function addReview(text, rating, reviewerId, freelanceId) {
         if (connection) {
             await connection.rollback()
         }
-        throw err
+        throw error
     } finally {
         if (connection) {
             pool.releaseConnection(connection)

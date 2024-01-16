@@ -54,7 +54,7 @@ async function getFreelanceRating(freelanceId) {
     WHERE freelance_id = ?
     `
     const [[average]] = await pool.query(sql, [freelanceId])
-    return average?.average
+    return average?.averageRating
 }
 
 async function getNumberOfRatings(freelanceId) {
