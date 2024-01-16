@@ -1,12 +1,13 @@
 .freelance-page {}
 
 .grid-container {
+    margin: 50px 20px 50px 20px;
     display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 0.1fr 0.1fr;
+    grid-gap: 20px 5px;
 }
+
 
 .profile-page-router {
     display: flex;
@@ -18,34 +19,12 @@
     grid-row: span 3;
 }
 
-/* .parent {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-} */
-
-/* .parent {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-} */
-
-/* .div1 {
-    grid-area: 1 / 1 / 2 / 2;
+@media only screen and (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 0.1fr 0.1fr 0.5fr;
+    }
+    .portfolios {
+        grid-row: span 1;
+    }
 }
-
-.div2 {
-    grid-area: 2 / 2 / 3 / 3;
-}
-
-.div3 {
-    grid-area: 3 / 2 / 4 / 3;
-}
-
-.div4 {
-    grid-area: 1 / 2 / 2 / 3;
-} */

@@ -1,10 +1,9 @@
 .reviews {
-    width: 50%;
+    width: 90%;
     min-width: 300px;
-    margin-right: 5%;
-    margin-bottom: 50px;
     border-radius: 5px;
     padding: 10px;
+    height: fit-content;
     box-shadow: 1px 1px 2px 2px #888888;
 }
 

@@ -84,9 +84,6 @@
     display: flex;
     align-items: center;
     width: 300px;
-    /* margin: auto 0px 3px auto; */
-    /* margin-top: auto; */
-    /* margin-bottom: auto; */
 }
 @media screen and (max-width: 700px) {
     .up-bar {
@@ -109,7 +106,9 @@
         overflow-x: scroll;
     }
     .category-link-bar {
-        min-width: 150px;
+        min-width: fit-content;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 

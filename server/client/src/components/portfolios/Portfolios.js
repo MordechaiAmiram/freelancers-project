@@ -16,7 +16,9 @@ export default function Portfolios({ portfolios }) {
           aria-label="Pricing plan"
           defaultValue={0}
           sx={{
-            width: 500,
+            width: '90%',
+            margin: '0 auto auto 0',
+            minWidth: 500,
             borderRadius: 'lg',
             boxShadow: 'sm',
             overflow: 'auto',

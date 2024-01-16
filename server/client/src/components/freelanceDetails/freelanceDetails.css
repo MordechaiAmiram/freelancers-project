@@ -5,14 +5,10 @@
 
 .profile-container {
     display: flex;
-    display: block;
     border-radius: 5px;
     flex-direction: column;
-    width: 50%;
     min-width: 300px;
-    margin-right: 5%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    width: 90%;
     padding: 20px;
     box-shadow: 1px 1px 2px 2px #888888;
     text-align: right;
@@ -21,7 +17,7 @@
 .profile-page-router {
     display: flex;
     margin-right: 2%;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .profile-picture {
