@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import api from '../services/BaseURL';
 
 const useFetch = (url) => {
-    const [data, setData] = useState();
+    const [data, setData] = useState()
+    const [error, setError] = useState()
 
     useEffect(() => {
         async function fetchData() {
@@ -11,12 +12,13 @@ const useFetch = (url) => {
                 setData(data)
             } catch (err) {
                 console.log(err.message);
+                setError(err.message)
             }
         }
         fetchData()
     }, [url]);
 
-    return [data, setData];
+    return [data, setData, error];
 }
 
 export default useFetch
