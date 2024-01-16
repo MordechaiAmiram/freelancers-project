@@ -1,7 +1,10 @@
-.freelance-page {}
+.freelance-page {
+    background-color: rgba(243, 246, 249, 0.6);
+
+}
 
 .grid-container {
-    margin: 50px 20px 50px 20px;
+    margin: 50px 20px 0px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 0.1fr 0.1fr;
@@ -11,12 +14,14 @@
 
 .profile-page-router {
     display: flex;
-    margin-right: 2%;
-    margin-top: 10px;
+    padding: 20px;
 }
 
 .portfolios {
     grid-row: span 3;
+    justify-self: left;
+    width: 90%;
+    min-width: 500px;
 }
 
 @media only screen and (max-width: 900px) {

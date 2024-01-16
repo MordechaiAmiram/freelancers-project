@@ -9,16 +9,13 @@ import './portfolios.css'
 
 export default function Portfolios({ portfolios }) {
   return (
-    <>
+    <div>
       {portfolios?.length > 0 &&
         <Tabs
           variant="outlined"
           aria-label="Pricing plan"
           defaultValue={0}
           sx={{
-            width: '90%',
-            margin: '0 auto auto 0',
-            minWidth: 500,
             borderRadius: 'lg',
             boxShadow: 'sm',
             overflow: 'auto',
@@ -61,6 +58,6 @@ export default function Portfolios({ portfolios }) {
             </TabPanel>
           ))}
         </Tabs>}
-    </>
+    </div>
   );
 }

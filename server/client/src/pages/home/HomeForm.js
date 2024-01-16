@@ -6,7 +6,6 @@ import SearchField from '../../components/searchField/SearchField'
 function HomeForm({ categories }) {
     return (
         <>
-            <h1>Freeלַאנְ"שׂ</h1>
             <div className='search-home'>
                 <SearchField />
             </div>

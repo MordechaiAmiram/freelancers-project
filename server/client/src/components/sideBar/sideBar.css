@@ -72,7 +72,7 @@
     width: 100%;
 }
 
-@media screen and (min-width: 701px) {
+@media screen and (min-width: 771px) {
     .side-bar {
         display: none;
     }

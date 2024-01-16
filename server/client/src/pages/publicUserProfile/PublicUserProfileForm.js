@@ -15,7 +15,8 @@ function PublicUserProfileForm({ profile, portfolios }) {
     return (
         <>
             <CategoriesNavbar />
-            <div className='freelance-page max-width-container'>
+            <div className='freelance-page'>
+                <div className='max-width-container'>
                     {parentName &&
                         <div className='profile-page-router'>
                             <InnerRouter
@@ -28,20 +29,21 @@ function PublicUserProfileForm({ profile, portfolios }) {
                         </div>
                     }
                     <div className='grid-container'>
-                    <FreelanceDetails
-                        profile={profile}
-                    />
+                        <FreelanceDetails
+                            profile={profile}
+                        />
 
-                    {<div className='portfolios'>
-                        <Portfolios portfolios={portfolios} />
-                    </div>}
+                        {<div className='portfolios'>
+                            <Portfolios portfolios={portfolios} />
+                        </div>}
 
-                    <Reviews />
+                        <Reviews />
 
-                    {currentUser &&
-                        freelanceId !== currentUser.freelanceId &&
-                        <AddReview freelanceId={freelanceId}
-                        />}
+                        {currentUser &&
+                            freelanceId !== currentUser.freelanceId &&
+                            <AddReview freelanceId={freelanceId}
+                            />}
+                    </div>
                 </div>
             </div>
         </>

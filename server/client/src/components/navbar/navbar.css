@@ -3,7 +3,7 @@
 
 .up-bar {
     width: 100%;
-    /* background-color: rgb(0, 0, 0); */
+    background-color: #fff;
     line-height: 80px;
     font-weight: 600;
     color: rgb(85, 85, 85);
@@ -42,6 +42,7 @@
 
 .categories-navbar {
     display: flex;
+    background-color: #fff;
     justify-content: space-around;
     line-height: 40px;
     flex-grow: 1;
@@ -76,6 +77,11 @@
     text-decoration: none;
 }
 
+.home-link {
+    font-size: xx-large;
+    font-weight: 700;
+}
+
 .slide-btns {
     display: none;
 }
@@ -85,7 +91,7 @@
     align-items: center;
     width: 300px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 770px) {
     .up-bar {
         display: none;
     }

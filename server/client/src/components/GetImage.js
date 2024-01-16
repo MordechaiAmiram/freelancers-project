@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { thumbnail } from "@cloudinary/url-gen/actions/resize";
-import { byRadius } from "@cloudinary/url-gen/actions/roundCorners";
 import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
 import { FocusOn } from "@cloudinary/url-gen/qualifiers/focusOn";
 
@@ -17,8 +16,13 @@ function GetImage({ imageId, width, className }) {
     useEffect(() => {
 
         const myImage = cld.image(imageId)
-        myImage
-            .resize(thumbnail().width(500).height(500).gravity(focusOn(FocusOn.face())))
+        if (className === 'portfolio-image') {
+            // myImage
+            //     .resize(thumbnail())
+        } else {
+            myImage
+                .resize(thumbnail().width(500).height(500).gravity(focusOn(FocusOn.face())))
+        }
         const url = myImage.toURL()
         setImage(url)
     }, [imageId]);

@@ -63,9 +63,9 @@ CREATE TABLE `rating_data`(
 
 CREATE TABLE freelancers_portfolios (
     portfolio_id INT PRIMARY KEY auto_increment,
-    freelancer_id INT,
+    freelance_id INT,
     title VARCHAR(255),
-    description TEXT,
+    description VARCHAR(255),
     project_url VARCHAR(255),
     creation_date DATE
 );
@@ -73,7 +73,7 @@ CREATE TABLE freelancers_portfolios (
 CREATE TABLE portfolio_images (
     image_id INT PRIMARY KEY auto_increment,
     portfolio_id INT,
-    image_url VARCHAR(255)
+    image_code VARCHAR(255)
 );
 
 ALTER TABLE

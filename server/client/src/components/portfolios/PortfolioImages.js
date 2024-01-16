@@ -8,11 +8,11 @@ function PortfolioImages({ portfolio }) {
   return (
     <>
       {imageCodes?.map(imageCode =>
-          <GetImage
-            imageId={imageCode}
-            width={150}
-            className='portfolio-image'
-          />
+        <GetImage
+          imageId={imageCode}
+          width={150}
+          className='portfolio-image'
+        />
       )}
     </>
   )
