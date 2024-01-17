@@ -13,6 +13,17 @@ function PublicUserProfile() {
     const [portfolios] = useFetch(`/portfolios/${freelanceId}`)
     const [reviews, setReviews] = useFetch(`/reviews/by-freelance/${splitURL[splitURL.length - 1]}`)
 
+    const handleUpdateReviews = async (review) => {
+        setFreelance(prev=>{
+            const prevData = prev
+            prevData.numberOfRatings ++
+            prevData.rating += review.rating
+            return prevData
+        })
+        setReviews(prev => {
+            return [...prev, review]
+        })
+    }
     useEffect(() => {
         if (data) {
             setFreelance(data)
@@ -24,11 +35,11 @@ function PublicUserProfile() {
             {freelance &&
                 <PublicUserProfileForm
                     profile={freelance}
+                    handleUpdateReviews={handleUpdateReviews}
                     portfolios={portfolios}
-                    setReviews={setReviews}
                     reviews={reviews}
                 />}
-                {error && 
+            {error &&
                 <h3>{error}</h3>}
         </>
     )
