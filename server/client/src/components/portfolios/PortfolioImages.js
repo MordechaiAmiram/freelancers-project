@@ -3,7 +3,7 @@ import GetImage from '../GetImage'
 import './portfolios.css'
 
 function PortfolioImages({ portfolio }) {
-  const imageCodes = portfolio.imageCodes.split(',')
+  const imageCodes = portfolio.imageCodes?.split(',')
 
   return (
     <>

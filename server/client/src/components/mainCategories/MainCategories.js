@@ -13,7 +13,7 @@ function MainCategories({ categories }) {
             <div className='categories'>
                 {categories &&
                     categories.map(category => (
-                        <div className='category-link-wrapper'>
+                        <div key={category.id} className='category-link-wrapper'>
                             {/* {category.name === 'ציור ואיור' &&
                                 <ColorLensOutlinedIcon />
                             }
@@ -29,7 +29,7 @@ function MainCategories({ categories }) {
                             {category.name === 'מוזיקה' &&
                                 <MusicNoteOutlinedIcon />
                             } */}
-                            <Category key={category.id} category={category} className={'main-categories-link'} />
+                            <Category category={category} className={'main-categories-link'} />
                         </div>
                     ))}
             </div>

@@ -5,6 +5,7 @@ import Client from '../../components/userProfile/client/Client';
 import Freelance from '../../components/userProfile/freelance/Freelance';
 import api from '../../services/BaseURL';
 import './privateUserProfile.css'
+import PortfolioManagement from '../../components/portfolioManagement/PortfolioManagement';
 
 function PrivateUserProfile() {
   const { currentUser, setCurrentUser } = useContext(userContext)
@@ -12,8 +13,6 @@ function PrivateUserProfile() {
   const { freelanceId, userId, firstName, lastName, email, phone, city, street, building, suite,
     accountType, profileImageId, serviceLocation, title, about, zipCode } = currentUser
     
-
-
   const [isUpdate, setIsUpdate] = useState(false)
   const firstNameProps = useInput({ text: firstName || '' })
   const lastNameProps = useInput({ text: lastName || '' })
@@ -99,6 +98,7 @@ function PrivateUserProfile() {
   return (
     <div className='private-profile-main max-width-container'>
       {freelanceId ?
+      <div className='freelance-private-profile'>
         <Freelance
           profile={currentUser}
           isUpdate={isUpdate}
@@ -121,7 +121,9 @@ function PrivateUserProfile() {
               zipCodeProps: zipCodeProps
             }
           }
-        /> :
+        />
+        <PortfolioManagement />
+        </div> :
         <Client
           profile={currentUser}
           isUpdate={isUpdate}

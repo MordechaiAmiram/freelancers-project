@@ -17,7 +17,7 @@ function PublicUserProfile() {
         setFreelance(prev=>{
             const prevData = prev
             prevData.numberOfRatings ++
-            prevData.rating += review.rating
+            prevData.rating = review.rating
             return prevData
         })
         setReviews(prev => {

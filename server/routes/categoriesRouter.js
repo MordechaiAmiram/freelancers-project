@@ -7,11 +7,16 @@ router
     .get(async (req, res) => {
         try {
             const categories = await getParentsCategories()
-            res.status(200)
-                .send(categories)
+            if (categories) {
+                res.status(200)
+                    .send(categories)
+            } else {
+                res.status(404)
+                    .send('Categories do not exist')
+            }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message)
+            res.status(500)
         }
     })
 
@@ -20,11 +25,16 @@ router
     .get(async (req, res) => {
         try {
             const categories = await getChildren(req.params.id)
-            res.status(200)
-                .send(categories)
+            if (categories) {
+                res.status(200)
+                    .send(categories)
+            } else {
+                res.status(404)
+                    .send('Categories do not exist')
+            }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message)
+            res.status(500)
         }
     })
 router
@@ -33,11 +43,16 @@ router
         try {
             if (req.params.id === 'search') return next()
             const [category] = await getCategory(req.params.id)
-            res.status(200)
-                .send(category)
+            if (category) {
+                res.status(200)
+                    .send(category)
+            } else {
+                res.status(404)
+                    .send('Category does not exist')
+            }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message)
+            res.status(500)
         }
     })
 router
@@ -49,12 +64,12 @@ router
                 res.status(200)
                     .send(data)
             } else {
-                res.status(400)
-                    .send('Bad request')
+                res.status(404)
+                    .send('Categories do not found')
             }
         } catch (err) {
-            res.status(400)
-                .send('Bad request')
+            console.log(err.message)
+            res.status(500)
         }
 
     })
@@ -73,8 +88,8 @@ router
                     .send('Somthing went wrong')
             }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message)
+            res.status(500)
         }
     })
 router
@@ -91,8 +106,8 @@ router
                     .send('Somthing went wrong')
             }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message)
+            res.status(500)
         }
     })
 

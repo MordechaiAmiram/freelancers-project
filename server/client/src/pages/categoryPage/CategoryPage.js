@@ -9,7 +9,7 @@ function CategoryPage() {
     const splitURL = location.pathname.split('/')
     const [subcategories] = useFetch(`categories/children/${splitURL[splitURL.length - 1]}`)
     const [profiles] = useFetch(`/freelancers/${splitURL[splitURL.length - 1]}`)
-    const [category] = useFetch(`/categories/${splitURL[splitURL.length - 1]}`)
+    const [category, setCategory, error] = useFetch(`/categories/${splitURL[splitURL.length - 1]}`)
     const [categoryName, setCategoryName] = useState(state)
 
     useEffect(() => {
@@ -20,13 +20,14 @@ function CategoryPage() {
 
     return (
         <>
-            {category &&
+            {category ?
                 <CategoryPageForm
                     categoryName={categoryName}
                     category={category}
                     profiles={profiles}
                     subcategories={subcategories}
-                />}
+                />: 
+                <h3>{error}</h3>}
         </>
     )
 }

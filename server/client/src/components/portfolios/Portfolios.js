@@ -6,8 +6,9 @@ import TabPanel from '@mui/joy/TabPanel';
 import PortfolioImages from './PortfolioImages';
 import Typography from '@mui/joy/Typography';
 import './portfolios.css'
+import UploadWidget from '../UploadWidget';
 
-export default function Portfolios({ portfolios }) {
+export default function Portfolios({ portfolios, isEdit, handleImageId, handlePortfolioId }) {
   return (
     <div>
       {portfolios?.length > 0 &&
@@ -48,13 +49,16 @@ export default function Portfolios({ portfolios }) {
           {portfolios?.map((portfolio, index) => (
             <TabPanel key={portfolio.portfolioId}
               value={index}>
+              {isEdit &&
+                <div className='add-image-btn' onClick={()=> handlePortfolioId(portfolio.portfolioId)}>
+                  <UploadWidget handleImageId={handleImageId} />
+                </div>}
               <Typography>
                 {portfolio.description}
               </Typography>
               <div className='portfolio-images-flexbox'>
                 <PortfolioImages portfolio={portfolio} />
               </div>
-
             </TabPanel>
           ))}
         </Tabs>}

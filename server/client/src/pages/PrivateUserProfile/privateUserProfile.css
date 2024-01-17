@@ -5,10 +5,17 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 1px 1px 3px 3px gray;
-    width: 30%;
+    width: 70%;
     min-width: 300px;    
 }
 
 .private-profile-container div {
     margin-top: 5px;
+}
+.portfolio-management{
+    border: 1px solid;
+    width: 50%;
+}
+.freelance-private-profile{
+    display: flex;
 }

@@ -7,7 +7,7 @@
     margin: 50px 20px 0px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 0.1fr 0.1fr;
+    /* grid-template-rows: 1fr 0.1fr 0.1fr; */
     grid-gap: 20px 5px;
 }
 
@@ -27,7 +27,7 @@
 @media only screen and (max-width: 900px) {
     .grid-container {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 0.1fr 0.1fr 0.5fr;
+        /* grid-template-rows: 1fr 0.1fr 0.1fr 0.5fr; */
     }
     .portfolios {
         grid-row: span 1;

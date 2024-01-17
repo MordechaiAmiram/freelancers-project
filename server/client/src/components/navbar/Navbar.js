@@ -44,7 +44,7 @@ function Navbar() {
                             </div>
                             <div className='nav-item'>
                                 <RouterLink className='link'
-                                    to={'/my-profile/:userId'}>הפרופיל שלי</RouterLink>
+                                    to={`/my-profile/${currentUser.userId}`}>הפרופיל שלי</RouterLink>
                             </div>
                             {currentUser?.isAdmin === 1 &&
                                 <div className='nav-item'>
@@ -56,7 +56,7 @@ function Navbar() {
                         <div className='left-bar'>
                             <div className='nav-item'>
                                 <RouterLink className='link home-link'
-                                    to={'/'}>Freeלאנ"ש</RouterLink>
+                                    to={'/'}>Freeלַאנְ"שׂ</RouterLink>
                             </div>
                         </div>
                     </>}

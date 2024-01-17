@@ -11,7 +11,7 @@ function AddReview({ freelanceId, handleUpdateReviews }) {
     const [addReview, setAddReview] = useState(false)
     const textProps = useInput('')
 
-    const [rating, setRating] = useState(0)
+    const [rating, setRating] = useState(1)
 
     const handleChange = (newValue) => {
         setRating(newValue)
@@ -30,11 +30,12 @@ function AddReview({ freelanceId, handleUpdateReviews }) {
                 freelanceId: freelanceId,
             }
             const { data } = await api.post('/reviews', review)
+            console.log(data);
             if (data) {
                 const review = {
                     firstName: currentUser.firstName,
                     lastName: currentUser.lastName,
-                    rating: rating,
+                    rating: data,
                     text: textProps.value,
                     date: new Date().toJSON()
                 }

@@ -74,7 +74,6 @@ async function addReview(text, rating, reviewerId, freelanceId) {
     let connection
     try {
         const isRating = await getFreelanceRating(freelanceId)
-        console.log(isRating, 'is rating');
         connection = await pool.getConnection()
         await connection.beginTransaction()
 
@@ -84,10 +83,10 @@ async function addReview(text, rating, reviewerId, freelanceId) {
             await connection.query(updateRatingDataSql, [rating, freelanceId])
         } else {
             await connection.query(addratingDataSql, [freelanceId, rating])
-        }
-
+        }     
+        const updatedRating = await getFreelanceRating(freelanceId) 
         await connection.commit()
-        return affectedRows
+        return updatedRating
 
     } catch (error) {
         if (connection) {

@@ -1,28 +1,34 @@
-import { Button } from "@mui/base"
 import { useEffect, useRef } from "react"
+import AddToPhotosOutlinedIcon from '@mui/icons-material/AddToPhotosOutlined';
+
 
 const UploadWidget = ({ handleImageId }) => {
-    const cloudinaryRef = useRef()
-    const widgetRef = useRef()
+  const cloudinaryRef = useRef()
+  const widgetRef = useRef()
 
-    useEffect(() => {
-        cloudinaryRef.current = window.cloudinary
-        widgetRef.current = cloudinaryRef.current.createUploadWidget({
-            cloudName: 'dcgu0vi6u',
-            uploadPreset: 'gzqr6cgn',
-        }, function (err, res) {
-            if(res?.info?.public_id)
-              handleImageId(res.info.public_id)
-        })
-    }, [])
-    return (
-        <Button onClick={()=> widgetRef.current.open()}>
-            טעינת תמונה
-        </Button>
-    )
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'dcgu0vi6u',
+      uploadPreset: 'gzqr6cgn',
+    }, function (err, res) {
+      if (res?.info?.public_id)
+        handleImageId(res.info.public_id)
+    })
+  }, [])
+  return (
+    <div style={{
+      cursor: 'pointer',
+      display: 'inline-block',
+      padding: '5px'
+    }} onClick={() => widgetRef.current.open()}>
+      הוספת תמונה
+      <AddToPhotosOutlinedIcon />
+    </div>
+  )
 }
 
-export default UploadWidget 
+export default UploadWidget
 
 
 /*import React, { useState } from 'react';

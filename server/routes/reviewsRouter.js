@@ -10,8 +10,8 @@ router
             res.status(200)
                 .send(reviews)
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message);
+            res.status(500)
         }
     })
 
@@ -23,8 +23,8 @@ router
             res.status(200)
                 .send(reviews)
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message);
+            res.status(500)
         }
     })
 
@@ -33,17 +33,18 @@ router
     .post(async (req, res) => {
         try {
             const { text, rating, reviewerId, freelanceId } = req.body
-            const isAdded = await addReview(text, rating, reviewerId, freelanceId)
-            if (isAdded) {
+            const freelanceRating = await addReview(text, rating, reviewerId, freelanceId)
+            console.log(freelanceRating);
+            if (freelanceRating) {
                 res.status(201)
-                    .send('Succeeded!')
+                    .send(freelanceRating)
             } else {
                 res.status(400)
                     .send('Bad request')
             }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message);
+            res.status(500)
         }
     })
 
@@ -60,8 +61,8 @@ router
                     .send('Bad requst')
             }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message);
+            res.status(500)
         }
     })
 
@@ -79,8 +80,8 @@ router
                     .send('Bad request')
             }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message);
+            res.status(500)
         }
     })
 
