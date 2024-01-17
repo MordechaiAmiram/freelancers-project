@@ -27,18 +27,27 @@ function AddReview({ freelanceId, setReviews }) {
                 text: textProps.value,
                 rating: rating,
                 reviewerId: reviewerId,
-                freelanceId: freelanceId
+                freelanceId: freelanceId,
             }
             const { data } = await api.post('/reviews', review)
-            setReviews(prev => {
-                console.log(prev);
-                return [...prev, review]
-            })
+            if (data) {
+                setReviews(prev => {
+                    const review = {
+                        firstName: currentUser.firstName,
+                        lastName: currentUser.lastName,
+                        rating: rating,
+                        text: textProps.value,
+                        date: new Date().toJSON()
+                    }
+                    return [...prev, review]
+                })
+            }
         } catch (err) {
             console.error(err.message);
+        } finally {
+            setAddReview(false)
         }
     }
-
     return (
         <>
             <AddReviewForm
