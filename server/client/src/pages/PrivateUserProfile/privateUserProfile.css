@@ -1,13 +1,4 @@
-.profile-picture {
-    height: 180px;
-    width: 180px;
-    margin-right: 5%;
-    margin-top: 1%;
-    border: solid 1px;
-    border-radius: 50%;
-    background-color: aqua;
-    display: inline-block;
-}
+
 .private-profile-container {
     display: inline-block;
     margin: 20px;

@@ -11,8 +11,8 @@ const useFetch = (url) => {
                 const { data } = await api.get(url)
                 setData(data)
             } catch (err) {
-                console.log(err.message);
-                setError(err.message)
+                console.log(err?.response?.data);
+                setError(err?.response?.data)
             }
         }
         fetchData()

@@ -13,7 +13,7 @@ router
                     .send(freelance)
             } else {
                 res.status(400)
-                    .send('Bad request')
+                    .send('Freelance does not exist')
             }
         } catch (err) {
             console.log(err.message);
@@ -53,8 +53,8 @@ router
                     .send('Bad request')
             }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(res.message);
+            res.status(500)
         }
     })
 

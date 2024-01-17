@@ -1,7 +1,16 @@
 
 .private-profile-image {
-    border: 1px solid #03BFCB;
-	border-radius: 50%;
+
+}
+
+.private-profile-picture {
+    display: inline-block;
+	border: 1px solid #03BFCB;
 	padding: 7px;
+    height: 180px;
+    width: 180px;
+    margin-right: 5%;
+    margin-top: 1%;
+    border-radius: 50%;
 }
 
