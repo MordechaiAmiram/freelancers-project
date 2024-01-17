@@ -12,7 +12,7 @@ function PrivateUserProfile() {
 
   const { freelanceId, userId, firstName, lastName, email, phone, city, street, building, suite,
     accountType, profileImageId, serviceLocation, title, about, zipCode } = currentUser
-    
+
   const [isUpdate, setIsUpdate] = useState(false)
   const firstNameProps = useInput({ text: firstName || '' })
   const lastNameProps = useInput({ text: lastName || '' })
@@ -96,48 +96,50 @@ function PrivateUserProfile() {
   }
 
   return (
-    <div className='private-profile-main max-width-container'>
-      {freelanceId ?
-      <div className='freelance-private-profile'>
-        <Freelance
-          profile={currentUser}
-          isUpdate={isUpdate}
-          handleUpdate={handleUpdate}
-          handleSubmit={handleSubmit}
-          valueProps={
-            {
-              firstNameProps: firstNameProps,
-              lastNameProps: lastNameProps,
-              emailProps: emailProps,
-              phoneProps: phoneProps,
-              cityProps: cityProps,
-              streetProps: streetProps,
-              buildingProps: buildingProps,
-              suiteProps: suiteProps,
-              profileImageIdProps: profileImageIdProps,
-              serviceLocationProps: serviceLocationProps,
-              titleProps: titleProps,
-              aboutProps: aboutProps,
-              zipCodeProps: zipCodeProps
+    <div className='private-profile-page'>
+      <div className='private-profile-main max-width-container'>
+        {freelanceId ?
+          <div className='freelance-private-profile private-profile-grid'>
+            <Freelance
+              profile={currentUser}
+              isUpdate={isUpdate}
+              handleUpdate={handleUpdate}
+              handleSubmit={handleSubmit}
+              valueProps={
+                {
+                  firstNameProps: firstNameProps,
+                  lastNameProps: lastNameProps,
+                  emailProps: emailProps,
+                  phoneProps: phoneProps,
+                  cityProps: cityProps,
+                  streetProps: streetProps,
+                  buildingProps: buildingProps,
+                  suiteProps: suiteProps,
+                  profileImageIdProps: profileImageIdProps,
+                  serviceLocationProps: serviceLocationProps,
+                  titleProps: titleProps,
+                  aboutProps: aboutProps,
+                  zipCodeProps: zipCodeProps
+                }
+              }
+            />
+            <PortfolioManagement />
+          </div> :
+          <Client
+            profile={currentUser}
+            isUpdate={isUpdate}
+            handleUpdate={handleUpdate}
+            handleSubmit={handleSubmit}
+            valueProps={
+              {
+                firstNameProps: firstNameProps,
+                lastNameProps: lastNameProps,
+                emailProps: emailProps,
+                phoneProps: phoneProps,
+              }
             }
-          }
-        />
-        <PortfolioManagement />
-        </div> :
-        <Client
-          profile={currentUser}
-          isUpdate={isUpdate}
-          handleUpdate={handleUpdate}
-          handleSubmit={handleSubmit}
-          valueProps={
-            {
-              firstNameProps: firstNameProps,
-              lastNameProps: lastNameProps,
-              emailProps: emailProps,
-              phoneProps: phoneProps,
-            }
-          }
-        />}
+          />}
+      </div>
     </div>
   )
 }

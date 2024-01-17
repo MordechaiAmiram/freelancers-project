@@ -1,4 +1,8 @@
-
+.private-profile-page{
+    background-color: rgba(243, 246, 249, 0.6);
+    padding: 20px;
+    min-height: 90vh;
+}
 .private-profile-container {
     display: inline-block;
     margin: 20px;
@@ -7,6 +11,13 @@
     box-shadow: 1px 1px 3px 3px gray;
     width: 70%;
     min-width: 300px;    
+}
+.private-profile-grid {
+    margin: 50px 20px 0px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* grid-template-rows: 1fr 0.1fr 0.1fr; */
+    grid-gap: 20px 5px;
 }
 
 .private-profile-container div {
