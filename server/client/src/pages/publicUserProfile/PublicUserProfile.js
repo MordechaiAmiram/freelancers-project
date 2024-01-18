@@ -24,6 +24,7 @@ function PublicUserProfile() {
             return [...prev, review]
         })
     }
+    
     useEffect(() => {
         if (data) {
             setFreelance(data)

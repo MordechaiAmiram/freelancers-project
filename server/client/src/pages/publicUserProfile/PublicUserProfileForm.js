@@ -37,7 +37,7 @@ function PublicUserProfileForm({ profile, portfolios, reviews, handleUpdateRevie
                             <Portfolios portfolios={portfolios} />
                         </div>}
 
-                        <Reviews reviews={reviews} />
+                        <Reviews reviews={reviews} handleUpdateReviews={handleUpdateReviews} />
 
                         {currentUser &&
                             freelanceId !== currentUser.freelanceId &&
