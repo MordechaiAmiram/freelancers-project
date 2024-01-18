@@ -21,15 +21,25 @@ async function getClient(username, password) {
 
 async function getAllUsers() {
     const sql = `
-    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone, 
-        is_admin as isAdmin, password, username, freelance_id as freelanceId, title, about, account_type as accountType, 
+    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone,
+        registration_date as registrationDate, 
+        is_admin as isAdmin, username, freelance_id as freelanceId, title, about, account_type as accountType, 
         service_location as serviceLocation, profile_image_id as profileImageId,
-        city, street, building, suite, zip_code as zipCode
+        city, street, building, suite, zip_code as zipCode,
+        ROUND((cumulative_rating / number_of_ratings), 1) as rating,
+        c1.category_name as categoryName
     FROM users
     LEFT JOIN addresses
         USING(user_id)
     LEFT JOIN freelancers
         USING(user_id)
+    LEFT JOIN freelance_category_enrollment fce
+        USING(freelance_id)
+	LEFT JOIN rating_data
+	    USING(freelance_id)
+    LEFT JOIN categories c1
+        USING (category_id)
+    ORDER BY freelance_id
     `
     const [clients] = await pool.query(sql)
     return clients

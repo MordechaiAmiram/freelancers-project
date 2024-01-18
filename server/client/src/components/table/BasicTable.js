@@ -27,13 +27,13 @@ function BasicTable({ usersOnHold, handleUsersOnHold }) {
                 return prev.map(el => el = false)
             })
         } catch (err) {
-            console.log(err.message);
+            console.error(err.message);
         }
     }
 
     const handleChange = ({ target }, index, freelanceId) => {
         setChecked((prev) => {
-            return prev.map((v, i) => i === index ? (target.checked) : v)
+            return prev.map((val, i) => i === index ? (target.checked) : val)
         })
         if (target.checked) {
             setToConfirm((prev => [...prev, freelanceId]))

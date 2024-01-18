@@ -10,6 +10,7 @@ const reviewsRouter = require('./routes/reviewsRouter')
 const freelacersRouter = require('./routes/freelancersRouter')
 const freelanceRouter = require('./routes/freelanceRouter')
 const portfoliosRouter = require('./routes/portfoliosRouter')
+const managementRouter = require('./routes/managementRouter')
 
 app.use(express.json())
 app.use(cors())
@@ -22,6 +23,7 @@ app.use('/api/freelance', freelanceRouter)
 app.use('/api/categories', categoriesRouter)
 app.use('/api/reviews', reviewsRouter)
 app.use('/api/portfolios', portfoliosRouter)
+app.use('/api/management', managementRouter)
 
 app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', "index.html"))

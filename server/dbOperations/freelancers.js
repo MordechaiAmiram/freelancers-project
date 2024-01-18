@@ -5,7 +5,7 @@ async function updateFreelance(freelanceId, title, about, serviceLocation, type,
     const newAbout = about || await getAbout(freelanceId)
     const newServiceLocation = serviceLocation || await getServiceLocation(freelanceId)
     const newType = type || await getType(freelanceId)
-    const NewIsConfirmed = isConfirmed || await getIsConfirmed(freelanceId)
+    const NewIsConfirmed = isConfirmed !== null ? isConfirmed : await getIsConfirmed(freelanceId)
     const newImageId = imageId || await getImageId(freelanceId)
 
     const sql = `

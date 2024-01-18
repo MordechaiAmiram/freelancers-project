@@ -10,11 +10,16 @@ router
         try {
             const { username, password } = req.headers
             const client = await getClient(username, password)
-            res.status(200)
-                .send(client)
+            if (client) {
+                res.status(200)
+                    .send(client)
+            } else {
+                res.status(400)
+                    .send('Bad request')
+            }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message);
+            res.status(500)
         }
     })
 
@@ -23,26 +28,36 @@ router
     .get(async (req, res) => {
         try {
             const sum = await getSumOfUsers()
-            res.status(200)
-                .json(sum)
+            if (sum) {
+                res.status(200)
+                    .json(sum)
+            } else {
+                res.status(400)
+                    .send('Bad request')
+            }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message);
+            res.status(500)
         }
     })
 
-router
-    .route('/')
-    .get(async (req, res) => {
-        try {
-            const users = await getAllUsers()
-            res.status(200)
-                .send(users)
-        } catch (err) {
-            res.status(400)
-                .send(err.message)
-        }
-    })
+// router
+//     .route('/')
+//     .get(async (req, res) => {
+//         try {
+//             const users = await getAllUsers()
+//             if (users) {
+//                 res.status(200)
+//                     .send(users)
+//             } else {
+//                 res.status(400)
+//                     .send('Bad request')
+//             }
+//         } catch (err) {
+//             console.log(err.message);
+//             res.status(500)
+//         }
+//     })
 
 router
     .route('/')
@@ -51,8 +66,8 @@ router
             res.status(200)
                 .send('waiting to be implemented...')
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message);
+            res.status(500)
         }
     })
 
@@ -70,8 +85,8 @@ router
                     .send('Bad request')
             }
         } catch (err) {
-            res.status(400)
-                .send(err.message)
+            console.log(err.message);
+            res.status(500)
         }
     })
 
