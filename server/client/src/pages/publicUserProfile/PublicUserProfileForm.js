@@ -15,7 +15,7 @@ function PublicUserProfileForm({ profile, portfolios, reviews, handleUpdateRevie
     return (
         <>
             <CategoriesNavbar />
-            <div className='freelance-page'>
+            <div className='freelance-page min-height-container page-background-color'>
                 <div className='max-width-container'>
                     {parentName &&
                         <div className='profile-page-router'>
@@ -33,7 +33,7 @@ function PublicUserProfileForm({ profile, portfolios, reviews, handleUpdateRevie
                             profile={profile}
                         />
 
-                        {<div className='portfolios'>
+                        {<div className='portfolios bacground-color'>
                             <Portfolios portfolios={portfolios} />
                         </div>}
 

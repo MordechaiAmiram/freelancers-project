@@ -101,6 +101,7 @@ async function getFreelancersByCategory(categoryId) {
 		LEFT JOIN categories c2
     ON c1.parent_id = c2.category_id 
     WHERE fce.category_id = ?
+    AND is_confirmed = 1
     OR c1.parent_id = ?
     AND is_confirmed = 1
     `
@@ -128,6 +129,7 @@ async function getFreelance(freelanceId) {
 		LEFT JOIN categories c2
     ON c1.parent_id = c2.category_id 
     WHERE f.freelance_id = ?
+    AND f.is_confirmed = 1
     `
     const [[freelancers]] = await pool.query(sql, [freelanceId])
     return freelancers

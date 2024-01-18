@@ -1,8 +1,7 @@
-.private-profile-page{
-    background-color: rgba(243, 246, 249, 0.6);
+.private-profile-page {
     padding: 20px;
-    min-height: 90vh;
 }
+
 .private-profile-container {
     display: inline-block;
     margin: 20px;
@@ -10,8 +9,9 @@
     border-radius: 5px;
     box-shadow: 1px 1px 3px 3px gray;
     width: 70%;
-    min-width: 300px;    
+    min-width: 300px;
 }
+
 .private-profile-grid {
     margin: 50px 20px 0px 20px;
     display: grid;
@@ -23,10 +23,12 @@
 .private-profile-container div {
     margin-top: 5px;
 }
-.portfolio-management{
+
+.portfolio-management {
     border: 1px solid;
     width: 50%;
 }
-.freelance-private-profile{
+
+.freelance-private-profile {
     display: flex;
 }

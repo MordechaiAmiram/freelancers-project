@@ -1,11 +1,24 @@
 * {
   box-sizing: border-box;
 }
+
 .App {
   text-align: center;
 }
+
 .max-width-container {
   max-width: 1400px;
   margin: auto;
 }
 
+.background-color-white {
+  background-color: white;
+}
+
+.page-background-color {
+  background-color: rgba(243, 246, 249, 0.6);
+}
+
+.min-height-container {
+  min-height: calc(100vh - 100px);
+}

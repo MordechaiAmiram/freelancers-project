@@ -20,6 +20,7 @@ export default function Portfolios({ portfolios, isEdit, handleImageId, handlePo
             borderRadius: 'lg',
             boxShadow: 'sm',
             overflow: 'auto',
+            backgroundColor: 'white'
           }}
         >
           <TabList

@@ -35,7 +35,7 @@ function PortfolioManagement() {
 
 
     return (
-        <div className='portfolio-management'>
+        <div className='portfolio-management  background-color-white'>
             <CreatePortfolio />
             <Portfolios
                 portfolios={portfolios}

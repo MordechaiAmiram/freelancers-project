@@ -8,7 +8,7 @@ function Reviews({reviews}) {
     return (
         <>
             {reviews?.length > 0 &&
-                <div className='reviews'>
+                <div className='reviews background-color-white'>
                     <b>ביקורות</b>
                     {reviews.map((review, index) => (
                         <>

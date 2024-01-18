@@ -96,7 +96,7 @@ function PrivateUserProfile() {
   }
 
   return (
-    <div className='private-profile-page'>
+    <div className='private-profile-page min-height-container page-background-color'>
       <div className='private-profile-main max-width-container'>
         {freelanceId ?
           <div className='freelance-private-profile private-profile-grid'>

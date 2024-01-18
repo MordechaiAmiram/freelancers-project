@@ -13,7 +13,7 @@ function FreelanceForm({ profile, isUpdate, handleUpdate, valueProps, handleSubm
 
     return (
         <>
-            <div className='private-profile-container'>
+            <div className='private-profile-container background-color-white'>
                 <GetImage imageId={profileImageId} width={150} className={'private-profile-picture'} />
                 <div>
                     {isUpdate ?
