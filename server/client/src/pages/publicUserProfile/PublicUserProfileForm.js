@@ -7,7 +7,7 @@ import Reviews from '../../components/reviews/Reviews'
 import Portfolios from '../../components/portfolios/Portfolios'
 import { userContext } from '../../App'
 import { useContext } from 'react'
-function PublicUserProfileForm({ profile, portfolios, reviews, handleUpdateReviews }) {
+function PublicUserProfileForm({ profile, portfolios, reviews, handleUpdateReviews, handleDeleteReview }) {
     const { firstName, lastName, freelanceId, categoryName, parentName, parentId, categoryId } = profile
     const { currentUser } = useContext(userContext)
 
@@ -37,13 +37,16 @@ function PublicUserProfileForm({ profile, portfolios, reviews, handleUpdateRevie
                             <Portfolios portfolios={portfolios} />
                         </div>}
 
-                        <Reviews reviews={reviews} handleUpdateReviews={handleUpdateReviews} />
+                        <Reviews
+                            reviews={reviews}
+                            handleUpdateReviews={handleUpdateReviews}
+                            handleDeleteReview={handleDeleteReview} />
 
                         {currentUser &&
                             freelanceId !== currentUser.freelanceId &&
-                            <AddReview 
-                            freelanceId={freelanceId} 
-                            handleUpdateReviews={handleUpdateReviews}
+                            <AddReview
+                                freelanceId={freelanceId}
+                                handleUpdateReviews={handleUpdateReviews}
                             />}
                     </div>
                 </div>

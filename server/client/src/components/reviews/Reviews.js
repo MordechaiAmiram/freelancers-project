@@ -3,7 +3,7 @@ import { Divider } from '@mui/material'
 import Review from '../review/Review'
 import './reviews.css'
 
-function Reviews({reviews}) {
+function Reviews({reviews, handleDeleteReview}) {
     
     return (
         <>
@@ -15,6 +15,7 @@ function Reviews({reviews}) {
                             <Review
                                 key={review.id}
                                 review={review}
+                                handleDeleteReview={handleDeleteReview}
                             />
                             {index !== reviews.length - 1 &&
                                 <Divider variant="middle" key={Math.random()} />
