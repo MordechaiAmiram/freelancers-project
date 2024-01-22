@@ -21,7 +21,7 @@ async function getClient(username, password) {
 
 async function getAllUsers() {
     const sql = `
-    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone,
+    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone, password,
         registration_date as registrationDate, 
         is_admin as isAdmin, username, freelance_id as freelanceId, title, about, account_type as accountType, 
         service_location as serviceLocation, profile_image_id as profileImageId,

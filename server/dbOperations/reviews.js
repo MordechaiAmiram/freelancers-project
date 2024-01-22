@@ -84,8 +84,8 @@ async function addReview(text, rating, reviewerId, freelanceId) {
         } else {
             await connection.query(addratingDataSql, [freelanceId, rating])
         }     
-        const updatedRating = await getFreelanceRating(freelanceId) 
         await connection.commit()
+        const updatedRating = await getFreelanceRating(freelanceId) 
         return updatedRating
 
     } catch (error) {

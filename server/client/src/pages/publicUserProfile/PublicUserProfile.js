@@ -21,9 +21,11 @@ function PublicUserProfile() {
             return prevData
         })
         setReviews(prev => {
+            console.log(prev, '24 prev review');
             return [...prev, review]
         })
     }
+    console.log(reviews, 'reviews 28');
     
     useEffect(() => {
         if (data) {
