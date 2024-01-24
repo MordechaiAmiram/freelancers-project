@@ -25,7 +25,7 @@ function PublicUserProfile() {
             return [...prev, review]
         })
     }
-
+    
     const handleDeleteReview = async (reviewId) => {
         try {
             const { data } = await api.delete('/reviews', { data: { reviewId: reviewId } })

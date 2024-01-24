@@ -33,3 +33,9 @@
         margin-right: auto;
     }
 }
+.add-review-content {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    width: 70%;
+}
