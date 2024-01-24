@@ -22,6 +22,7 @@ function AddReview({ freelanceId, handleUpdateReviews }) {
     }
 
     const handleClick = async () => {
+        if (!textProps.value || !rating) return
         try {
             const review = {
                 text: textProps.value,
