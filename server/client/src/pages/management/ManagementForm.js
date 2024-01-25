@@ -1,7 +1,7 @@
 import React from 'react'
-import BasicTable from '../table/BasicTable'
+import BasicTable from '../../components/table/BasicTable'
 import './management.css'
-import EnhancedTable from '../EnhancedTable'
+import EnhancedTable from '../../components/EnhancedTable'
 
 function ManagementForm({ usersOnHold, handleConfirm, sumOfFreelancers, sumOfUsers, handleUsersOnHold, allUsers, handleBlock }) {
     return (

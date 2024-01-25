@@ -7,7 +7,7 @@ import LogIn from '../pages/logIn/LogIn';
 import PrivateUserProfile from '../pages/privateUserProfile/PrivateUserProfile';
 import PublicUserProfile from '../pages/publicUserProfile/PublicUserProfile';
 import CategoryPage from '../pages/categoryPage/CategoryPage';
-import Management from './management/Management';
+import Management from '../pages/management/Management';
 import NotFound from './NotFound';
 
 function AppRouting() {
