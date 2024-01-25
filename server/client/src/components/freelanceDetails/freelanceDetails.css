@@ -1,19 +1,8 @@
-.profile-container>h2 {
+.profile-title {
     padding-top: 3%;
     margin-right: 5%;
 }
 
-.profile-container {
-    display: flex;
-    border-radius: 5px;
-    flex-direction: column;
-    min-width: 300px;
-    width: 90%;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 1px 1px 2px 2px #888888;
-    text-align: right;
-}
 
 .profile-picture {
     border: 1px solid #03BFCB;

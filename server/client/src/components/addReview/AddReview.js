@@ -51,12 +51,9 @@ function AddReview({ freelanceId, handleUpdateReviews }) {
     return (
         <>
             <AddReviewForm
-                freelanceId={freelanceId}
                 textProps={textProps}
                 handleClick={handleClick}
                 handleChange={handleChange}
-                addReview={addReview}
-                handleAddReview={handleAddReview}
                 value={rating}
             />
         </>

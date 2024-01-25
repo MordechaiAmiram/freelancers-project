@@ -11,7 +11,7 @@ function Reviews({ reviews, handleDeleteReview }) {
     //   const matches = useMediaQuery('(min-width:600px)');
     //   return <span>{`(min-width:600px) matches: ${matches}`}</span>;
     // }
-    const DemoPaper = styled(Paper)(({ theme }) => ({
+    const ReviewsPaper = styled(Paper)(({ theme }) => ({
         display: 'flex',
         flexDirection: 'column',
         textAlign: 'center',
@@ -25,7 +25,7 @@ function Reviews({ reviews, handleDeleteReview }) {
         <>
 
             {reviews?.length > 0 &&
-                <DemoPaper variant="outlined">
+                <ReviewsPaper variant="outlined">
                     <div className='reviews-header'><b>ביקורות</b></div>
                     <Divider />
                     <div className='reviews'> 
@@ -42,7 +42,7 @@ function Reviews({ reviews, handleDeleteReview }) {
                             </>
                         ))}
                     </div>
-                </DemoPaper>
+                </ReviewsPaper>
             }
         </>
     )

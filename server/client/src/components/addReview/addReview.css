@@ -1,41 +1,7 @@
-.add-review-container {
-    width: 90%;
-    min-width: 300px;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: white;
-    box-shadow: 1px 1px 2px 2px #888888;
-    max-height: 40px;
-    overflow: hidden;
-    transition: max-height 0.8s ease;
-}
-
-.add-review-container.active-review {
-    max-height: 500px;
-}
-
-.add-review-title{
-    display: flex;
-    cursor: pointer;
-    width: 100%;
-    font-weight: 700;
-    justify-content: center;
-    align-items: center;
-}
-
-.add-review-title > div {
-    display: flex;
-}
 
 @media screen and (max-width: 700px) {
     .add-review-container {
         margin-left: auto;
         margin-right: auto;
     }
-}
-.add-review-content {
-    display: flex;
-    margin: auto;
-    flex-direction: column;
-    width: 70%;
 }
