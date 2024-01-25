@@ -12,6 +12,12 @@ import { Button, TextareaAutosize } from '@mui/material';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
 export default function AccordionDepthPanel({ textProps, handleChange, value, handleClick }) {
+  const [isAccordionExpanded, setIsAccordionExpanded] = React.useState(false);
+
+  const handleAccordionToggle = () => {
+    setIsAccordionExpanded(!isAccordionExpanded);
+  };
+
   return (
     <AccordionGroup
       variant="outlined"
@@ -30,7 +36,9 @@ export default function AccordionDepthPanel({ textProps, handleChange, value, ha
         },
       }}
     >
-      <Accordion defaultExpanded>
+      <Accordion
+        expanded={isAccordionExpanded}
+        onChange={handleAccordionToggle}>
         <AccordionSummary>הוספת ביקורת</AccordionSummary>
         <AccordionDetails variant="soft">
           <div className='add-review-content'>
@@ -39,15 +47,19 @@ export default function AccordionDepthPanel({ textProps, handleChange, value, ha
               value={value}
             />
             <TextareaAutosize
-              sx={{display: 'flex', width: '100%'}}
+              sx={{ display: 'flex', width: '100%' }}
               aria-label="empty textarea"
               minRows={8}
               placeholder="הוסף ביקורת"
               {...textProps}
             />
-            <Button 
-            sx={{maxWidth: 'fit-content', margin: 'auto'}}
-            onClick={handleClick}>
+            <Button
+              sx={{ maxWidth: 'fit-content', margin: 'auto' }}
+              onClick={() => {
+                handleAccordionToggle();
+                handleClick();
+              }}
+            >
               <SendOutlinedIcon />
             </Button>
           </div>
