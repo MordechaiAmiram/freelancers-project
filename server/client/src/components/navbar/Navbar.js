@@ -4,65 +4,67 @@ import './navbar.css'
 import SearchField from '../searchField/SearchField'
 import SideBarForm from '../sideBar/SideBarForm'
 import { userContext } from '../../App'
-import { Divider } from '@mui/material'
+import { Avatar, Divider } from '@mui/material'
 
 function Navbar() {
-    const {currentUser} = useContext(userContext)
+    const { currentUser } = useContext(userContext)
     return (
         <>
-        <SideBarForm profile={currentUser} />
-        <div className='nav-bar-wrapper'>
-            <div className='up-bar max-width-container'>
-                {!currentUser &&
-                    <>
-                        <div className='right-bar'>
-                            <div className='hello'>
-                                שלום אורח
-                            </div>
-                            <div className='nav-item'>
-                                <RouterLink className='link'
-                                    to={'/sign-up'}>הרשמה</RouterLink></div>
-                            <div className='nav-item'>
-                                <RouterLink className='link'
-                                    to={'/log-in'}>כניסה</RouterLink>
-                            </div>
-                        </div>
-                        <div className='search-bar'><SearchField /></div>
-                        <div className='left-bar'>
-                            <div className='nav-item'>
-                                <RouterLink className='link home-link'
-                                    to={'/'}>Freeלַאנְ"שׂ</RouterLink>
-                            </div>
-                        </div>
-                    </>
-                }
-                {currentUser &&
-                    <>
-                        <div className='right-bar'>
-                            <div className='hello'>
-                                {`שלום ${currentUser.firstName}`}
-                            </div>
-                            <div className='nav-item'>
-                                <RouterLink className='link'
-                                    to={`/my-profile/${currentUser.userId}`}>הפרופיל שלי</RouterLink>
-                            </div>
-                            {currentUser?.isAdmin === 1 &&
-                                <div className='nav-item'>
-                                    <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
+            <SideBarForm profile={currentUser} />
+            <div className='nav-bar-wrapper'>
+                <div className='up-bar max-width-container'>
+                    {!currentUser &&
+                        <>
+                            <div className='right-bar'>
+                                <div className='hello'>
+                                    שלום אורח
                                 </div>
-                            }
-                        </div>
-                        <div className='search-bar'><SearchField /></div>
-                        <div className='left-bar'>
-                            <div className='nav-item'>
-                                <RouterLink className='link home-link'
-                                    to={'/'}>Freeלַאנְ"שׂ</RouterLink>
+                                <div className='nav-item'>
+                                    <RouterLink className='link'
+                                        to={'/sign-up'}>הרשמה</RouterLink></div>
+                                <div className='nav-item'>
+                                    <RouterLink className='link'
+                                        to={'/log-in'}>כניסה</RouterLink>
+                                </div>
                             </div>
-                        </div>
-                    </>}
+                            <div className='search-bar'><SearchField /></div>
+                            <div className='left-bar'>
+                                <div className='nav-item'>
+                                    <RouterLink className='link home-link'
+                                        to={'/'}>Freeלַאנְ"שׂ</RouterLink>
+                                </div>
+                            </div>
+                        </>
+                    }
+                    {currentUser &&
+                        <>
+                            <div className='right-bar'>
+                                <div className='hello'>
+                                    {`שלום ${currentUser.firstName}`}
+                                </div>
+                                <div className='nav-item'>
+                                    <RouterLink className='link'
+                                        to={`/my-profile/${currentUser.userId}`}>
+                                        <Avatar>{currentUser.firstName[0]}</Avatar>
+                                        </RouterLink>
+                                </div>
+                                {currentUser?.isAdmin === 1 &&
+                                    <div className='nav-item'>
+                                        <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
+                                    </div>
+                                }
+                            </div>
+                            <div className='search-bar'><SearchField /></div>
+                            <div className='left-bar'>
+                                <div className='nav-item'>
+                                    <RouterLink className='link home-link'
+                                        to={'/'}>Freeלַאנְ"שׂ</RouterLink>
+                                </div>
+                            </div>
+                        </>}
+                </div>
+                <Divider />
             </div>
-            <Divider />
-        </div>
         </>
     )
 }
