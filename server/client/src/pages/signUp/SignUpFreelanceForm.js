@@ -1,8 +1,10 @@
 import React from 'react'
 import './signUp.css'
 import Select from '@mui/material/Select';
-import { FormControl, InputLabel, MenuItem } from '@mui/material';
+import { Avatar, Button, FormControl, Grid, IconButton, InputLabel, MenuItem, TextField } from '@mui/material';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import UploadWidget from '../../components/UploadWidget';
 
 
@@ -10,134 +12,162 @@ import UploadWidget from '../../components/UploadWidget';
 function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps, zipCodeProps, titleProps, aboutProps, serviceLocationProps, categoriesList, subcategoryList, subcategoryProps, handleImageId, handleSubmit, handleBack, handleCategorySelect }) {
     return (
         <>
-            <div>
-                <form className='sign-up-form'>
+            <div className='log-in-wrapper'>
+                <form className='sign-up-form' onSubmit={handleSubmit}>
+
+                    <Avatar sx={{ bgcolor: '#03BFCB' }}>
+                        <LockOutlinedIcon fontSize='medium' />
+                    </Avatar>
 
                     <div className='back-button' onClick={handleBack}>
-                        <ArrowCircleRightIcon />
+                        <IconButton>
+                            <ArrowCircleRightOutlinedIcon sx={{ color: '#fff' }} />
+                        </IconButton>
                     </div>
 
                     <h3>הרשמה לפרילנס</h3>
 
-                    <label htmlFor='city'>עיר
-                        <input className='sign-up-input'
-                            type="text"
-                            name='city'
-                            {...cityProps}
-                            placeholder="עיר" />
-                    </label>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6} >
+                            <TextField
+                                label='עיר'
+                                required
+                                {...cityProps}
+                                variant="outlined"
+                                type='text'
+                                name='city'
+                                sx={{ width: '100%' }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} >
+                            <TextField
+                                label='רחוב'
+                                required
+                                {...streetProps}
+                                variant="outlined"
+                                type='text'
+                                name='street'
+                                sx={{ width: '100%' }}
+                            />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField
+                                label='מספר בנין'
+                                required
+                                {...buildingProps}
+                                variant="outlined"
+                                type='text'
+                                name='buildingNumber'
+                                sx={{ width: '100%' }}
+                            />
+                        </Grid>
 
-                    <label htmlFor="street">רחוב
-                        <input className='sign-up-input'
-                            type="text"
-                            name='street'
-                            {...streetProps}
-                            placeholder="רחוב" />
-                    </label>
-
-                    <label htmlFor="buildingNumber">מספר בנין
-                        <input className='sign-up-input'
-                            type="text"
-                            name='building'
-                            {...buildingProps}
-                            placeholder="בנין" />
-                    </label>
-
-                    <label htmlFor="suite">מספר דירה
-                        <input className='sign-up-input'
-                            type="text"
-                            name='suite'
-                            {...suiteProps}
-                            placeholder="דירה" />
-                    </label>
-
-                    <label htmlFor="zipCode">מיקוד
-                        <input className='sign-up-input'
-                            type="text"
-                            name='zipCode'
-                            {...zipCodeProps}
-                            placeholder="מיקוד" />
-                    </label>
-
-                    <label htmlFor="title">כותרת
-                        <input className='sign-up-input'
-                            type="text"
-                            name='title'
-                            {...titleProps}
-                            placeholder="כותרת" />
-                    </label>
-
-                    <label htmlFor="about">אודות
-                        <input className='sign-up-input'
-                            type="text"
-                            name='about'
-                            {...aboutProps}
-                            placeholder="אודות" />
-                    </label>
-
-
-                    {/* <label htmlFor="serviceLocation">בחר אזור שירות
-                    <select name='serviceLocation'>
-                        <option value={'unlimited'}>ללא הגבלת אזור</option>
-                        <option value={'jerusalem'}>ירושלים והסביבה</option>
-                        <option value={'center'}>אזור המרכז</option>
-                        <option value={'north'}>אזור הצפון</option>
-                        <option value={'south'}>אזור הדרום</option>
-                    </select>
-                </label> */}
-
-
-                    <FormControl sx={{ m: 1, minWidth: 200 }}>
-                        <InputLabel>בחר איזור שירות</InputLabel>
-                        <Select
-                            name='serviceLocation'
-                            label="serviceLocation"
-                            {...serviceLocationProps}
-                        >
-                            <MenuItem value={'ללא הגבלה'}>ללא הגבלת אזור</MenuItem>
-                            <MenuItem value={'ירושלים והסביבה'}>ירושלים והסביבה</MenuItem>
-                            <MenuItem value={'אזור המרכז'}>אזור המרכז</MenuItem>
-                            <MenuItem value={'אזור הצפון'}>אזור הצפון</MenuItem>
-                            <MenuItem value={'אזור הדרום'}>אזור הדרום</MenuItem>
-                        </Select>
-                    </FormControl>
-
-                    <FormControl sx={{ m: 1, minWidth: 200 }}>
-                        <InputLabel>קטגוריה</InputLabel>
-                        <Select
-                            name='category'
-                            label="category"
-                            onChange={(e) => handleCategorySelect(e.target.value)}
-                        >
-                            {categoriesList.length > 0 &&
-                                categoriesList.map(category => (
-                                    <MenuItem key={category.id} value={category.id}>
-                                        {category.name}
-                                    </MenuItem>)
-                                )}
-                        </Select>
-                    </FormControl>
-
-                    <FormControl sx={{ m: 1, minWidth: 200 }}>
-                        <InputLabel>תת קטגוריה</InputLabel>
-                        <Select
-                            name='subcategory'
-                            label="subcategory"
-                            {...subcategoryProps}
-                        >
-                            {subcategoryList.length > 0 &&
-                                subcategoryList.map(category => (
-                                    <MenuItem key={category.id} value={category.id}>
-                                        {category.name}
-                                    </MenuItem>)
-                                )}
-                        </Select>
-                        <UploadWidget handleImageId={handleImageId} />
-                    </FormControl>
-
-                    <button className='sign-up-submit' onClick={handleSubmit}>אישור</button>
+                        <Grid item xs={6}>
+                            <TextField
+                                label='מספר דירה'
+                                required
+                                {...suiteProps}
+                                variant="outlined"
+                                type='text'
+                                name='suite'
+                                sx={{ width: '100%' }}
+                            />
+                        </Grid>
+                        <Grid item xs={30}>
+                            <TextField
+                                label='מיקוד'
+                                required
+                                {...zipCodeProps}
+                                variant="outlined"
+                                type='text'
+                                name='zipCode'
+                                sx={{ width: '100%' }}
+                            />
+                        </Grid>
+                        <Grid item xs={20}>
+                            <TextField
+                                label='כותרת'
+                                required
+                                {...titleProps}
+                                variant="outlined"
+                                type='text'
+                                name='title'
+                                sx={{ width: '100%' }}
+                            />
+                        </Grid>
+                        <Grid item xs={20}>
+                            <TextField
+                                label='אודות'
+                                required
+                                multiline
+                                {...aboutProps}
+                                variant="outlined"
+                                type='text'
+                                name='about'
+                                sx={{ width: '100%' }}
+                            />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <FormControl sx={{ width: '100%' }}>
+                                <InputLabel>בחר איזור שירות</InputLabel>
+                                <Select
+                                    required
+                                    name='serviceLocation'
+                                    label="serviceLocation"
+                                    {...serviceLocationProps}
+                                >
+                                    <MenuItem value={'ללא הגבלה'}>ללא הגבלת אזור</MenuItem>
+                                    <MenuItem value={'ירושלים והסביבה'}>ירושלים והסביבה</MenuItem>
+                                    <MenuItem value={'אזור המרכז'}>אזור המרכז</MenuItem>
+                                    <MenuItem value={'אזור הצפון'}>אזור הצפון</MenuItem>
+                                    <MenuItem value={'אזור הדרום'}>אזור הדרום</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <FormControl sx={{ width: '100%' }}>
+                                <InputLabel>קטגוריה</InputLabel>
+                                <Select
+                                    required
+                                    name='category'
+                                    label="category"
+                                    onChange={(e) => handleCategorySelect(e.target.value)}
+                                >
+                                    {categoriesList.length > 0 &&
+                                        categoriesList.map(category => (
+                                            <MenuItem key={category.id} value={category.id}>
+                                                {category.name}
+                                            </MenuItem>)
+                                        )}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <FormControl sx={{ width: '100%' }}>
+                                <InputLabel>תת קטגוריה</InputLabel>
+                                <Select
+                                    required
+                                    name='subcategory'
+                                    label="subcategory"
+                                    {...subcategoryProps}
+                                >
+                                    {subcategoryList.length > 0 &&
+                                        subcategoryList.map(category => (
+                                            <MenuItem key={category.id} value={category.id}>
+                                                {category.name}
+                                            </MenuItem>)
+                                        )}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={20}>
+                            <UploadWidget handleImageId={handleImageId} />
+                        </Grid>
+                        <Grid item xs={20}>
+                            <Button type='submit'>הרשמה</Button>
+                        </Grid>
+                    </Grid>
                 </form>
-
             </div>
         </>
     )

@@ -94,7 +94,7 @@ function SignUpForm(props) {
                         <Button type='submit'>הרשמה כלקוח</Button>
                     </Grid>
                     <Grid item xs={6}>
-                        <Button onClick={continueAsFreelance}>הרשמה כפרילנס</Button>
+                        <Button onClick={continueAsFreelance}>המשך הרשמה כפרילנס</Button>
                     </Grid>
                 </Grid>
 

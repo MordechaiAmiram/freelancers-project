@@ -1,6 +1,5 @@
 .back-button {
-  position: absolute;
-  margin-right: 0px;
+  align-self: flex-start;
   cursor: pointer;
 }
 
