@@ -1,3 +1,14 @@
+.log-in-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    min-width: 290px;
+    border-radius: 8px;
+    min-height: fit-content;
+    margin: auto;
+}
 
 .log-in-form {
     display: flex;
@@ -46,14 +57,12 @@
 }
 
 .log-in-form button {
-    margin-top: 5%;
+    margin-top: 10%;
     width: 100%;
+    color: black;
     background-color: #03BFCB;
-    padding: 5px;
     font-size: 18px;
     font-weight: 600;
-    border-radius: 3px;
-    cursor: pointer;
 }
 
 .log-in-form button:hover {
