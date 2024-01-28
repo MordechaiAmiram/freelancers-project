@@ -27,8 +27,8 @@
 .log-in-form * {
     font-family: 'Poppins', sans-serif;
     letter-spacing: 0.5px;
-    outline: none;
-    border: none;
+    /* outline: none;
+    border: none; */
 }
 
 .log-in-form h3 {
@@ -38,22 +38,22 @@
 }
 
 .log-in-form label {
-    display: block;
-    margin-top: 5%;
-    font-size: 16px;
-    font-weight: 500;
-    width: 100%;
+    /* display: block; */
+    /* margin-top: 5%; */
+    /* font-size: 16px; */
+    /* font-weight: 500; */
+    /* width: 100%; */
 }
 
 .log-in-form input {
-    height: 40px;
-    width: 100%;
-    background-color: rgba(128, 48, 48, 0.07);
-    border-radius: 3px;
-    padding: 0 10px;
-    margin-top: 2%;
-    font-size: 14px;
-    font-weight: 300;
+    /* height: 40px; */
+    /* width: 100%; */
+    /* background-color: rgba(128, 48, 48, 0.07); */
+    /* border-radius: 3px; */
+    /* padding: 0 10px; */
+    /* margin-top: 2%; */
+    /* font-size: 14px; */
+    /* font-weight: 300; */
 }
 
 .log-in-form button {

@@ -1,18 +1,22 @@
 import React from 'react'
 import './signUp.css'
+import { Avatar } from '@mui/material'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 function SignUpForm({ firstNameProps, lastNameProps, usernameProps, emailProps, phoneProps, passwordProps, handleSubmit, continueAsFreelance }) {
     return (
-        <div>
+        <div className='log-in-wrapper'>
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
 
             <form className='sign-up-form'>
-                <h3>הרשמה</h3>
 
-                {/* <InputField
-            label={'Email or Phone'}
-            sx={{ width: '100%' }} /> */}
+                <Avatar sx={{ bgcolor: '#03BFCB' }}>
+                    <LockOutlinedIcon fontSize='medium' />
+                </Avatar>
+
+                <h3>הרשמה</h3>
 
                 <label id='firstName' htmlFor="firstName">שם פרטי
                     <input

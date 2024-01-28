@@ -1,57 +1,72 @@
 import React from 'react'
 import './logIn.css'
-import { Avatar, Button } from '@mui/material'
+import { Avatar, Button, TextField } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link as RouterLink } from 'react-router-dom';
-// import InputField from '../../components/form/InputField'
 
 function LogInForm({ handleSubmit, usernameProps, passwordProps, message }) {
 
     return (
         <div className='log-in-wrapper'>
 
-                <link rel="preconnect" href="https://fonts.gstatic.com" />
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
-                
-                <form className='log-in-form' onSubmit={handleSubmit}>
-                   
-                    <Avatar sx={{ bgcolor: '#03BFCB' }}>
-                        <LockOutlinedIcon fontSize='medium' />
-                    </Avatar>
-                    
-                    <h3>כניסה</h3>
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
 
-                    {/* <InputField
-                    label={'Email or Phone'}
-                    sx={{ width: '100%' }} /> */}
+            <form className='log-in-form' onSubmit={handleSubmit}>
 
-                    <label htmlFor="username">שם משתמש
-                        <input
-                            type="text"
-                            name='username'
-                            {...usernameProps}
-                            required
-                            placeholder="*שם משתמש" />
-                    </label>
+                <Avatar sx={{ bgcolor: '#03BFCB' }}>
+                    <LockOutlinedIcon fontSize='medium' />
+                </Avatar>
 
-                    <label htmlFor="password">סיסמה
-                        <input
-                            required
-                            type="password"
-                            name='password'
-                            {...passwordProps}
-                            placeholder="*סיסמה" />
-                    </label>
+                <h3>כניסה</h3>
 
-                    <Button type="submit">כניסה</Button>
-                    {/* <div className="social">
+                <TextField
+                    label='שם משתמש'
+                    required
+                    {...usernameProps}
+                    variant="outlined"
+                    type='text'
+                    name='username'
+                    sx={{width: '100%', marginTop: '5%'}}
+                />
+
+                <TextField
+                    label='סיסמה'
+                    required
+                    {...passwordProps}
+                    variant="outlined"
+                    type='password'
+                    name='password'
+                    sx={{width: '100%', marginTop: '5%'}}
+                />
+
+                {/* <label htmlFor="username">שם משתמש
+                    <input
+                        type="text"
+                        name='username'
+                        {...usernameProps}
+                        required
+                        placeholder="*שם משתמש" />
+                </label> */}
+
+                {/* <label htmlFor="password">סיסמה
+                    <input
+                        required
+                        type="password"
+                        name='password'
+                        {...passwordProps}
+                        placeholder="*סיסמה" />
+                </label> */}
+
+                <Button type="submit">כניסה</Button>
+                {/* <div className="social">
                         <div className="go"><i className="fab fa-google"></i>  Google</div>
                         <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>
                     </div> */}
-                    <p>{message}</p>
-                    <RouterLink to={'/sign-up'}>משתמש לא רשום? הירשם </RouterLink>
-                </form>
+                <p>{message}</p>
+                <RouterLink to={'/sign-up'}>משתמש לא רשום? הירשם </RouterLink>
+            </form>
         </div>
     )
 }
