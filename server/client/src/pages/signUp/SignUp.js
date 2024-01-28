@@ -24,6 +24,7 @@ function SignUp() {
   const aboutProps = useInput('')
   const serviceLocationProps = useInput('')
   const subcategoryProps = useInput('')
+  const [message, setMessage] = useState('')
 
   const [imageId, setImageId] = useState('person_place_holder2_fhahmn')
   const [categoriesList, setCategoriesList] = useState('')
@@ -60,6 +61,7 @@ function SignUp() {
       navigate('/')
     } catch (err) {
       console.error(err);
+      setMessage(err.response.data)
     }
   }
 
@@ -104,6 +106,7 @@ function SignUp() {
           passwordProps={passwordProps}
           handleSubmit={handleSubmit}
           continueAsFreelance={continueAsFreelance}
+          message={message}
         />
       </div>
       <div style={{ display: !isFreelance ? 'none' : 'flex', justifyContent: 'center' }}>

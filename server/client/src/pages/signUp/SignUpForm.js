@@ -1,16 +1,20 @@
 import React from 'react'
 import './signUp.css'
-import { Avatar } from '@mui/material'
+import { Avatar, Button, Grid, TextField } from '@mui/material'
+import { Link as RouterLink } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-function SignUpForm({ firstNameProps, lastNameProps, usernameProps, emailProps, phoneProps, passwordProps, handleSubmit, continueAsFreelance }) {
+function SignUpForm(props) {
+    const { firstNameProps, lastNameProps, usernameProps, emailProps, phoneProps,
+        passwordProps, handleSubmit, continueAsFreelance, message } = props
+
     return (
         <div className='log-in-wrapper'>
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
 
-            <form className='sign-up-form'>
+            <form className='sign-up-form' onSubmit={handleSubmit}>
 
                 <Avatar sx={{ bgcolor: '#03BFCB' }}>
                     <LockOutlinedIcon fontSize='medium' />
@@ -18,65 +22,88 @@ function SignUpForm({ firstNameProps, lastNameProps, usernameProps, emailProps, 
 
                 <h3>הרשמה</h3>
 
-                <label id='firstName' htmlFor="firstName">שם פרטי
-                    <input
-                        // id='firstname'
-                        className='sign-up-input'
-                        type="text"
-                        name='firstName'
-                        {...firstNameProps}
-                        placeholder="שם פרטי" />
-                </label>
+                <Grid container spacing={2}>
+                    <Grid item xs={6} >
+                        <TextField
+                            label='שם פרטי'
+                            required
+                            {...firstNameProps}
+                            variant="outlined"
+                            type='text'
+                            name='firstName'
+                            sx={{ width: '100%' }}
+                        />
+                    </Grid>
+                    <Grid item xs={6} >
+                        <TextField
+                            label='שם משפחה'
+                            required
+                            {...lastNameProps}
+                            variant="outlined"
+                            type='text'
+                            name='lastName'
+                            sx={{ width: '100%' }}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            label='שם משתמש'
+                            required
+                            {...usernameProps}
+                            variant="outlined"
+                            type='text'
+                            name='username'
+                            sx={{ width: '100%' }}
+                        />
+                    </Grid>
 
-                <label id='lastName' htmlFor="lastName">שם משפחה
-                    <input className='sign-up-input'
-                        // id='lastname'
-                        type="text"
-                        name='lastName'
-                        {...lastNameProps}
-                        placeholder="שם משפחה" />
-                </label>
+                    <Grid item xs={6}>
+                        <TextField
+                            label='טלפון'
+                            required
+                            {...phoneProps}
+                            variant="outlined"
+                            type='text'
+                            name='phone'
+                            sx={{ width: '100%' }}
+                        />
+                    </Grid>
+                    <Grid item xs={30}>
+                        <TextField
+                            label='דוא"ל'
+                            required
+                            {...emailProps}
+                            variant="outlined"
+                            type='text'
+                            name='email'
+                            sx={{ width: '100%' }}
+                        />
+                    </Grid>
+                    <Grid item xs={20}>
+                        <TextField
+                            label='סיסמה'
+                            required
+                            {...passwordProps}
+                            variant="outlined"
+                            type='password'
+                            name='password'
+                            sx={{ width: '100%' }}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Button type='submit'>הרשמה כלקוח</Button>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Button onClick={continueAsFreelance}>הרשמה כפרילנס</Button>
+                    </Grid>
+                </Grid>
 
-                <label htmlFor="username">שם משתמש
-                    <input className='sign-up-input'
-                        type="text"
-                        name='username'
-                        {...usernameProps}
-                        placeholder="שם משתמש" />
-                </label>
-
-                <label htmlFor="phone">טלפון
-                    <input className='sign-up-input'
-                        type="text"
-                        name='phone'
-                        {...phoneProps}
-                        placeholder="טלפון" />
-                </label>
-
-                <label htmlFor="email">דואר אלקטרוני
-                    <input className='sign-up-input'
-                        type="text"
-                        name='email'
-                        {...emailProps}
-                        placeholder="מייל" />
-                </label>
-
-                <label htmlFor="password">סיסמה
-                    <input className='sign-up-input'
-                        type="password"
-                        name='password'
-                        {...passwordProps}
-                        placeholder="סיסמה" />
-                </label>
-
-                <div className='submit-btns'>
-                    <button className='sign-up-submit' onClick={handleSubmit}>הרשמה כלקוח</button>
-                    <button className='sign-up-submit' onClick={continueAsFreelance}>הרשמה כפרילנס</button>
-                </div>
                 {/* <div className="social">
                     <div className="go"><i className="fab fa-google"></i>  Google</div>
                     <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>
                 </div> */}
+                <p>{message}</p>
+                <RouterLink to={'/log-in'}>אם אתה משתמש רשום היכנס מכאן</RouterLink>
             </form>
         </div>
     )

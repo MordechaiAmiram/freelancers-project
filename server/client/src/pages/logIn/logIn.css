@@ -17,43 +17,17 @@
     height: fit-content;
     width: 100%;
     margin: auto;
-    /* border-radius: 10px; */
-    /* backdrop-filter: blur(10px); */
-    /* border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);*/
     padding: 20px;
 }
 
 .log-in-form * {
-    font-family: 'Poppins', sans-serif;
     letter-spacing: 0.5px;
-    /* outline: none;
-    border: none; */
 }
 
 .log-in-form h3 {
     font-size: 32px;
     font-weight: 500;
     text-align: center;
-}
-
-.log-in-form label {
-    /* display: block; */
-    /* margin-top: 5%; */
-    /* font-size: 16px; */
-    /* font-weight: 500; */
-    /* width: 100%; */
-}
-
-.log-in-form input {
-    /* height: 40px; */
-    /* width: 100%; */
-    /* background-color: rgba(128, 48, 48, 0.07); */
-    /* border-radius: 3px; */
-    /* padding: 0 10px; */
-    /* margin-top: 2%; */
-    /* font-size: 14px; */
-    /* font-weight: 300; */
 }
 
 .log-in-form button {
