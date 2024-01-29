@@ -7,8 +7,8 @@ CREATE TABLE `freelancers`(
     `title` VARCHAR(255) NOT NULL,
     `account_type` VARCHAR(255) NOT NULL,
     `service_location` VARCHAR(255) NOT NULL,
-    `is_confirmed` TINYINT NOT NULL DEFAULT 0,
-    `profile_image_id` VARCHAR(255) DEFAULT `person_place_holder2_fhahmn`,
+    -- `is_confirmed` TINYINT NOT NULL DEFAULT 1,
+    `profile_image_id` VARCHAR(255) DEFAULT `person_place_holder2_fhahmn`
 );
 
 CREATE TABLE `users`(
@@ -20,7 +20,8 @@ CREATE TABLE `users`(
     `registration_date` TIMESTAMP NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `username` VARCHAR(255) NOT NULL UNIQUE,
-    `is_admin` TINYINT NOT NULL
+    `is_admin` TINYINT NOT NULL,
+    `is_confirmed` TINYINT NOT NULL DEFAULT 1
 );
 
 CREATE TABLE `freelance_category_enrollment`(
@@ -110,4 +111,3 @@ ALTER TABLE
     `freelance`
 ADD
     CONSTRAINT `freelance_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `reviews`(`reviewer_id`);
-
