@@ -8,17 +8,12 @@ function AddReview({ freelanceId, handleUpdateReviews }) {
     const { currentUser } = useContext(userContext)
     const reviewerId = currentUser?.userId
 
-    const [addReview, setAddReview] = useState(false)
     const textProps = useInput('')
 
     const [rating, setRating] = useState(1)
 
     const handleChange = (newValue) => {
         setRating(newValue)
-    }
-
-    const handleAddReview = () => {
-        setAddReview(!addReview)
     }
 
     const handleClick = async () => {
@@ -44,8 +39,6 @@ function AddReview({ freelanceId, handleUpdateReviews }) {
             }
         } catch (err) {
             console.error(err.message);
-        } finally {
-            setAddReview(false)
         }
     }
     return (
