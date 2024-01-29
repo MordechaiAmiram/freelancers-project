@@ -19,7 +19,7 @@ function LogIn() {
       usernameProps.value === ' ' ||
       passwordProps.value === '' ||
       passwordProps.value === ' '
-      ) {
+    ) {
       setMessage('יש למלא את השדות הנדרשים')
       return
     }
@@ -35,8 +35,10 @@ function LogIn() {
       navigate('/')
     } catch (err) {
       console.error(err.response.data);
-      if(err.response.data ==='This user does not exsist, please register'){
+      if (err.response.data === 'This user does not exsist, please register') {
         setMessage('משתמש לא רשום נא הירשם')
+      } else if (err.response.data === 'User blocked') {
+        setMessage('משתמש חסום עקב פעילות לא ראויה')
       }
     }
   }

@@ -29,6 +29,8 @@ async function validation(username, pass) {
     }
     else if (pass !== user.password) {
         return [null, 'Wrong password', false]
+    } else if (!user.isConfirmed) {
+        return [null, 'User blocked', false]
     }
     return [user, null, true]
 }
