@@ -7,7 +7,6 @@ CREATE TABLE `freelancers`(
     `title` VARCHAR(255) NOT NULL,
     `account_type` VARCHAR(255) NOT NULL,
     `service_location` VARCHAR(255) NOT NULL,
-    -- `is_confirmed` TINYINT NOT NULL DEFAULT 1,
     `profile_image_id` VARCHAR(255) DEFAULT `person_place_holder2_fhahmn`
 );
 

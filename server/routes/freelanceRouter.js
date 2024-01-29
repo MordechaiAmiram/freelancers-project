@@ -24,8 +24,8 @@ router
     .route('/')
     .put(async (req, res) => {
         try {
-            const { freelanceId, title, about, serviceLocation, type, isConfirmed, imageId } = req.body
-            const isEdited = await updateFreelance(freelanceId, title, about, serviceLocation, type, isConfirmed, imageId)
+            const { freelanceId, title, about, serviceLocation, type, imageId } = req.body
+            const isEdited = await updateFreelance(freelanceId, title, about, serviceLocation, type, imageId)
             if (isEdited) {
                 res.status(201)
                     .send('Succeeded!')

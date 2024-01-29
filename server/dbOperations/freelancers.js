@@ -1,19 +1,18 @@
 const { pool } = require('../db')
 
-async function updateFreelance(freelanceId, title, about, serviceLocation, type, isConfirmed, imageId) {
+async function updateFreelance(freelanceId, title, about, serviceLocation, type, imageId) {
     const newTitle = title || await getTitle(freelanceId)
     const newAbout = about || await getAbout(freelanceId)
     const newServiceLocation = serviceLocation || await getServiceLocation(freelanceId)
     const newType = type || await getType(freelanceId)
-    const NewIsConfirmed = isConfirmed !== null ? isConfirmed : await getIsConfirmed(freelanceId)
     const newImageId = imageId || await getImageId(freelanceId)
 
     const sql = `
     UPDATE freelancers
-    SET title = ?, about = ?, service_location = ?, account_type = ?, is_confirmed = ?, profile_image_id = ?
+    SET title = ?, about = ?, service_location = ?, account_type = ?, profile_image_id = ?
     WHERE freelance_id = ?
     `
-    const [{ affectedRows }] = await pool.query(sql, [newTitle, newAbout, newServiceLocation, newType, NewIsConfirmed, newImageId, freelanceId])
+    const [{ affectedRows }] = await pool.query(sql, [newTitle, newAbout, newServiceLocation, newType, newImageId, freelanceId])
     return affectedRows
 }
 
@@ -60,16 +59,6 @@ async function getServiceLocation(freelanceId) {
     return serviceLocation?.serviceLocation
 }
 
-async function getIsConfirmed(freelanceId) {
-    const sql = `
-    SELECT is_confirmed isConfirmed
-    FROM freelancers
-    WHERE freelance_id = ?
-    `
-    const [[isConfirmed]] = await pool.query(sql, [freelanceId])
-    return isConfirmed?.isConfirmed
-}
-
 async function getImageId(freelanceId) {
     const sql = `
     SELECT profile_image_id profileImageId
@@ -101,9 +90,9 @@ async function getFreelancersByCategory(categoryId) {
 		LEFT JOIN categories c2
     ON c1.parent_id = c2.category_id 
     WHERE fce.category_id = ?
-    AND is_confirmed = 1
+    AND users.is_confirmed = 1
     OR c1.parent_id = ?
-    AND is_confirmed = 1
+    AND users.is_confirmed = 1
     `
     const [freelancers] = await pool.query(sql, [categoryId, categoryId])
     return freelancers
@@ -129,7 +118,7 @@ async function getFreelance(freelanceId) {
 		LEFT JOIN categories c2
     ON c1.parent_id = c2.category_id 
     WHERE f.freelance_id = ?
-    AND f.is_confirmed = 1
+    AND users.is_confirmed = 1
     `
     const [[freelancers]] = await pool.query(sql, [freelanceId])
     return freelancers
@@ -147,7 +136,7 @@ async function getUnconfirmedFreelancers() {
     USING(freelance_id)
         JOIN categories
     USING (category_id)
-    WHERE f.is_confirmed = 0
+    WHERE users.is_confirmed = 0
     `
     const [freelancers] = await pool.query(sql)
     return freelancers

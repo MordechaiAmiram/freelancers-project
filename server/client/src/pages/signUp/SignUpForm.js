@@ -104,7 +104,7 @@ function SignUpForm(props) {
                     <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>
                 </div> */}
             <p>{message}</p>
-            <RouterLink to={'/log-in'}>אם אתה משתמש רשום היכנס מכאן</RouterLink>
+            <RouterLink to={'/log-in'}>משתמש רשום? היכנס מכאן</RouterLink>
         </form>
         </div >
     )
