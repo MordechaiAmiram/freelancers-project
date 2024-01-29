@@ -4,7 +4,7 @@ import './navbar.css'
 import SearchField from '../searchField/SearchField'
 import SideBarForm from '../sideBar/SideBarForm'
 import { userContext } from '../../App'
-import { Avatar, Divider } from '@mui/material'
+import { Avatar, Divider, IconButton } from '@mui/material'
 
 function Navbar() {
     const { currentUser } = useContext(userContext)
@@ -45,8 +45,10 @@ function Navbar() {
                                 <div className='nav-item'>
                                     <RouterLink className='link'
                                         to={`/my-profile/${currentUser.userId}`}>
-                                        <Avatar>{currentUser.firstName[0]}</Avatar>
-                                        </RouterLink>
+                                        <IconButton>
+                                            <Avatar>{currentUser.firstName[0]}</Avatar>
+                                        </IconButton>
+                                    </RouterLink>
                                 </div>
                                 {currentUser?.isAdmin === 1 &&
                                     <div className='nav-item'>

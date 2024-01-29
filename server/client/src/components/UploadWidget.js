@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react"
 import AddToPhotosOutlinedIcon from '@mui/icons-material/AddToPhotosOutlined';
+import { Chip, IconButton } from "@mui/material";
 
 
 const UploadWidget = ({ handleImageId }) => {
@@ -17,14 +18,16 @@ const UploadWidget = ({ handleImageId }) => {
     })
   }, [])
   return (
-    <div style={{
-      cursor: 'pointer',
-      display: 'inline-block',
-      padding: '5px'
-    }} onClick={() => widgetRef.current.open()}>
-      הוספת תמונה
-      <AddToPhotosOutlinedIcon />
-    </div>
+    // <Chip label="הוספת תמונה">
+      <div style={{
+        cursor: 'pointer',
+        display: 'inline-block',
+        padding: '5px'
+      }} onClick={() => widgetRef.current.open()}>
+        הוספת תמונה
+        <AddToPhotosOutlinedIcon />
+      </div>
+    // </Chip>
   )
 }
 
