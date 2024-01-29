@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { Box, Button, Checkbox, FormControlLabel } from '@mui/material';
 
 export default function BasicTableForm({ usersOnHold, handleConfirm, handleChange, checked }) {
+  console.log(usersOnHold);
   return (
     <>
       <TableContainer component={Paper}>
@@ -30,7 +31,7 @@ export default function BasicTableForm({ usersOnHold, handleConfirm, handleChang
           <TableBody>
             {usersOnHold?.map((user, index) => (
               <TableRow
-                key={user.freelanceId}
+                key={user.userId}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
@@ -51,7 +52,7 @@ export default function BasicTableForm({ usersOnHold, handleConfirm, handleChang
                     label="אשר"
                     control={<Checkbox
                       checked={checked[index]}
-                      onChange={(e) => { handleChange(e, index, user.freelanceId) }} 
+                      onChange={(e) => { handleChange(e, index, user.userId) }} 
                       />}
                   />
                 </Box>

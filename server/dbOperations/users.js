@@ -93,20 +93,21 @@ const addfreelanceToCategorySql = `
     VALUES(?, ?)
     `
 
-async function updateUserDetails(userId, firstName, lastName, email, phone, password) {
+async function updateUserDetails(userId, firstName, lastName, email, phone, password, isConfirmed) {
 
     const newFirstName = firstName || await getFirstName(userId)
     const newLastName = lastName || await getLastName(userId)
     const newEmail = email || await getEmail(userId)
     const newPhone = phone || await getPhone(userId)
     const newPassword = password || await getPassword(userId)
+    const newIsConfirmed = isConfirmed ?? await getIsConfirmed(userId)
 
     const sql = `
     UPDATE users
-    SET first_name = ?, last_name = ?, email = ?, phone = ?, password = ? 
+    SET first_name = ?, last_name = ?, email = ?, phone = ?, password = ?, is_confirmed = ?
     WHERE user_id = ?
     `
-    const [{ affectedRows }] = await pool.query(sql, [newFirstName, newLastName, newEmail, newPhone, newPassword, userId])
+    const [{ affectedRows }] = await pool.query(sql, [newFirstName, newLastName, newEmail, newPhone, newPassword, newIsConfirmed, userId])
     return affectedRows
 }
 
@@ -160,6 +161,16 @@ async function getPassword(userId) {
     return password?.password
 }
 
+async function getIsConfirmed(userId) {
+    const sql = `
+    SELECT is_confirmed isConfirmed
+    FROM users
+    WHERE user_id = ?
+    `
+    const [[isConfirmed]] = await pool.query(sql, [userId])
+    return isConfirmed?.isConfirmed
+}
+
 async function deleteUserAccount(userId) {
     const sql = ` 
     DELETE FROM users
@@ -179,6 +190,23 @@ async function getSumOfUsers() {
     const [[{ 'COUNT(user_id)': sum }]] = await pool.query(sql)
     return sum
 }
+async function getUnconfirmedUsers() {
+    const sql = `
+    SELECT title, about, service_location as serviceLocation, account_type as accountType,
+        user_id as userId, first_name as firstName, last_name as lastName, 
+        phone, email, category_name as categoryName
+    FROM users u
+    LEFT JOIN freelancers 
+		using(user_id)
+    LEFT JOIN freelance_category_enrollment fce
+        USING(freelance_id)
+    LEFT JOIN categories
+        USING (category_id)
+    WHERE u.is_confirmed = 0
+    `
+    const [users] = await pool.query(sql)
+    return users
+}
 
 module.exports = {
     getClient,
@@ -191,5 +219,6 @@ module.exports = {
     getPassword,
     updateUserDetails,
     deleteUserAccount,
-    getSumOfUsers
+    getSumOfUsers,
+    getUnconfirmedUsers
 }

@@ -5,15 +5,16 @@ import api from '../../services/BaseURL';
 function BasicTable({ usersOnHold, handleUsersOnHold }) {
     const [checked, setChecked] = useState(new Array(usersOnHold.length).fill(false));
     const [toConfirm, setToConfirm] = useState([])
+    console.log(toConfirm);
 
     const handleConfirm = async () => {
         if (toConfirm.length <= 0) return
 
         const promises = []
         toConfirm.forEach(element => {
-            const promise = api.put('/freelance',
+            const promise = api.put('/users',
                 {
-                    freelanceId: element,
+                    userId: element,
                     isConfirmed: 1
                 })
             promises.push(promise)
@@ -31,14 +32,14 @@ function BasicTable({ usersOnHold, handleUsersOnHold }) {
         }
     }
 
-    const handleChange = ({ target }, index, freelanceId) => {
+    const handleChange = ({ target }, index, userId) => {
         setChecked((prev) => {
             return prev.map((val, i) => i === index ? (target.checked) : val)
         })
         if (target.checked) {
-            setToConfirm((prev => [...prev, freelanceId]))
+            setToConfirm((prev => [...prev, userId]))
         } else {
-            const index = toConfirm.findIndex(id => id === freelanceId)
+            const index = toConfirm.findIndex(id => id === userId)
             if (index === -1) return
             setToConfirm((prev) => {
                 const toConfirmArr = [...prev]

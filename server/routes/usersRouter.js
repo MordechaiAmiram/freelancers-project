@@ -1,7 +1,7 @@
 const express = require('express')
 const signUpRouter = require('./signUpRouter')
 const logInRouter = require('./logInRouter')
-const { getAllUsers, getClient, updateUserDetails, getSumOfUsers } = require('../dbOperations/users')
+const { getClient, updateUserDetails, getSumOfUsers, getUnconfirmedUsers } = require('../dbOperations/users')
 const router = express.Router()
 
 router
@@ -40,24 +40,18 @@ router
             res.status(500)
         }
     })
-
-// router
-//     .route('/')
-//     .get(async (req, res) => {
-//         try {
-//             const users = await getAllUsers()
-//             if (users) {
-//                 res.status(200)
-//                     .send(users)
-//             } else {
-//                 res.status(400)
-//                     .send('Bad request')
-//             }
-//         } catch (err) {
-//             console.log(err.message);
-//             res.status(500)
-//         }
-//     })
+router
+    .route('/on-hold')
+    .get(async (req, res) => {
+        try {
+            const freelancers = await getUnconfirmedUsers()
+            res.status(200)
+                .send(freelancers)
+        } catch (err) {
+            res.status(400)
+                .send(err.message)
+        }
+    })
 
 router
     .route('/')
@@ -75,8 +69,8 @@ router
     .route('/')
     .put(async (req, res) => {
         try {
-            const { userId, firstName, lastName, email, phone, password } = req.body
-            const isUpdated = await updateUserDetails(userId, firstName, lastName, email, phone, password)
+            const { userId, firstName, lastName, email, phone, password, isConfirmed } = req.body
+            const isUpdated = await updateUserDetails(userId, firstName, lastName, email, phone, password, isConfirmed)
             if (isUpdated) {
                 res.status(201)
                     .send('Succeeded!')

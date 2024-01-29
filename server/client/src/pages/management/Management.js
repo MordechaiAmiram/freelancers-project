@@ -4,7 +4,7 @@ import useFetch from '../../hooks/useFetch'
 import api from '../../services/BaseURL'
 
 function Management() {
-    const [usersOnHold, setUsersOnHold] = useFetch('/freelancers/on-hold')
+    const [usersOnHold, setUsersOnHold] = useFetch('/users/on-hold')
     const [sumOfFreelancers] = useFetch('/freelancers/sum')
     const [sumOfUsers] = useFetch('/users/sum')
     const [allUsers] = useFetch('/management/users')
@@ -25,9 +25,9 @@ function Management() {
 
         const promises = []
         selectedUsers.forEach(el => {
-            const promise = api.put('/freelance',
+            const promise = api.put('/users',
                 {
-                    freelanceId: el,
+                    userId: el,
                     isConfirmed: 0
                 })
             promises.push(promise)
