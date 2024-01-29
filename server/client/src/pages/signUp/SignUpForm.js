@@ -1,15 +1,16 @@
 import React from 'react'
 import './signUp.css'
-import { Avatar, Button, Grid, TextField } from '@mui/material'
+import { Avatar, Button, Grid, TextField, useMediaQuery } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 function SignUpForm(props) {
     const { firstNameProps, lastNameProps, usernameProps, emailProps, phoneProps,
         passwordProps, handleSubmit, continueAsFreelance, message } = props
+    const matches1500 = useMediaQuery('(min-width:1500px)');
 
     return (
-        <div className='log-in-wrapper'>
+        <div className='sign-up-wrapper'>
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
@@ -90,22 +91,22 @@ function SignUpForm(props) {
                             sx={{ width: '100%' }}
                         />
                     </Grid>
-                    <Grid item xs={6}>
-                        <Button type='submit'>הרשמה כלקוח</Button>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Button onClick={continueAsFreelance}>המשך הרשמה כפרילנס</Button>
-                    </Grid>
+                    <Grid className='btns' item xs={matches1500 ? 6 : 12}>
+                        <Button sx={{ marginTop: matches1500? '10%' : '5%'}} type='submit'>הרשמה כלקוח</Button>
                 </Grid>
+                <Grid className='btns' item xs={matches1500 ? 6 : 12}>
+                    <Button sx={{ marginTop: matches1500? '10%' : ''}} onClick={continueAsFreelance}>המשך הרשמה כפרילנס</Button>
+                </Grid>
+            </Grid>
 
-                {/* <div className="social">
+            {/* <div className="social">
                     <div className="go"><i className="fab fa-google"></i>  Google</div>
                     <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>
                 </div> */}
-                <p>{message}</p>
-                <RouterLink to={'/log-in'}>אם אתה משתמש רשום היכנס מכאן</RouterLink>
-            </form>
-        </div>
+            <p>{message}</p>
+            <RouterLink to={'/log-in'}>אם אתה משתמש רשום היכנס מכאן</RouterLink>
+        </form>
+        </div >
     )
 }
 

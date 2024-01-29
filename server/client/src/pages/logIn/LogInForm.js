@@ -3,7 +3,6 @@ import './logIn.css'
 import { Avatar, Button, TextField } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link as RouterLink } from 'react-router-dom';
-// import InputField from '../../components/form/InputField'
 
 function LogInForm({ handleSubmit, usernameProps, passwordProps, message }) {
 
@@ -41,24 +40,6 @@ function LogInForm({ handleSubmit, usernameProps, passwordProps, message }) {
                     name='password'
                     sx={{width: '100%', marginTop: '5%'}}
                 />
-
-                {/* <label htmlFor="username">שם משתמש
-                    <input
-                        type="text"
-                        name='username'
-                        {...usernameProps}
-                        required
-                        placeholder="*שם משתמש" />
-                </label> */}
-
-                {/* <label htmlFor="password">סיסמה
-                    <input
-                        required
-                        type="password"
-                        name='password'
-                        {...passwordProps}
-                        placeholder="*סיסמה" />
-                </label> */}
 
                 <Button type="submit">כניסה</Button>
                 {/* <div className="social">

@@ -1,29 +1,31 @@
 import React from 'react'
 import './signUp.css'
 import Select from '@mui/material/Select';
-import { Avatar, Button, FormControl, Grid, IconButton, InputLabel, MenuItem, TextField } from '@mui/material';
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import { Avatar, Button, FormControl, Grid, IconButton, InputLabel, MenuItem, TextField, useMediaQuery } from '@mui/material';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import UploadWidget from '../../components/UploadWidget';
 
+function SignUpFreelanceForm(props) {
+    const { cityProps, streetProps, buildingProps, suiteProps, zipCodeProps, titleProps,
+        aboutProps, serviceLocationProps, categoriesList, subcategoryList, subcategoryProps,
+        handleImageId, handleSubmit, handleBack, handleCategorySelect, message } = props
+    const matches = useMediaQuery('(min-width:1550px)');
 
-
-function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps, zipCodeProps, titleProps, aboutProps, serviceLocationProps, categoriesList, subcategoryList, subcategoryProps, handleImageId, handleSubmit, handleBack, handleCategorySelect }) {
     return (
         <>
-            <div className='log-in-wrapper'>
+            <div className='sign-up-wrapper'>
                 <form className='sign-up-form' onSubmit={handleSubmit}>
 
-                    <Avatar sx={{ bgcolor: '#03BFCB' }}>
-                        <LockOutlinedIcon fontSize='medium' />
-                    </Avatar>
-
-                    <div className='back-button' onClick={handleBack}>
+                    <div className='back-button-wrapper' onClick={handleBack}>
                         <IconButton>
                             <ArrowCircleRightOutlinedIcon sx={{ color: '#fff' }} />
                         </IconButton>
                     </div>
+
+                    <Avatar sx={{ bgcolor: '#03BFCB' }}>
+                        <LockOutlinedIcon fontSize='medium' />
+                    </Avatar>
 
                     <h3>הרשמה לפרילנס</h3>
 
@@ -107,7 +109,7 @@ function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps
                                 sx={{ width: '100%' }}
                             />
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={matches? 4: 20}>
                             <FormControl sx={{ width: '100%' }}>
                                 <InputLabel>בחר איזור שירות</InputLabel>
                                 <Select
@@ -124,7 +126,7 @@ function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps
                                 </Select>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={matches? 4: 6}>
                             <FormControl sx={{ width: '100%' }}>
                                 <InputLabel>קטגוריה</InputLabel>
                                 <Select
@@ -142,7 +144,7 @@ function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps
                                 </Select>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={matches? 4: 6}>
                             <FormControl sx={{ width: '100%' }}>
                                 <InputLabel>תת קטגוריה</InputLabel>
                                 <Select
@@ -168,6 +170,7 @@ function SignUpFreelanceForm({ cityProps, streetProps, buildingProps, suiteProps
                         </Grid>
                     </Grid>
                 </form>
+                <p>{message}</p>
             </div>
         </>
     )

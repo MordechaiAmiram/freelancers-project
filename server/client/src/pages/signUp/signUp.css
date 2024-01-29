@@ -1,6 +1,17 @@
-.back-button {
-  align-self: flex-start;
-  cursor: pointer;
+.back-button-wrapper {
+  margin-left: auto;
+}
+
+.sign-up-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  min-width: 290px;
+  border-radius: 8px;
+  min-height: fit-content;
+  margin: auto;
 }
 
 .sign-up-form {
@@ -23,6 +34,7 @@
   font-size: 32px;
   font-weight: 500;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 
@@ -30,18 +42,10 @@
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
-
-  /* margin-top: 10%;
-  width: 100%;
-  color: black;
-  background-color: #03BFCB;
-  font-size: 18px;
-  font-weight: 600; */
 }
 
 
 .sign-up-form button {
-  margin-top: 10%;
   width: 100%;
   color: black;
   background-color: #03BFCB;

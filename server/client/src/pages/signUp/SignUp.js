@@ -126,6 +126,7 @@ function SignUp() {
           handleCategorySelect={handleCategorySelect}
           handleSubmit={handleSubmit}
           handleBack={handleBack}
+          message={message}
         />
       </div>
     </>
