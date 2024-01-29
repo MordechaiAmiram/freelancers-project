@@ -7,7 +7,7 @@ async function getClient(username, password) {
         is_admin as isAdmin, password, username, freelance_id as freelanceId, 
         title, about, account_type as accountType, 
         service_location as serviceLocation, profile_image_id as profileImageId,
-        city, street, building, suite, zip_code as zipCode
+        city, street, building, suite, zip_code as zipCode, users.is_confirmed as isConfirmed
     FROM users
         LEFT JOIN freelancers
     USING (user_id)
@@ -22,7 +22,7 @@ async function getClient(username, password) {
 async function getAllUsers() {
     const sql = `
     SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone, password,
-        registration_date as registrationDate, 
+        registration_date as registrationDate, users.is_confirmed as isConfirmed,
         is_admin as isAdmin, username, freelance_id as freelanceId, title, about, account_type as accountType, 
         service_location as serviceLocation, profile_image_id as profileImageId,
         city, street, building, suite, zip_code as zipCode,

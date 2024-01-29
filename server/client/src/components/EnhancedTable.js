@@ -299,18 +299,18 @@ export default function EnhancedTable({ allUsers, handleBlock }) {
                         />
                         <TableBody>
                             {visibleRows.map((row, index) => {
-                                const isItemSelected = isSelected(row.freelanceId);
+                                const isItemSelected = isSelected(row.userId);
                                 const labelId = `enhanced-table-checkbox-${index}`;
                                 const splitDate = row.registrationDate.split('T')
 
                                 return (
                                     <TableRow
                                         hover
-                                        onClick={(event) => handleClick(event, row.freelanceId)}
+                                        onClick={(event) => handleClick(event, row.userId)}
                                         role="checkbox"
                                         aria-checked={isItemSelected}
                                         tabIndex={-1}
-                                        key={row.id}
+                                        key={row.userId}
                                         selected={isItemSelected}
                                         sx={{ cursor: 'pointer' }}
                                     >
