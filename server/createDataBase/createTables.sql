@@ -76,6 +76,14 @@ CREATE TABLE portfolio_images (
     image_code VARCHAR(255)
 );
 
+CREATE TABLE messages (
+    message_id INT PRIMARY KEY AUTO_INCREMENT,
+    sender_id INT,
+    receiver_id INT,
+    message_content VARCHAR(225),
+    timestamp TIMESTAMP NOT NULL
+);
+
 ALTER TABLE
     `freelance_category_enrollment`
 ADD
