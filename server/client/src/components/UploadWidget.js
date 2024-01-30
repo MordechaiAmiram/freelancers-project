@@ -18,16 +18,17 @@ const UploadWidget = ({ handleImageId }) => {
     })
   }, [])
   return (
-    // <Chip label="הוספת תמונה">
-      <div style={{
-        cursor: 'pointer',
-        display: 'inline-block',
-        padding: '5px'
-      }} onClick={() => widgetRef.current.open()}>
-        הוספת תמונה
-        <AddToPhotosOutlinedIcon />
-      </div>
-    // </Chip>
+    <div>
+      <Chip
+        sx={{ minWidth: '200px' }}
+        icon={<AddToPhotosOutlinedIcon />}
+        label='הוספת תמונה'
+        variant="outlined"
+        onClick={() => widgetRef.current.open()}
+      >
+      </Chip>
+    </div>
+
   )
 }
 
