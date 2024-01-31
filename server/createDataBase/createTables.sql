@@ -81,6 +81,7 @@ CREATE TABLE messages (
     sender_id INT,
     receiver_id INT,
     message_content VARCHAR(225),
+    is_read TINYINT DEFAULT 0,
     timestamp TIMESTAMP NOT NULL
 );
 
