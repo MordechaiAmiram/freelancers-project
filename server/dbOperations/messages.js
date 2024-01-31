@@ -1,5 +1,16 @@
 const { pool } = require('../db')
 
+
+async function updateIsReadMessage(messagesId) {
+    const sql = `
+    UPDATE messages 
+    SET is_read = 1
+    WHERE message_id = ?
+    `
+    const [{ affectedRows }] = await pool.query(sql, [messagesId])
+    return affectedRows
+}
+
 async function getMessagesBySender(userId) {
     const sql = `
 	SELECT message_id as messageId,
@@ -45,8 +56,10 @@ async function addMessage(senderId, receiverId, text) {
     return affectedRows
 }
 
+
 module.exports = {
     getMessagesByReceiver,
     getMessagesBySender,
-    addMessage
+    addMessage,
+    updateIsReadMessage
 }
