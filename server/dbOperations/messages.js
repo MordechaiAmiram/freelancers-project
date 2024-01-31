@@ -39,7 +39,7 @@ async function getMessagesByReceiver(userId) {
 async function addMessage(senderId, receiverId, text) {
     const sql = `
     INSERT INTO messages (sender_id, receiver_id, message_content, timestamp)
-    VALUES (?, ? ,?, CURDATE())
+    VALUES (?, ? ,?, NOW())
     `
     const [{ affectedRows }] = await pool.query(sql, [senderId, receiverId, text])
     return affectedRows
