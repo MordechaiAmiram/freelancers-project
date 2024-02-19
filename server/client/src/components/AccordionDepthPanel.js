@@ -53,6 +53,7 @@ export default function AccordionDepthPanel({ textProps, handleChange, value, ha
               placeholder="הוסף ביקורת"
               {...textProps}
             />
+            <br />
             <Button
               sx={{ maxWidth: 'fit-content', margin: 'auto' }}
               onClick={() => {

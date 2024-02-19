@@ -20,7 +20,7 @@ function CategoriesNavbar() {
     return (
         <div className='nav-bar-wrapper'>
             <div className='categories-flex-container max-width-container'>
-                <button className='slide-btns' id="slideRight"
+                <button className='slide-btns' id="slide-right"
                     onClick={rightClick}
                 >
                     <KeyboardDoubleArrowRightIcon onClick={rightClick} />
@@ -33,7 +33,7 @@ function CategoriesNavbar() {
                             </>
                         ))}
                 </div>
-                <button className='slide-btns' id="slideLeft"
+                <button className='slide-btns' id="slide-left"
                     onClick={leftClick}>
                     <KeyboardDoubleArrowLeftIcon onClick={leftClick} />
                 </button>
