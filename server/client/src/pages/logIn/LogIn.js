@@ -35,8 +35,8 @@ function LogIn() {
       navigate('/')
     } catch (err) {
       console.error(err.response.data);
-      if (err.response.data === 'This user does not exsist, please register') {
-        setMessage('משתמש לא רשום נא הירשם')
+      if (err.response.data === 'Username or password incorrect') {
+        setMessage('שם משתמש או סיסמה שגויים, אם לא נרשמת לאתר נא הירשם')
       } else if (err.response.data === 'User blocked') {
         setMessage('משתמש חסום עקב פעילות לא ראויה')
       }

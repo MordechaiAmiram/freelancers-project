@@ -24,11 +24,8 @@ router
 async function validation(username, pass) {
     const users = await getAllUsers()
     const user = await users.find(user => user.username === username)
-    if (!user) {
-        return [null, 'This user does not exsist, please register', false]
-    }
-    else if (pass !== user.password) {
-        return [null, 'Wrong password', false]
+    if (!user || pass !== user.password) {
+        return [null, 'Username or password incorrect', false]
     } else if (!user.isConfirmed) {
         return [null, 'User blocked', false]
     }
