@@ -10,17 +10,16 @@ function PublicUserProfile() {
     const splitURL = location.pathname.split('/')
     const freelanceId = splitURL[splitURL.length - 1]
     const [data, setData, error] = useFetch(`/freelance/${freelanceId}`)
-    const [freelance, setFreelance] = useState(state)
+    const [freelanceDetails, setFreelanceDetails] = useState(state)
     const [portfolios] = useFetch(`/portfolios/${freelanceId}`)
     const [reviews, setReviews] = useFetch(`/reviews/by-freelance/${freelanceId}`)
 
     const handleUpdateReviews = async (review) => {
-        setFreelance(prev => {
-            const prevData = prev
-            prevData.numberOfRatings++
-            prevData.rating = review.rating
-            return prevData
-        })
+        setFreelanceDetails(prev => ({
+            ...prev,
+            numberOfRatings: prev.numberOfRatings + 1,
+            averageRating: review.rating
+        }))
         setReviews(prev => {
             return [...prev, review]
         })
@@ -32,14 +31,11 @@ function PublicUserProfile() {
             if (data) {
                 const newReviews = reviews.filter(review => review.id !== reviewId)
                 setReviews(newReviews)
-                setFreelance(prev => {
-                    const prevData = prev
-                    prevData.numberOfRatings--
-                    prevData.rating = data
-                    console.log(prevData.numberOfRatings, " number of rating");
-                    console.log(prevData.rating, " rating");
-                    return prevData
-                })
+                setFreelanceDetails(prev => ({
+                    ...prev,
+                    numberOfRatings: prev.numberOfRatings - 1,
+                    averageRating: data
+                }));
             }
         } catch (err) {
             console.error(err);
@@ -48,14 +44,14 @@ function PublicUserProfile() {
 
     useEffect(() => {
         if (data) {
-            setFreelance(data)
+            setFreelanceDetails(data)
         }
     }, [data])
     return (
         <>
-            {freelance &&
+            {freelanceDetails &&
                 <PublicUserProfileForm
-                    profile={freelance}
+                    profile={freelanceDetails}
                     handleUpdateReviews={handleUpdateReviews}
                     handleDeleteReview={handleDeleteReview}
                     portfolios={portfolios}
