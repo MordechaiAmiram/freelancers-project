@@ -34,7 +34,6 @@ router
         try {
             const { text, rating, reviewerId, freelanceId } = req.body
             const freelanceRating = await addReview(text, rating, reviewerId, freelanceId)
-            console.log(freelanceRating);
             if (freelanceRating) {
                 res.status(201)
                     .send(freelanceRating)

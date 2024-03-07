@@ -66,38 +66,13 @@ async function getReviewerReviews(reviewerId) {
 }
 
 async function addReview(text, rating, reviewerId, freelanceId) {
-    const addReviewSql = `
+    const sql = `
     INSERT INTO reviews (review_text, rating, reviewer_id, freelance_id, review_date)
     VALUES(? ,? ,? ,? , CURDATE())
     `
-    
-    let connection
-    try {
-        const isRating = await getFreelanceRating(freelanceId)
-        connection = await pool.getConnection()
-        await connection.beginTransaction()
-
-        const [{ affectedRows }] = await connection.query(addReviewSql, [text, rating, reviewerId, freelanceId])
-
-        if (isRating) {
-            await connection.query(updateRatingDataSql, [rating, freelanceId])
-        } else {
-            await connection.query(addratingDataSql, [freelanceId, rating])
-        }     
-        await connection.commit()
-        const updatedRating = await getFreelanceRating(freelanceId) 
-        return updatedRating
-
-    } catch (error) {
-        if (connection) {
-            await connection.rollback()
-        }
-        throw error
-    } finally {
-        if (connection) {
-            pool.releaseConnection(connection)
-        }
-    }
+    const [{ affectedRows }] = await pool.query(sql, [text, rating, reviewerId, freelanceId])
+    if (affectedRows) return getFreelanceRatingNew(freelanceId)
+    return affectedRows
 }
 
 async function deleteReview(reviewId) {
@@ -121,7 +96,7 @@ async function getFreelanceRatingNew(freelanceId) {
     FROM reviews
     WHERE freelance_id = ?
     `
-    const [[{averageRating}]] = await pool.query(sql, [freelanceId])
+    const [[{ averageRating }]] = await pool.query(sql, [freelanceId])
     return averageRating
 }
 

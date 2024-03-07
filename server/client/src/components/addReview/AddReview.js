@@ -7,7 +7,6 @@ import { userContext } from '../../App'
 function AddReview({ freelanceId, handleUpdateReviews }) {
     const { currentUser } = useContext(userContext)
     const reviewerId = currentUser?.userId
-
     const textProps = useInput('')
 
     const [rating, setRating] = useState(1)
@@ -26,7 +25,6 @@ function AddReview({ freelanceId, handleUpdateReviews }) {
                 freelanceId: freelanceId,
             }
             const { data } = await api.post('/reviews', review)
-            console.log(data);
             if (data) {
                 const review = {
                     firstName: currentUser.firstName,
