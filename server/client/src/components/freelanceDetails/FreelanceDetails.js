@@ -58,7 +58,7 @@ function FreelanceDetails({ profile }) {
                                                 ],
                                             },
                                         }}>
-                                        {numberOfRatings && `(${numberOfRatings}) `}
+                                        {numberOfRatings !== 0 && `(${numberOfRatings}) `}
                                     </Tooltip>
                                 </div>
                                 <div className='rating-digit'>

@@ -1,5 +1,4 @@
 const { pool } = require('../db')
-const { updateRatingDataSql, addratingDataSql, getFreelanceRating, decreaseRatingData } = require('./ratingData')
 
 async function updateReview(reviewId, reviewText, rating) {
     const newReviewText = reviewText || await getReviewText(reviewId)
