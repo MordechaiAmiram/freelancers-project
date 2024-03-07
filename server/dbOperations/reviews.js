@@ -115,6 +115,16 @@ async function deleteReview(reviewId) {
     return affectedRows
 }
 
+async function getFreelanceRatingNew(freelanceId) {
+    const sql = `
+    SELECT ROUND(AVG(rating), 1) as averageRating
+    FROM reviews
+    WHERE freelance_id = ?
+    `
+    const [[{averageRating}]] = await pool.query(sql, [freelanceId])
+    return averageRating
+}
+
 module.exports = {
     getRating,
     getReviewText,
@@ -123,7 +133,8 @@ module.exports = {
     addReview,
     getReviewerReviews,
     deleteReview,
-    getFreelanceId
+    getFreelanceId,
+    getFreelanceRatingNew
 }
 
 

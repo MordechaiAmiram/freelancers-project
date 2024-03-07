@@ -102,8 +102,7 @@ async function getFreelance(freelanceId) {
     const sql = `
     SELECT title, about, service_location as serviceLocation, profile_image_id as profileImageId,
         freelance_id as freelanceId, first_name as firstName, last_name as lastName, 
-        phone, email, number_of_ratings as numberOfRatings,
-        ROUND((cumulative_rating / number_of_ratings), 1) as rating,
+        phone, email, ROUND(AVG(rating), 1) as averageRating,
 		c1.category_id as categoryId, c1.category_name as categoryName,
         c1.parent_id as parentId, c2.category_name as parentName
     FROM freelancers f
@@ -111,7 +110,7 @@ async function getFreelance(freelanceId) {
     USING(user_id)
         JOIN freelance_category_enrollment fce
     USING(freelance_id)
-		LEFT JOIN rating_data
+        LEFT JOIN reviews
 	USING(freelance_id)
        LEFT JOIN categories c1
 	USING (category_id)
@@ -119,6 +118,7 @@ async function getFreelance(freelanceId) {
     ON c1.parent_id = c2.category_id 
     WHERE f.freelance_id = ?
     AND users.is_confirmed = 1
+    GROUP BY categoryId
     `
     const [[freelancers]] = await pool.query(sql, [freelanceId])
     return freelancers
