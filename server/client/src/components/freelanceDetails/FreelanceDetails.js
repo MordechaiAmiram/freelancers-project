@@ -8,7 +8,7 @@ import './freelanceDetails.css'
 import styled from '@emotion/styled';
 
 function FreelanceDetails({ profile }) {
-    const { firstName, lastName, title, rating, about, serviceLocation,
+    const { firstName, lastName, title, averageRating, about, serviceLocation,
         phone, email, profileImageId, numberOfRatings } = profile
     const theme = createTheme();
 
@@ -62,7 +62,7 @@ function FreelanceDetails({ profile }) {
                                     </Tooltip>
                                 </div>
                                 <div className='rating-digit'>
-                                    {rating ? `${rating}` : '0'}
+                                    {averageRating ? `${averageRating}` : '0'}
                                 </div>
                             </div>
                             <div>

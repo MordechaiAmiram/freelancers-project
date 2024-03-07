@@ -5,7 +5,7 @@ import { Link as LinkRouter } from 'react-router-dom'
 import GetImage from '../GetImage';
 
 function ProfileCardForm({ profile }) {
-  const { firstName, lastName, title, rating, freelanceId, accountType, profileImageId } = profile
+  const { firstName, lastName, title, averageRating, freelanceId, accountType, profileImageId } = profile
   return (
 
     <div className="card-container">
@@ -18,7 +18,7 @@ function ProfileCardForm({ profile }) {
       
       <h4 className='title'>{title}</h4>
       
-      <div className='profile-card-rating'>{rating ? `(${rating})` : '(0)'}<StarIcon sx={{color: 'gold'}} /></div>
+      <div className='profile-card-rating'>{averageRating ? `(${averageRating})` : '(0)'}<StarIcon sx={{color: 'gold'}} /></div>
       
       <LinkRouter
         to={`/profile/${freelanceId}`}

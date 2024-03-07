@@ -13,7 +13,7 @@ function PublicUserProfile() {
     const [freelance, setFreelance] = useState(state)
     const [portfolios] = useFetch(`/portfolios/${freelanceId}`)
     const [reviews, setReviews] = useFetch(`/reviews/by-freelance/${freelanceId}`)
-
+    
     const handleUpdateReviews = async (review) => {
         setFreelance(prev => {
             const prevData = prev
@@ -43,7 +43,6 @@ function PublicUserProfile() {
             setFreelance(data)
         }
     }, [data])
-
     return (
         <>
             {freelance &&

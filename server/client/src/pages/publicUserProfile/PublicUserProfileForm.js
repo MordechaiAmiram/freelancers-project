@@ -11,7 +11,6 @@ function PublicUserProfileForm({ profile, portfolios, reviews, handleUpdateRevie
     const { firstName, lastName, freelanceId, categoryName, parentName, parentId, categoryId } = profile
     const { currentUser } = useContext(userContext)
 
-
     return (
         <>
             <CategoriesNavbar />
