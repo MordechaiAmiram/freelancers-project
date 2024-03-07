@@ -13,7 +13,7 @@ function PublicUserProfile() {
     const [freelance, setFreelance] = useState(state)
     const [portfolios] = useFetch(`/portfolios/${freelanceId}`)
     const [reviews, setReviews] = useFetch(`/reviews/by-freelance/${freelanceId}`)
-    
+
     const handleUpdateReviews = async (review) => {
         setFreelance(prev => {
             const prevData = prev
@@ -25,13 +25,21 @@ function PublicUserProfile() {
             return [...prev, review]
         })
     }
-    
+
     const handleDeleteReview = async (reviewId) => {
         try {
             const { data } = await api.delete('/reviews', { data: { reviewId: reviewId } })
             if (data) {
                 const newReviews = reviews.filter(review => review.id !== reviewId)
                 setReviews(newReviews)
+                setFreelance(prev => {
+                    const prevData = prev
+                    prevData.numberOfRatings--
+                    prevData.rating = data
+                    console.log(prevData.numberOfRatings, " number of rating");
+                    console.log(prevData.rating, " rating");
+                    return prevData
+                })
             }
         } catch (err) {
             console.error(err);

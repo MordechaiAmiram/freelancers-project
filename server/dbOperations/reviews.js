@@ -71,12 +71,11 @@ async function addReview(text, rating, reviewerId, freelanceId) {
     VALUES(? ,? ,? ,? , CURDATE())
     `
     const [{ affectedRows }] = await pool.query(sql, [text, rating, reviewerId, freelanceId])
-    if (affectedRows) return getFreelanceRatingNew(freelanceId)
+    if (affectedRows) return await getFreelanceRatingNew(freelanceId)
     return affectedRows
 }
 
 async function deleteReview(reviewId) {
-    const rating = await getRating(reviewId)
     const freelanceId = await getFreelanceId(reviewId)
 
     const sql = `
@@ -85,7 +84,7 @@ async function deleteReview(reviewId) {
     `
     const [{ affectedRows }] = await pool.query(sql, [reviewId])
     if (affectedRows) {
-        await decreaseRatingData(freelanceId, rating)
+        return await getFreelanceRatingNew(freelanceId)
     }
     return affectedRows
 }

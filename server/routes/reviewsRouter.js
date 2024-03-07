@@ -51,10 +51,10 @@ router
     .route('/')
     .delete(async (req, res) => {
         try {
-            const isDeleted = await deleteReview(req.body.reviewId)
-            if (isDeleted) {
+            const freelanceRating = await deleteReview(req.body.reviewId)
+            if (freelanceRating) {
                 res.status(201)
-                    .send('Review is deleted')
+                    .send(freelanceRating)
             } else {
                 res.status(400)
                     .send('Bad requst')
