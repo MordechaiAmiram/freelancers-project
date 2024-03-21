@@ -1,7 +1,7 @@
 const { getServiceLoaction, getFreelance, getSumOfFreelancers, getImageId } = require('./dbOperations/freelancers')
 const { getSuite, getZipCode, updateAddress, getCity } = require('./dbOperations/addresses')
 const { getClient, getAllUsers, addUserGate, getFirstName, getLastName, getEmail, getPhone, gtePassword, getPassword, updateUserDetails, deleteUserAccount, getUnconfirmedUsers } = require('./dbOperations/users')
-const { getNumberOfRatings, getFreelanceRating } = require('./dbOperations/ratingData')
+// const { getNumberOfRatings, getFreelanceRating } = require('./dbOperations/ratingData')
 const { addReview, getFreelanceReviews, getReviewerReviews, updateReview, getReviewText, getRating, getFreelanceId, deleteReview, getFreelanceRatingNew } = require('./dbOperations/reviews')
 const { getChildren, getParentsCategories, addCategory, updateCategory, searchForCategory } = require('./dbOperations/categories')
 const { createPortfolio, addImage } = require('./dbOperations/portfolios')

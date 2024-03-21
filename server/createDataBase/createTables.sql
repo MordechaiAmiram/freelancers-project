@@ -54,13 +54,6 @@ CREATE TABLE `reviews`(
     `freelance_id` BIGINT NOT NULL
 );
 
-CREATE TABLE `rating_data`(
-    `rating_data_id` BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `freelance_id` BIGINT NOT NULL UNIQUE,
-    `number_of_ratings` BIGINT NOT NULL,
-    `cumulative_rating` BIGINT NOT NULL
-);
-
 CREATE TABLE freelancers_portfolios (
     portfolio_id INT PRIMARY KEY auto_increment,
     freelance_id INT,
@@ -99,11 +92,6 @@ ALTER TABLE
     `freelance`
 ADD
     CONSTRAINT `freelance_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `users`(`user_id`);
-
-ALTER TABLE
-    `raing_data`
-ADD
-    CONSTRAINT `raing_data_freelance_id_foreign` FOREIGN KEY(`freelance_id`) REFERENCES `freelance`(`freelance_id`);
 
 ALTER TABLE
     `freelance_category_enrollment`
