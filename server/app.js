@@ -16,7 +16,9 @@ const messagesRouter = require('./routes/messagesRouter')
 app.use(express.json())
 app.use(cors())
 
-app.use(express.static(path.join('C:/Users/moti5/Programming/GitHub/freelancers-project/client', 'build')))
+const clientBuildPath = 'C:/Users/moti5/Programming/GitHub/freelancers-project/client'
+
+app.use(express.static(path.join(clientBuildPath, 'build')))
 
 app.use('/api/users', usersRouter)
 app.use('/api/freelancers', freelacersRouter)
@@ -28,7 +30,7 @@ app.use('/api/management', managementRouter)
 app.use('/api/messages', messagesRouter)
 
 app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', "index.html"))
+    res.sendFile(path.join(clientBuildPath, 'build', "index.html"))
 })
 
 async function checkConnection() {
