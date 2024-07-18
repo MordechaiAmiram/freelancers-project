@@ -4,7 +4,7 @@ const pool = sql.createPool(
     {
         host: 'localhost',
         user: 'root',
-        password: process.env.SQL_PASSWORD,
+        password: process.env.MYSQL_ROOT_PASSWORD,
         database: 'freelancers_project'
     }
 )
