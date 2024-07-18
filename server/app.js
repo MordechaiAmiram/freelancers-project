@@ -16,7 +16,7 @@ const messagesRouter = require('./routes/messagesRouter')
 app.use(express.json())
 app.use(cors())
 
-app.use(express.static(path.join('C:/Users/moti5/Programming/GitHub/Freelance-project2/client', 'build')))
+app.use(express.static(path.join('C:/Users/moti5/Programming/GitHub/freelancers-project/client', 'build')))
 
 app.use('/api/users', usersRouter)
 app.use('/api/freelancers', freelacersRouter)
