@@ -9,22 +9,26 @@ function Management() {
     const [sumOfUsers] = useFetch('/users/sum')
     const [allUsers] = useFetch('/management/users')
 
-    const handleUsersOnHold = (data) => {
-        data.forEach((element, index) => {
-            if (element.value.status === 201) {
-                setUsersOnHold((prev) => {
-                    const newUsers = [...prev]
-                    newUsers.splice(index, 1)
-                    return newUsers
-                })
-            }
+    const handleUsersOnHold = (toConfirm) => {
+        console.log("handleUsersOnHold" , toConfirm);
+        const set = new Set([...toConfirm])
+        usersOnHold.forEach(el => el.isConfirmed = 1)
+        setUsersOnHold(prev => {
+            return usersOnHold.filter(user => !set.has(user.userId))
         })
     }
-    const handleBlock = async (selectedUsers)=>{
-        if (selectedUsers.length <= 0) return
+    
+    const handleBlock = async (selectedUsersIds)=>{
+        if (selectedUsersIds.length <= 0) return
+        const set = new Set([...selectedUsersIds])
+        setUsersOnHold((prev) =>{
+            const usersToHold = allUsers.filter(user => set.has(user.userId))
+            usersToHold.forEach(el => el.isConfirmed = 0)
+            return [...prev, ...usersToHold]
+        })
 
         const promises = []
-        selectedUsers.forEach(el => {
+        selectedUsersIds.forEach(el => {
             const promise = api.put('/users',
                 {
                     userId: el,
@@ -35,7 +39,7 @@ function Management() {
         
         try {
             const data = await Promise.allSettled(promises)
-            console.log(data)
+            console.log("promises bloked", data)
             // handleUsersOnHold(data)
             // setChecked(prev => {
             //     return prev.map(el => el = false)

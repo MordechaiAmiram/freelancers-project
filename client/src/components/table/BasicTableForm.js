@@ -9,7 +9,6 @@ import Paper from '@mui/material/Paper';
 import { Box, Button, Checkbox, FormControlLabel } from '@mui/material';
 
 export default function BasicTableForm({ usersOnHold, handleConfirm, handleChange, checked }) {
-  console.log(usersOnHold);
   return (
     <>
       <TableContainer component={Paper}>

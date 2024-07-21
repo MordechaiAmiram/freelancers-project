@@ -11,7 +11,8 @@ function ManagementForm({ usersOnHold, handleConfirm, sumOfFreelancers, sumOfUse
                     {`מספר משתמשים רשומים: ${sumOfUsers}  
                 מתוכם פרילנסרים : ${sumOfFreelancers}`}
                 </div>
-                <div><b>ממתינים לאישור</b>
+                <div>
+                    <b>ממתינים לאישור</b>
                     {usersOnHold?.length > 0 &&
                         <BasicTable
                             usersOnHold={usersOnHold}

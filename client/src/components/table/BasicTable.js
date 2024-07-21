@@ -5,11 +5,10 @@ import api from '../../services/BaseURL';
 function BasicTable({ usersOnHold, handleUsersOnHold }) {
     const [checked, setChecked] = useState(new Array(usersOnHold.length).fill(false));
     const [toConfirm, setToConfirm] = useState([])
-    console.log(toConfirm);
 
     const handleConfirm = async () => {
         if (toConfirm.length <= 0) return
-
+        handleUsersOnHold(toConfirm)
         const promises = []
         toConfirm.forEach(element => {
             const promise = api.put('/users',
@@ -22,11 +21,10 @@ function BasicTable({ usersOnHold, handleUsersOnHold }) {
         
         try {
             const data = await Promise.allSettled(promises)
-            console.log(data)
-            handleUsersOnHold(data)
-            setChecked(prev => {
-                return prev.map(el => el = false)
-            })
+            console.log("promises data > ", data)
+            // setChecked(prev => {
+            //     return prev.map(el => el = false)
+            // })
         } catch (err) {
             console.error(err.message);
         }

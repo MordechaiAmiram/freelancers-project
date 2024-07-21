@@ -87,6 +87,12 @@ const headCells = [
         disablePadding: false,
         label: 'תאריך הרשמה',
     },
+    {
+        id: 'status',
+        numeric: true,
+        disablePadding: false,
+        label: 'סטטוס',
+    }
 ];
 
 function EnhancedTableHead(props) {
@@ -318,6 +324,7 @@ export default function EnhancedTable({ allUsers, handleBlock }) {
                                             <Checkbox
                                                 color="primary"
                                                 checked={isItemSelected}
+                                                disabled={!row.isConfirmed}
                                                 inputProps={{
                                                     'aria-labelledby': labelId,
                                                 }}
@@ -337,6 +344,7 @@ export default function EnhancedTable({ allUsers, handleBlock }) {
                                         <TableCell align="center">{row.email}</TableCell>
                                         <TableCell align="center">{row.freelanceId ? 'פרילנס' : 'לקוח'}</TableCell>
                                         <TableCell align="center">{splitDate[0]}</TableCell>
+                                        <TableCell align="center">{row.isConfirmed ? 'פעיל' : 'חסום'}</TableCell>
                                     </TableRow>
                                 );
                             })}
