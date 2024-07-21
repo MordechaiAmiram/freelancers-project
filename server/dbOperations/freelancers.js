@@ -94,6 +94,7 @@ async function getFreelancersByCategory(categoryId) {
     OR c1.parent_id = ?
     AND users.is_confirmed = 1
     GROUP BY freelance_id, categoryName
+    ORDER BY averageRating DESC
     `
     const [freelancers] = await pool.query(sql, [categoryId, categoryId])
     return freelancers
