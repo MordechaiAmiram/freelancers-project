@@ -32,6 +32,9 @@ function SignUpForm(props) {
                             variant="outlined"
                             type='text'
                             name='firstName'
+                            // inputProps={{
+                            //     pattern: "[A-Za-z ]+",
+                            //   }}
                             sx={{ width: '100%' }}
                         />
                     </Grid>
@@ -66,6 +69,7 @@ function SignUpForm(props) {
                             variant="outlined"
                             type='text'
                             name='phone'
+                            // inputProps={ {pattern: "^0\d{9}$"} }
                             sx={{ width: '100%' }}
                         />
                     </Grid>
@@ -77,6 +81,10 @@ function SignUpForm(props) {
                             variant="outlined"
                             type='text'
                             name='email'
+                            inputProps={{
+                                type: "email",
+                                pattern: "[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" //eslint-disable-line
+                              }}
                             sx={{ width: '100%' }}
                         />
                     </Grid>
@@ -95,7 +103,7 @@ function SignUpForm(props) {
                         <Button sx={{ marginTop: matches1500? '10%' : '5%'}} type='submit'>הרשמה כלקוח</Button>
                 </Grid>
                 <Grid className='btns' item xs={matches1500 ? 6 : 12}>
-                    <Button sx={{ marginTop: matches1500? '10%' : ''}} onClick={continueAsFreelance}>המשך הרשמה כפרילנס</Button>
+                    <Button sx={{ marginTop: matches1500? '10%' : ''}} onClick={continueAsFreelance}>המשך הרשמה כפרילנסר</Button>
                 </Grid>
             </Grid>
 

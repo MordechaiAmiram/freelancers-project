@@ -75,7 +75,7 @@ function ClientForm({ profile, valueProps, isUpdate, handleSubmit, handleUpdate 
             {!isUpdate &&
                 <>
                     <LogOut />
-                    <ReactLink to={'/sign-up'}>הירשם כפרילנס</ReactLink>
+                    <ReactLink to={'/sign-up'}>הירשם כפרילנסר</ReactLink>
                     {/* <Button>מחיקת חשבון</Button> */}
                 </>
             }

@@ -342,7 +342,7 @@ export default function EnhancedTable({ allUsers, handleBlock }) {
                                         </TableCell>
                                         <TableCell align="center">{row.phone}</TableCell>
                                         <TableCell align="center">{row.email}</TableCell>
-                                        <TableCell align="center">{row.freelanceId ? 'פרילנס' : 'לקוח'}</TableCell>
+                                        <TableCell align="center">{row.freelanceId ? 'פרילנסר' : 'לקוח'}</TableCell>
                                         <TableCell align="center">{splitDate[0]}</TableCell>
                                         <TableCell align="center">{row.isConfirmed ? 'פעיל' : 'חסום'}</TableCell>
                                     </TableRow>

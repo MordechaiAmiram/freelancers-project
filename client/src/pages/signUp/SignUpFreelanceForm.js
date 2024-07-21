@@ -27,7 +27,7 @@ function SignUpFreelanceForm(props) {
                         <LockOutlinedIcon fontSize='medium' />
                     </Avatar>
 
-                    <h3>הרשמה לפרילנס</h3>
+                    <h3>הרשמה לפרילנסר</h3>
 
                     <Grid container spacing={2}>
                         <Grid item xs={6} >
