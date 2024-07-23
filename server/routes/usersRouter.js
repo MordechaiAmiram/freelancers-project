@@ -2,6 +2,7 @@ const express = require('express')
 const signUpRouter = require('./signUpRouter')
 const logInRouter = require('./logInRouter')
 const { getClient, updateUserDetails, getSumOfUsers, getUnconfirmedUsers } = require('../dbOperations/users')
+const {authenticateToken, authOwner, authOwnerOrAdmin, authAdmin} = require('../middleware/auth')
 const router = express.Router()
 
 router
@@ -25,7 +26,7 @@ router
 
 router
     .route('/sum')
-    .get(async (req, res) => {
+    .get(authenticateToken, authAdmin, async (req, res) => {
         try {
             const sum = await getSumOfUsers()
             if (sum) {
@@ -42,7 +43,7 @@ router
     })
 router
     .route('/on-hold')
-    .get(async (req, res) => {
+    .get(authenticateToken, authAdmin, async (req, res) => {
         try {
             const freelancers = await getUnconfirmedUsers()
             res.status(200)
@@ -55,7 +56,7 @@ router
 
 router
     .route('/')
-    .delete(async (req, res) => {
+    .delete(authenticateToken, async (req, res) => {
         try {
             res.status(200)
                 .send('waiting to be implemented...')
@@ -67,7 +68,7 @@ router
 
 router
     .route('/')
-    .put(async (req, res) => {
+    .put(authenticateToken, authOwnerOrAdmin, async (req, res) => {
         try {
             const { userId, firstName, lastName, email, phone, password, isConfirmed } = req.body
             const isUpdated = await updateUserDetails(userId, firstName, lastName, email, phone, password, isConfirmed)

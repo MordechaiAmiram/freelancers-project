@@ -1,5 +1,6 @@
 const express = require('express')
 const { getFreelanceReviews, getReviewerReviews, addReview, updateReview, deleteReview } = require('../dbOperations/reviews')
+const {authenticateToken, authOwner, authAdmin} = require('../middleware/auth')
 const router = express.Router()
 
 router
@@ -30,7 +31,7 @@ router
 
 router
     .route('/')
-    .post(async (req, res) => {
+    .post(authenticateToken, async (req, res) => {
         try {
             const { text, rating, reviewerId, freelanceId } = req.body
             const freelanceRating = await addReview(text, rating, reviewerId, freelanceId)
@@ -49,7 +50,7 @@ router
 
 router
     .route('/')
-    .delete(async (req, res) => {
+    .delete(authenticateToken, authAdmin, async (req, res) => {
         try {
             const freelanceRating = await deleteReview(req.body.reviewId)
             if (freelanceRating) {
@@ -67,7 +68,7 @@ router
 
 router
     .route('/')
-    .put(async (req, res) => {
+    .put(authenticateToken, async (req, res) => {
         try {
             const { text, rating, reviewId } = req.body
             const isUpdated = await updateReview(reviewId, text, rating)

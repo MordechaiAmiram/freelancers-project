@@ -25,13 +25,13 @@ function LogIn() {
     }
     setMessage('')
     try {
-      const { data } = await api.post('/users/log-in', {
+      const { data }  = await api.post('/users/log-in', {
         username: usernameProps.value,
         password: passwordProps.value
       })
-      console.log(data);
-      localStorage.setItem('currentUser', JSON.stringify(data))
-      setCurrentUser(data)
+      localStorage.setItem('currentUser', JSON.stringify(data.user))
+      localStorage.setItem('accessToken', data.token)
+      setCurrentUser(data.user)
       navigate('/')
     } catch (err) {
       console.error(err.response.data);

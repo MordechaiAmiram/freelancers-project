@@ -9,6 +9,7 @@ function LogOut() {
 
     const handleLogOut = () => {
         localStorage.setItem('currentUser', JSON.stringify(""))
+        localStorage.setItem('accessToken', JSON.stringify(""))
         setCurrentUser('')
         navigate('/')
     }

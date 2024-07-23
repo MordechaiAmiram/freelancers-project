@@ -1,6 +1,7 @@
 const express = require('express')
 const { getFreelance, updateFreelance } = require('../dbOperations/freelancers')
 const { updateAddress } = require('../dbOperations/addresses')
+const {authenticateToken} = require('../middleware/auth')
 const router = express.Router()
 
 router
@@ -22,7 +23,7 @@ router
     })
 router
     .route('/')
-    .put(async (req, res) => {
+    .put(authenticateToken, async (req, res) => {
         try {
             const { freelanceId, title, about, serviceLocation, type, imageId } = req.body
             const isEdited = await updateFreelance(freelanceId, title, about, serviceLocation, type, imageId)
@@ -41,7 +42,7 @@ router
 
 router
     .route('/address')
-    .put(async (req, res) => {
+    .put(authenticateToken, async (req, res) => {
         try {
             const { userId, city, street, building, suite, zipCode } = req.body
             const isEdited = await updateAddress(userId, city, street, building, suite, zipCode)

@@ -32,9 +32,6 @@ function SignUpForm(props) {
                             variant="outlined"
                             type='text'
                             name='firstName'
-                            // inputProps={{
-                            //     pattern: "[A-Za-z ]+",
-                            //   }}
                             sx={{ width: '100%' }}
                         />
                     </Grid>
@@ -69,7 +66,6 @@ function SignUpForm(props) {
                             variant="outlined"
                             type='text'
                             name='phone'
-                            // inputProps={ {pattern: "^0\d{9}$"} }
                             sx={{ width: '100%' }}
                         />
                     </Grid>
@@ -83,7 +79,6 @@ function SignUpForm(props) {
                             name='email'
                             inputProps={{
                                 type: "email",
-                                pattern: "[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" //eslint-disable-line
                               }}
                             sx={{ width: '100%' }}
                         />

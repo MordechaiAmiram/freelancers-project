@@ -1,10 +1,11 @@
 const express = require('express');
 const { getAllUsers } = require('../dbOperations/users');
+const {authenticateToken} = require('../middleware/auth');
 const router = express.Router()
 
 router
     .route('/users')
-    .get(async (req, res) => {
+    .get(authenticateToken, async (req, res) => {
         try {
             const users = await getAllUsers()
             if (users) {

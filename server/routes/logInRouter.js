@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const jwt = require('jsonwebtoken');
 const { getAllUsers } = require('../dbOperations/users')
+const secretKey = process.env.JWT_SECRET_KEY;
+
 
 router
     .route('/')
@@ -8,12 +11,13 @@ router
         try {
             const [user, message, isValid] = await validation(req.body.username, req.body.password)
             if (!isValid) {
-                res.status(400)
+                res.status(401)
                     .send(message)
             }
             else {
+                const token = jwt.sign({ id: user.userId, username: user.username, role: user.isAdmin? 'admin': 'basic' }, secretKey, { expiresIn: '1h' })
                 res.status(201)
-                    .json(user)
+                    .json({ token, user })
             }
         } catch (err) {
             res.status(400)

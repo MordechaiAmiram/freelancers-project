@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const jwt = require('jsonwebtoken');
 const { addUserGate, getAllUsers, getClient } = require('../dbOperations/users')
+
+const secretKey = process.env.JWT_SECRET_KEY;
 
 router
     .route('/')
@@ -11,11 +14,12 @@ router
             
             if (isValid) {
                 const userId = await addUserGate(isFreelance, firstName, lastName, username, email, phone, password, city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId, imageId)
-
+                
                 if (userId) {
                     const user = await getClient(username, password)
+                    const token = jwt.sign({id: user.userId, username: user.username, role: 'basic' }, secretKey, { expiresIn: '1h' })
                     res.status(201)
-                        .send(user)
+                        .json({ token, user })
                 }
             } else {
                 res.status(400)

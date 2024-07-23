@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { getFreelancePortfolios, createPortfolio, addImage } = require('../dbOperations/portfolios')
+const {authenticateToken} = require('../middleware/auth')
 
 router
     .route('/:freelanceId')
@@ -21,7 +22,7 @@ router
     })
 router
     .route('/add-portfolio')
-    .post(async (req, res) => {
+    .post(authenticateToken, async (req, res) => {
         try {
             const { freelanceId, title, description, projectUrl } = req.body
             const isCreated = await createPortfolio(freelanceId, title, description, projectUrl)
@@ -39,7 +40,7 @@ router
     })
 router
     .route('/add-image')
-    .post(async (req, res) => {
+    .post(authenticateToken, async (req, res) => {
         try {
             const { portfolioId, imageCode } = req.body
             const isAdded = await addImage(portfolioId, imageCode)

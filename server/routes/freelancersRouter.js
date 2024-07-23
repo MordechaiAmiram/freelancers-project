@@ -1,5 +1,6 @@
 const express = require('express')
 const { getFreelancersByCategory, getUnconfirmedFreelancers, getSumOfFreelancers } = require('../dbOperations/freelancers')
+const {authenticateToken} = require('../middleware/auth')
 
 const router = express.Router()
 
@@ -19,7 +20,7 @@ router
 
 router
     .route('/on-hold')
-    .get(async (req, res) => {
+    .get(authenticateToken, async (req, res) => {
         try {
             const freelancers = await getUnconfirmedFreelancers()
             res.status(200)
@@ -32,7 +33,7 @@ router
 
 router
     .route('/sum')
-    .get(async (req, res) => {
+    .get(authenticateToken, async (req, res) => {
         try {
             const sum = await getSumOfFreelancers()
             res.status(200)
