@@ -4,6 +4,7 @@ const { createDbConnection } = require('./db')
 const path = require('path')
 const cors = require('cors')
 
+const authRouter = require('./routes/authRouter')
 const usersRouter = require('./routes/usersRouter')
 const categoriesRouter = require('./routes/categoriesRouter')
 const reviewsRouter = require('./routes/reviewsRouter')
@@ -20,6 +21,7 @@ const clientBuildPath = 'C:/Users/moti5/Programming/GitHub/freelancers-project/c
 
 app.use(express.static(path.join(clientBuildPath, 'build')))
 
+app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/freelancers', freelacersRouter)
 app.use('/api/freelance', freelanceRouter)

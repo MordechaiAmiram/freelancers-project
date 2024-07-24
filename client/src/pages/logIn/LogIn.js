@@ -25,7 +25,7 @@ function LogIn() {
     }
     setMessage('')
     try {
-      const { data }  = await api.post('/users/log-in', {
+      const { data }  = await api.post('/auth/log-in', {
         username: usernameProps.value,
         password: passwordProps.value
       })

@@ -85,7 +85,4 @@ router
         }
     })
 
-router.use('/log-in', logInRouter)
-router.use('/sign-up', signUpRouter)
-
 module.exports = router

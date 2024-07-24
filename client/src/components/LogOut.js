@@ -8,8 +8,8 @@ function LogOut() {
     const { setCurrentUser } = useContext(userContext)
 
     const handleLogOut = () => {
-        localStorage.setItem('currentUser', JSON.stringify(""))
-        localStorage.setItem('accessToken', JSON.stringify(""))
+        localStorage.removeItem('currentUser')
+        localStorage.removeItem('accessToken')
         setCurrentUser('')
         navigate('/')
     }

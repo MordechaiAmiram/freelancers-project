@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { hasOwnerPermissions, hasAdminPermissions, hasOwnerOrAdminPermissions } = require("../permissions/permissions");
 
-const secretKey = process.env.JWT_SECRET_KEY
+const secretKey = process.env.ACCESS_TOKEN_SECRET
 
 function authenticateToken(req, res, next) {
   

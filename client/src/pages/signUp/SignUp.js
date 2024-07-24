@@ -54,7 +54,7 @@ function SignUp() {
         categoryId: subcategoryProps.value,
         imageId: imageId
       }
-      const { data } = await api.post('/users/sign-up', user)
+      const { data } = await api.post('/auth/sign-up', user)
       console.log(data);
       localStorage.setItem('currentUser', JSON.stringify(data.user))
       localStorage.setItem('accessToken', data.token)
