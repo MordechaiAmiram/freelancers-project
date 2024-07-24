@@ -1,6 +1,4 @@
 const express = require('express')
-const signUpRouter = require('./signUpRouter')
-const logInRouter = require('./logInRouter')
 const { getClient, updateUserDetails, getSumOfUsers, getUnconfirmedUsers } = require('../dbOperations/users')
 const {authenticateToken, authOwner, authOwnerOrAdmin, authAdmin} = require('../middleware/auth')
 const router = express.Router()
