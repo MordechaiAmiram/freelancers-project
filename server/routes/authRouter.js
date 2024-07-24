@@ -1,22 +1,23 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const { getAllUsers, addUserGate, getClient } = require('../dbOperations/users')
+const { addUserGate, getClient, getUsersForAuth } = require('../dbOperations/users')
 const secretKey = process.env.ACCESS_TOKEN_SECRET;
 
 router
     .route('/log-in')
     .post(async (req, res) => {
         try {
-            const [user, message, isValid] = await logInValidation(req.body.username, req.body.password)
+            const [userId, message, isValid] = await logInValidation(req.body.username, req.body.password)
             if (!isValid) {
                 res.status(401)
-                    .send(message)
+                .send(message)
             }
             else {
-                const token = jwt.sign({ id: user.userId, username: user.username, role: user.isAdmin? 'admin': 'basic' }, secretKey, { expiresIn: '1h' })
+                const user = await getClient(userId)
+                const accessToken = generateAccessToken({ id: user.userId, username: user.username, role: user.isAdmin? 'admin': 'basic' })
                 res.status(201)
-                    .json({ token, user })
+                    .json({ accessToken, user })
             }
         } catch (err) {
             res.status(400)
@@ -31,24 +32,26 @@ async function logInValidation(username, pass) {
     } else if (!user.isConfirmed) {
         return [null, 'User blocked', false]
     }
-    return [user, null, true]
+    return [user.userId, null, true]
 }
 
 router
     .route('/sign-up')
     .post(async (req, res) => {
         try {
-            const { isFreelance, firstName, lastName, username, email, phone, password, city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId, imageId } = req.body
+            const { isFreelance, firstName, lastName, username, email, phone, password, city, street, 
+                building, suite, zipCode, about, title, accountType, serviceLocation, categoryId, imageId } = req.body
             const [message, isValid] = await signUpValidation(username, password)
             
             if (isValid) {
-                const userId = await addUserGate(isFreelance, firstName, lastName, username, email, phone, password, city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId, imageId)
+                const userId = await addUserGate(isFreelance, firstName, lastName, username, email, phone, password, 
+                    city, street, building, suite, zipCode, about, title, accountType, serviceLocation, categoryId, imageId)
                 
                 if (userId) {
-                    const user = await getClient(username, password)
-                    const token = jwt.sign({id: user.userId, username: user.username, role: 'basic' }, secretKey, { expiresIn: '1h' })
+                    const user = await getClient(userId)
+                    const accessToken = generateAccessToken({id: user.userId, username: user.username, role: 'basic' })
                     res.status(201)
-                        .json({ token, user })
+                        .json({ accessToken, user })
                 }
             } else {
                 res.status(400)
@@ -72,8 +75,12 @@ async function signUpValidation(username, pass) {
 }
 
 async function findUser(username) {
-    const users = await getAllUsers()
+    const users = await getUsersForAuth()
     return await users.find(user => user.username === username)
 }
+
+function generateAccessToken(user) {
+    return jwt.sign(user, secretKey, { expiresIn: '1h' });
+};
 
 module.exports = router

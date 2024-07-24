@@ -14,7 +14,7 @@ function authenticateToken(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, secretKey);
-    req.user = decoded // Save the decoded user data in the request object
+    req.user = decoded 
     next()
   } catch (error) {
     res.status(401).send('Invalid token')
@@ -24,11 +24,11 @@ function authenticateToken(req, res, next) {
 
 function authOwner(req, res, next){
 
-    if (!hasOwnerPermissions(req.user, req.body.userId)) {
-      return res.sendStatus(401).send("Not allowed")
-    }
-
-    next()
+  if (!hasOwnerPermissions(req.user, req.body.userId)) {
+    return res.sendStatus(401).send("Not allowed")
+  }
+  
+  next()
 }
 
 function authAdmin(req, res, next){

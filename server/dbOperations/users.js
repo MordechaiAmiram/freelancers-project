@@ -1,10 +1,10 @@
 const { pool } = require('../db')
 const { addAddressSql } = require('./addresses')
 
-async function getClient(username, password) {
+async function getClient(id) {
     const sql = `
     SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone,
-        is_admin as isAdmin, password, username, freelance_id as freelanceId, 
+        is_admin as isAdmin, username, freelance_id as freelanceId, 
         title, about, account_type as accountType, 
         service_location as serviceLocation, profile_image_id as profileImageId,
         city, street, building, suite, zip_code as zipCode, users.is_confirmed as isConfirmed
@@ -13,15 +13,15 @@ async function getClient(username, password) {
     USING (user_id)
         LEFT JOIN addresses
     USING(user_id)
-    WHERE username = ? AND password = ?
+    WHERE user_id = ?
     `
-    const [[client]] = await pool.query(sql, [username, password])
+    const [[client]] = await pool.query(sql, [id])
     return client
 }
 
 async function getAllUsers() {
     const sql = `
-    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone, password,
+    SELECT user_id as userId, first_name as firstName, last_name as lastName, email, phone,
         registration_date as registrationDate, users.is_confirmed as isConfirmed,
         is_admin as isAdmin, username, freelance_id as freelanceId, title, about, account_type as accountType, 
         service_location as serviceLocation, profile_image_id as profileImageId,
@@ -43,6 +43,15 @@ async function getAllUsers() {
     `
     const [clients] = await pool.query(sql)
     return clients
+}
+
+async function getUsersForAuth() {
+    const sql = `
+        SELECT username, password, user_id as userId, is_confirmed as isConfirmed, is_admin as isAdmin
+        FROM users
+    `
+    const [users] = await pool.query(sql)
+    return users
 }
 
 async function addUserGate(isFreelance, firstName, lastName, username, email, phone, password,
@@ -211,6 +220,7 @@ async function getUnconfirmedUsers() {
 module.exports = {
     getClient,
     getAllUsers,
+    getUsersForAuth,
     addUserGate,
     getFirstName,
     getLastName,
