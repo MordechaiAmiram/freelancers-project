@@ -57,7 +57,7 @@ function SignUp() {
       const { data } = await api.post('/auth/sign-up', user)
       console.log(data);
       localStorage.setItem('currentUser', JSON.stringify(data.user))
-      localStorage.setItem('accessToken', data.token)
+      localStorage.setItem('accessToken', data.accessToken)
       setCurrentUser(data.user)
       navigate('/')
     } catch (err) {
