@@ -1,4 +1,4 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField, useMediaQuery } from '@mui/material'
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField, useMediaQuery, Divider, List, ListItem, ListItemText } from '@mui/material'
 import GetImage from '../../GetImage'
 import UploadWidget from '../../UploadWidget'
 import React from 'react'
@@ -14,28 +14,94 @@ function FreelanceForm({ profile, isUpdate, handleUpdate, valueProps, handleSubm
 
     const matches1150 = useMediaQuery('(min-width:1150px)');
     const matches900 = useMediaQuery('(min-width:900px)');
-    const matches830 = useMediaQuery('min-width-830px')
+    const matches830 = useMediaQuery('min-width-830px');
+    const style = {
+        py: 0,
+        width: '100%',
+        maxWidth: 360,
+        borderRadius: 2,
+        border: '1px solid',
+        borderColor: 'divider',
+        // backgroundColor: 'background.paper',
+      };
 
 
     return (
         <>
             <div className='private-profile-container background-color-white'>
-                <GetImage imageId={profileImageId} width={150} className={'private-profile-picture'} />
+                {/* <GetImage imageId={profileImageId} width={150} className={'private-profile-picture'} /> */}
                 <>
                     {
                     !isUpdate &&
                     <>
                         <div className='profile-details-wrapper'>
-                            <div><span className='title'>שם: </span>{`${firstName} ${lastName}`}</div>
+                            <List sx={style}>
+                              <ListItem>
+                                    <div className='list-item list-item-image'>
+                                        <GetImage imageId={profileImageId} width={150} className={'private-profile-picture'} />  
+                                    </div>                            </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div className='list-item'><span className='title'>שם: </span>{`${firstName} ${lastName}`}</div>
+                                {/* <ListItemText primary={`${firstName} ${lastName}`} /> */}
+                              </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div className='list-item'><span className='title'>כותרת: </span>{` ${title}`}</div>
+                              </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div style={{textAlign: 'right'}}><span className='title'>אודות: </span>{`${about}`}</div>
+                              </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div className='list-item'><span className='title'>דוא"ל: </span>{` ${email}`}</div>
+                              </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div className='list-item'><span className='title'>טלפון: </span>{` ${phone}`}</div>
+                              </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div className='list-item'><span className='title'>עיר: </span>{`${city}`}</div>
+                              </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div className='list-item'><span className='title'>רחוב: </span>{`${street} ${building}/${suite}`}</div>
+                              </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div className='list-item'><span className='title'>מיקוד: </span>{`${zipCode}`}</div>                              </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div className='list-item'><span className='title'>אזור שירות: </span>{`${serviceLocation}`}</div>
+                              </ListItem>
+                              <Divider variant="middle" component="li" />
+                              <ListItem>
+                                    <div className='list-item'><span className='title'>סוג חשבון: </span>{`${accountType}`}</div>
+                              </ListItem>
+                            </List>
+                            
+                            {/* <div><span className='title'>שם: </span>{`${firstName} ${lastName}`}</div>
+                            <Divider />
                             <div><span className='title'>כותרת: </span>{` ${title}`}</div>
+                            <Divider />
                             <div><span className='title'>אודות: </span>{`${about}`}</div>
+                            <Divider />
                             <div><span className='title'>דוא"ל: </span>{` ${email}`}</div>
+                            <Divider />
                             <div><span className='title'>טלפון: </span>{` ${phone}`}</div>
+                            <Divider />
                             <div><span className='title'>עיר: </span>{`${city}`}</div>
+                            <Divider />
                             <div><span className='title'>רחוב: </span>{`${street} ${building}/${suite}`}</div>
+                            <Divider />
                             <div><span className='title'>מיקוד: </span>{`${zipCode}`}</div>
+                            <Divider />
                             <div><span className='title'>אזור שירות: </span>{`${serviceLocation}`}</div>
-                            <div><span className='title'>סוג חשבון: </span>{`${accountType}`}</div>
+                            <Divider />
+                            <div><span className='title'>סוג חשבון: </span>{`${accountType}`}</div> */}
+
                         </div>
                         <div>
                                 <Button onClick={handleUpdate}>עריכת פרופיל</Button>
