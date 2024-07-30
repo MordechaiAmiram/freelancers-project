@@ -32,3 +32,9 @@
         grid-row: span 1;
     }
 }
+
+@media only screen and (max-width: 500px) {
+    .grid-container {
+        display: block;
+    }
+}

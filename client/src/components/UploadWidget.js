@@ -18,9 +18,9 @@ const UploadWidget = ({ handleImageId }) => {
     })
   }, [])
   return (
-    <div>
+    <div style={{display: 'flex', height: '100%'}}>
       <Chip
-        sx={{ minWidth: '200px' }}
+        sx={{ minWidth: '200px', margin: 'auto' }}
         icon={<AddToPhotosOutlinedIcon />}
         label='הוספת תמונה'
         variant="outlined"

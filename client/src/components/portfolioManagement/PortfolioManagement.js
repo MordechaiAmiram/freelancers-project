@@ -35,14 +35,16 @@ function PortfolioManagement() {
 
 
     return (
-        <div className='portfolio-management  background-color-white'>
-            <CreatePortfolio />
+        <>
+            <div className='portfolio-management-container  background-color-white'>
+                <CreatePortfolio />
+            </div>
             <Portfolios
-                portfolios={portfolios}
-                isEdit={true}
-                handleImageId={handleImageId}
-                handlePortfolioId={handlePortfolioId} />
-        </div>
+                    portfolios={portfolios}
+                    isEdit={true}
+                    handleImageId={handleImageId}
+                    handlePortfolioId={handlePortfolioId} />
+        </>
     )
 }
 

@@ -4,6 +4,7 @@ import useInput from '../../hooks/useInput'
 import CreateNewFolderOutlinedIcon from '@mui/icons-material/CreateNewFolderOutlined';
 import { userContext } from '../../App'
 import api from '../../services/BaseURL'
+import './portfolioManagement.css'
 
 function CreatePortfolio() {
     const { currentUser } = useContext(userContext)
@@ -33,7 +34,7 @@ function CreatePortfolio() {
     }
 
     return (
-        <>
+        <div>
             <Button onClick={handleClick}>
                 {!isCreate ?
                     <>
@@ -43,8 +44,8 @@ function CreatePortfolio() {
                     : 'ביטול'}
             </Button>
             {isCreate &&
-                <>
-                    <div>
+                <div className='portfolio-form'>
+                    <div className='portfolio-input'>
                         כותרת: <TextField
                             type='text'
                             hiddenLabel
@@ -54,10 +55,10 @@ function CreatePortfolio() {
                             size='small'
                             name='title'
                             {...titleProps}
-                            sx={{ width: '60%' }}
+                            sx={{ width: '100%' }}
                         />
                     </div>
-                    <div>
+                    <div className='portfolio-input'>
                         תיאור: <TextField
                             type='text'
                             hiddenLabel
@@ -65,10 +66,10 @@ function CreatePortfolio() {
                             size='small'
                             name='description'
                             {...descriptionProps}
-                            sx={{ width: '60%' }}
+                            sx={{ width: '100%' }}
                         />
                     </div>
-                    <div>
+                    <div className='portfolio-input'>
                         לינק לפרויקט: <TextField
                             type='text'
                             hiddenLabel
@@ -76,13 +77,13 @@ function CreatePortfolio() {
                             size='small'
                             name='url'
                             {...urlProps}
-                            sx={{ width: '60%' }}
+                            sx={{ width: '100%' }}
                         />
                     </div>
                     <Button onClick={handleCreate} >צור</Button>
-                </>
+                </div>
             }
-        </>
+        </div>
     )
 }
 

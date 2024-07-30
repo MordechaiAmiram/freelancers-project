@@ -36,33 +36,33 @@ function PrivateUserProfile() {
     try {
       const userDetails = {
         userId: userId,
-        firstName: firstNameProps.value,
-        lastName: lastNameProps.value,
-        email: emailProps.value,
-        phone: phoneProps.value,
+        firstName: firstNameProps.value.trim(),
+        lastName: lastNameProps.value.trim(),
+        email: emailProps.value.trim(),
+        phone: phoneProps.value.trim(),
       }
       const freelanceDetails = {
         freelanceId: freelanceId,
-        title: titleProps.value,
-        about: aboutProps.value,
-        serviceLocation: serviceLocationProps.value,
-        imageId: profileImageIdProps.value
+        title: titleProps.value.trim(),
+        about: aboutProps.value.trim(),
+        serviceLocation: serviceLocationProps.value.trim(),
+        imageId: profileImageIdProps.value.trim()
       }
       const addressDetails = {
         userId: userId,
-        city: cityProps.value,
-        street: streetProps.value,
-        building: buildingProps.value,
-        suite: suiteProps.value,
-        zipCode: zipCodeProps.value
+        city: cityProps.value.trim(),
+        street: streetProps.value.trim(),
+        building: buildingProps.value.toString().trim(),
+        suite: suiteProps.value.toString().trim(),
+        zipCode: zipCodeProps.value.toString().trim()
       }
       const { data: user } = await api.put('users', userDetails)
 
       if (user === 'Succeeded!') {
-        currentUser.firstName = firstNameProps.value
-        currentUser.lastName = lastNameProps.value
-        currentUser.email = emailProps.value
-        currentUser.phone = phoneProps.value
+        currentUser.firstName = firstNameProps.value.trim()
+        currentUser.lastName = lastNameProps.value.trim()
+        currentUser.email = emailProps.value.trim()
+        currentUser.phone = phoneProps.value.trim()
       }
 
       if (freelanceId) {
@@ -71,18 +71,18 @@ function PrivateUserProfile() {
         const { data: address } = await api.put('/freelance/address', addressDetails)
 
         if (freelance === 'Succeeded!') {
-          currentUser.title = titleProps.value
-          currentUser.about = aboutProps.value
-          currentUser.serviceLocation = serviceLocationProps.value
-          currentUser.imageId = profileImageIdProps.value
+          currentUser.title = titleProps.value.trim()
+          currentUser.about = aboutProps.value.trim()
+          currentUser.serviceLocation = serviceLocationProps.value.trim()
+          currentUser.imageId = profileImageIdProps.value.trim()
         }
 
         if (address === 'Succeeded!') {
-          currentUser.city = cityProps.value
-          currentUser.street = streetProps.value
-          currentUser.building = buildingProps.value
-          currentUser.suite = suiteProps.value
-          currentUser.zipCode = zipCodeProps.value
+          currentUser.city = cityProps.value.trim()
+          currentUser.street = streetProps.value.trim()
+          currentUser.building = buildingProps.value.toString().trim()
+          currentUser.suite = suiteProps.value.toString().trim()
+          currentUser.zipCode = zipCodeProps.value.toString().trim()
         }
       }
 

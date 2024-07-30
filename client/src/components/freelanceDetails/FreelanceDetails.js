@@ -22,11 +22,12 @@ function FreelanceDetails({ profile }) {
         height: 'fit-content',
         padding: '20px',
         textAlign: 'right',
+        
 
-        [theme.breakpoints.down('md')]: {
-            marginLeft: 'auto',
-            marginRight: 'auto',
-        },
+        // [theme.breakpoints.down('md')]: {
+        //     marginLeft: 'auto',
+        //     marginRight: 'auto',
+        // },
     }));
 
     return (

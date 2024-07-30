@@ -1,3 +1,8 @@
-.portfolio-management{
-    display: flex;
+
+.portfolio-form {
+    padding: 5px;
+}
+
+.portfolio-input {
+    padding: 5px;
 }

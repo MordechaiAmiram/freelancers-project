@@ -3,6 +3,16 @@
 
 }
 
+.edit-details-wrapper{
+}
+.profile-details-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-right: 100px;
+    margin-left: 100px;
+    text-align: right;
+}
 .private-profile-picture {
     display: inline-block;
 	border: 1px solid #03BFCB;
@@ -14,3 +24,6 @@
     border-radius: 50%;
 }
 
+.title {
+    font-weight: 600;
+}

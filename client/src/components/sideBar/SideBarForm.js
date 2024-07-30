@@ -29,8 +29,8 @@ function SideBarForm({ profile }) {
       {
         <div className={`side-bar-items ${showItmes ? 'active' : ''}`}>
           <div className='close-btn' onClick={HandleHideItmes}><CloseRoundedIcon /></div>
-
-          {!profile && <>
+          {!profile && 
+          <div onClick={HandleHideItmes}>
             <div className='side-bar-item' >
               <RouterLink className='link'
                 to={'/sign-up'}>הרשמה</RouterLink>
@@ -39,19 +39,20 @@ function SideBarForm({ profile }) {
               <RouterLink className='link'
                 to={'/log-in'}>כניסה</RouterLink>
             </div>
-          </>}
+          </div>}
           {profile && <>
             <div className='hello-side-bar'>{`שלום ${profile.firstName}`}</div>
-            <div className='side-bar-item'>
-              <RouterLink className='link'
-                to={'/my-profile/:userId'}>הפרופיל שלי</RouterLink>
-            </div>
-            {profile?.isAdmin === 1 &&
+            <div onClick={HandleHideItmes}>
               <div className='side-bar-item'>
-                <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
+                <RouterLink className='link'
+                  to={'/my-profile/:userId'}>הפרופיל שלי</RouterLink>
               </div>
-            }
-
+              {profile?.isAdmin === 1 &&
+                <div className='side-bar-item'>
+                  <RouterLink className='link' to={'/management'}>ניהול</RouterLink>
+                </div>
+              }
+            </div>
           </>}
           <Divider />
         </div>}
