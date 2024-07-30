@@ -7,8 +7,10 @@ import PortfolioImages from './PortfolioImages';
 import Typography from '@mui/joy/Typography';
 import './portfolios.css'
 import UploadWidget from '../UploadWidget';
+import { image } from '@cloudinary/url-gen/qualifiers/source';
+import api from '../../services/BaseURL';
 
-export default function Portfolios({ portfolios, isEdit, handleImageId, handlePortfolioId }) {
+export default function Portfolios({ portfolios, isEdit, handleImageId, handlePortfolioId, handleDeleteImage }) {
   return (
     <div>
       {portfolios?.length > 0 &&
@@ -17,6 +19,8 @@ export default function Portfolios({ portfolios, isEdit, handleImageId, handlePo
           aria-label="Pricing plan"
           defaultValue={0}
           sx={{
+            minWidth: '500px',
+            minHeight: '500px',
             borderRadius: 'lg',
             boxShadow: 'sm',
             overflow: 'auto',
@@ -58,7 +62,7 @@ export default function Portfolios({ portfolios, isEdit, handleImageId, handlePo
                 {portfolio.description}
               </Typography>
               <div className='portfolio-images-flexbox'>
-                <PortfolioImages portfolio={portfolio} />
+                <PortfolioImages portfolio={portfolio} handleDelete={handleDeleteImage}/>
               </div>
             </TabPanel>
           ))}

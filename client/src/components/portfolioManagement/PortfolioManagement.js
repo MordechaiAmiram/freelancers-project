@@ -7,15 +7,44 @@ import api from '../../services/BaseURL'
 
 function PortfolioManagement() {
     const { currentUser } = useContext(userContext)
-    const [portfolios] = useFetch(`/portfolios/${currentUser.freelanceId}`)
+    const [portfolios, setPortfolios] = useFetch(`/portfolios/${currentUser.freelanceId}`)
     const [imageId, setImageId] = useState('')
     const [portfolioId, setPortfolioId] = useState()
 
     const handleImageId = (id) => {
         setImageId(id)
     }
+
     const handlePortfolioId = (id) => {
         setPortfolioId(id)
+    }
+
+    const handleDeleteImage = async (portfolioId, imageIndex, imageId) => {
+        setPortfolios(prev => {
+            const portfolioIndex = prev.findIndex(el => el.portfolioId === portfolioId);
+            if (portfolioIndex === -1) return prev; 
+        
+            const updatedPortfolio = { ...prev[portfolioIndex] };
+
+            const imageCodes = updatedPortfolio.imageCodes.split(',');
+            const imageIds = updatedPortfolio.imageIds.split(',');
+        
+            imageCodes.splice(imageIndex, 1);
+            imageIds.splice(imageIndex, 1);
+        
+            updatedPortfolio.imageCodes = imageCodes.join(',') || null;
+            updatedPortfolio.imageIds = imageIds.join(',') || null;
+        
+            const updatedPortfolios = [...prev];
+            updatedPortfolios[portfolioIndex] = updatedPortfolio;
+                
+            return updatedPortfolios;
+        })
+        try {
+            const [data] = await api.delete(`/portfolios/${imageId}`)
+        } catch (err) {
+            console.error(err.message);
+        }
     }
 
     useEffect(() => {
@@ -36,14 +65,15 @@ function PortfolioManagement() {
 
     return (
         <>
-            <div className='portfolio-management-container  background-color-white'>
+            <div className=''>
                 <CreatePortfolio />
             </div>
             <Portfolios
                     portfolios={portfolios}
                     isEdit={true}
                     handleImageId={handleImageId}
-                    handlePortfolioId={handlePortfolioId} />
+                    handlePortfolioId={handlePortfolioId}
+                    handleDeleteImage={handleDeleteImage} />
         </>
     )
 }

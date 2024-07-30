@@ -8,7 +8,8 @@ async function getFreelancePortfolios(freelanceId) {
     p.description,
     p.project_url as projectUrl,
     p.creation_date as creationDate,
-    GROUP_CONCAT(i.image_code) AS imageCodes
+    GROUP_CONCAT(i.image_code) AS imageCodes,
+    GROUP_CONCAT(i.image_id) AS imageIds
     FROM
         freelancers_portfolios p
     LEFT JOIN
@@ -31,6 +32,7 @@ async function createPortfolio(freelanceId, title, description, projectUrl) {
     const [{ affectedRows }] = await pool.query(sql, [freelanceId, title, description, projectUrl])
     return affectedRows
 }
+
 async function addImage(portfolioId, imageCode) {
     const sql = `
     INSERT INTO portfolio_images (portfolio_id, image_code)
@@ -40,8 +42,18 @@ async function addImage(portfolioId, imageCode) {
     return affectedRows
 }
 
+async function deleteImage(imageId) {
+    const sql = `
+    DELETE FROM portfolio_images
+    WHERE image_id = ?
+    ` 
+    const [{ affectedRows }] = await pool.query(sql, [imageId])
+    return affectedRows
+}
+
 module.exports = {
     getFreelancePortfolios,
     createPortfolio,
-    addImage
+    addImage,
+    deleteImage
 }

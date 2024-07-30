@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getFreelancePortfolios, createPortfolio, addImage } = require('../dbOperations/portfolios')
+const { getFreelancePortfolios, createPortfolio, addImage, deleteImage } = require('../dbOperations/portfolios')
 const {authenticateToken} = require('../middleware/auth')
 
 router
@@ -53,6 +53,24 @@ router
             }
         } catch (err) {
             console.log(err.message)
+            res.status(500)
+        }
+    })
+router
+    .route('/:imageId')
+    .delete( async (req, res) => {
+        try {
+            console.log("delete works", req.params.imageId);
+            const isDeleted = await deleteImage(req.params.imageId)
+            if(isDeleted) {
+                res.status(201)
+                    .send('Image deleted successfully')
+            } else {
+                res.status(400)
+                    .send('Bad request')
+            }
+        } catch (err) {
+            console.error(err);
             res.status(500)
         }
     })
