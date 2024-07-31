@@ -60,7 +60,6 @@ router
     .route('/:imageId')
     .delete( async (req, res) => {
         try {
-            console.log("delete works", req.params.imageId);
             const isDeleted = await deleteImage(req.params.imageId)
             if(isDeleted) {
                 res.status(201)

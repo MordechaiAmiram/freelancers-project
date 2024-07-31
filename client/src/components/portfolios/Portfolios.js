@@ -7,8 +7,6 @@ import PortfolioImages from './PortfolioImages';
 import Typography from '@mui/joy/Typography';
 import './portfolios.css'
 import UploadWidget from '../UploadWidget';
-import { image } from '@cloudinary/url-gen/qualifiers/source';
-import api from '../../services/BaseURL';
 
 export default function Portfolios({ portfolios, isEdit, handleImageId, handlePortfolioId, handleDeleteImage }) {
   return (

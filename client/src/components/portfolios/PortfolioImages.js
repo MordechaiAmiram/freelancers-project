@@ -5,7 +5,6 @@ import './portfolios.css'
 function PortfolioImages({ portfolio, handleDelete }) {
   const imageCodes = portfolio.imageCodes?.split(',')
   const imageIds = portfolio.imageIds?.split(',')
-  console.log("imageCodes", imageCodes, imageCodes?.length);
 
   return (
     <>

@@ -41,7 +41,7 @@ function PortfolioManagement() {
             return updatedPortfolios;
         })
         try {
-            const [data] = await api.delete(`/portfolios/${imageId}`)
+            const { data } = await api.delete(`/portfolios/${imageId}`)
         } catch (err) {
             console.error(err.message);
         }
