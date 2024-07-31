@@ -1,0 +1,16 @@
+.maxWidthContainer1400 {
+    max-width: 1400px;
+    margin: auto;
+  }
+  
+  .backgroundColorWhite {
+    background-color: white;
+  }
+  
+  .pageBackgroundColor {
+    background-color: rgba(243, 246, 249, 0.6);
+  }
+  
+  .minHeightContainer {
+    min-height: calc(100vh - 100px);
+  }
