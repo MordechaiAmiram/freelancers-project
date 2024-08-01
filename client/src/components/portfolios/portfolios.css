@@ -1,5 +1,6 @@
 .portfolio-image {
     display: flex;
+    padding: 5px;
 }
 .portfolio-images-flexbox {
     display: flex;

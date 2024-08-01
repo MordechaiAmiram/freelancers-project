@@ -4,7 +4,8 @@ import useInput from '../../hooks/useInput';
 import Client from '../../components/userProfile/client/Client';
 import Freelance from '../../components/userProfile/freelance/Freelance';
 import api from '../../services/BaseURL';
-import './privateUserProfile.css'
+import './privateUserProfile.css';
+import classNames from '../../styles/classnames';
 import PortfolioManagement from '../../components/portfolioManagement/PortfolioManagement';
 
 function PrivateUserProfile() {
@@ -96,8 +97,8 @@ function PrivateUserProfile() {
   }
 
   return (
-    <div className='private-profile-page min-height-container page-background-color'>
-      <div className='private-profile-main max-width-container'>
+    <div className={`${classNames.pageBackgroundColor} ${classNames.minHeightContainer} private-profile-page`}>
+      <div className={`${classNames.maxWidthContainer1400} private-profile-main`}>
         {freelanceId ?
           <div className='freelance-private-profile private-profile-grid'>
             <Freelance
