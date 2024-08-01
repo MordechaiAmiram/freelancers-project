@@ -43,10 +43,10 @@ router
     .post(authenticateToken, async (req, res) => {
         try {
             const { portfolioId, imageCode } = req.body
-            const isAdded = await addImage(portfolioId, imageCode)
-            if (isAdded) {
+            const insertedId = await addImage(portfolioId, imageCode)
+            if (insertedId) {
                 res.status(201)
-                    .send('Portfolio was created')
+                    .send({insertedId: insertedId})
             } else {
                 res.status(400)
                     .send('Bad request')

@@ -38,8 +38,9 @@ async function addImage(portfolioId, imageCode) {
     INSERT INTO portfolio_images (portfolio_id, image_code)
     VALUES(?, ?)
     `
-    const [{ affectedRows }] = await pool.query(sql, [portfolioId, imageCode])
-    return affectedRows
+    const [result] = await pool.query(sql, [portfolioId, imageCode]);
+    const insertedId = result.insertId;
+    return insertedId;
 }
 
 async function deleteImage(imageId) {

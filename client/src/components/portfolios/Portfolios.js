@@ -8,7 +8,7 @@ import Typography from '@mui/joy/Typography';
 import './portfolios.css'
 import UploadWidget from '../UploadWidget';
 
-export default function Portfolios({ portfolios, isEdit, handleImageId, handlePortfolioId, handleDeleteImage }) {
+export default function Portfolios({ portfolios, isEdit, handleAddImage, handleDeleteImage, isPersonalArea = false }) {
   return (
     <div>
       {portfolios?.length > 0 &&
@@ -53,14 +53,21 @@ export default function Portfolios({ portfolios, isEdit, handleImageId, handlePo
             <TabPanel key={portfolio.portfolioId}
               value={index}>
               {isEdit &&
-                <div className='add-image-btn' onClick={()=> handlePortfolioId(portfolio.portfolioId)}>
-                  <UploadWidget handleImageId={handleImageId} />
+                <div className='add-image-btn'>
+                    <UploadWidget 
+                      portfolioId={portfolio.portfolioId} 
+                      handleAddImage={handleAddImage} 
+                    />
                 </div>}
               <Typography>
                 {portfolio.description}
               </Typography>
               <div className='portfolio-images-flexbox'>
-                <PortfolioImages portfolio={portfolio} handleDelete={handleDeleteImage}/>
+                <PortfolioImages 
+                    portfolio={portfolio} 
+                    handleDelete={handleDeleteImage}
+                    isPersonalArea={isPersonalArea}
+                    />
               </div>
             </TabPanel>
           ))}

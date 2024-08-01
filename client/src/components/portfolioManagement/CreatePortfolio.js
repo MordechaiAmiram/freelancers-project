@@ -1,25 +1,28 @@
 import React, { useContext, useState } from 'react'
-import { Button, TextField } from '@mui/material'
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close';
 import useInput from '../../hooks/useInput'
 import CreateNewFolderOutlinedIcon from '@mui/icons-material/CreateNewFolderOutlined';
 import { userContext } from '../../App'
 import api from '../../services/BaseURL'
 import './portfolioManagement.css'
 
-function CreatePortfolio() {
+function CreatePortfolio({handleClose, isOpen, handleClickOpen}) {
     const { currentUser } = useContext(userContext)
-    const [isCreate, setIsCreate] = useState(false)
     const titleProps = useInput('')
     const descriptionProps = useInput('')
     const urlProps = useInput('')
+    const [textFieldError, setTextFieldError] = useState(false)
 
-    const handleClick = () => {
-        setIsCreate(prev => !prev)
-    }
 
     const handleCreate = async () => {
         try {
-            if (titleProps.value === '') return
+            console.log("title value ===", titleProps.value );
+
+            if (titleProps.value === '' || titleProps.value === undefined) {
+                setTextFieldError(true)
+                return
+            }
             const body = {
                 freelanceId: currentUser.freelanceId,
                 title: titleProps.value,
@@ -27,7 +30,7 @@ function CreatePortfolio() {
                 projectUrl: urlProps.value
             }
             const { data } = await api.post('/portfolios/add-portfolio', body)
-            console.log(data);
+            handleClose()
         } catch (err) {
             console.error(err)
         }
@@ -35,54 +38,75 @@ function CreatePortfolio() {
 
     return (
         <div>
-            <Button onClick={handleClick}>
-                {!isCreate ?
-                    <>
+            <Button onClick={handleClickOpen}>
                         צור תיק עבודות
                         <CreateNewFolderOutlinedIcon />
-                    </>
-                    : 'ביטול'}
             </Button>
-            {isCreate &&
-                <div className='portfolio-form'>
-                    <div className='portfolio-input'>
-                        כותרת: <TextField
-                            type='text'
-                            hiddenLabel
-                            required
-                            label='שדה חובה'
-                            variant="filled"
-                            size='small'
-                            name='title'
-                            {...titleProps}
-                            sx={{ width: '100%' }}
-                        />
+            <Dialog
+                maxWidth={'xs'} 
+                onClose={() => {handleClose(); setTextFieldError(false)}} 
+                open={isOpen}
+                >
+                <DialogTitle>
+                    <IconButton
+                        aria-label="close"
+                        onClick={() => {handleClose(); setTextFieldError(false)}} 
+                        sx={{
+                            position: 'absolute',
+                            right: 8,
+                            top: 8,
+                            color: (theme) => theme.palette.grey[500],
+                        }}
+                        >
+                    <CloseIcon />
+                    </IconButton>
+                </DialogTitle>
+                <DialogContent>
+                    <div className='portfolio-form'>
+                        <div className='portfolio-input'>
+                            כותרת: <TextField
+                                type='text'
+                                hiddenLabel
+                                required
+                                error={textFieldError}
+                                label='שדה חובה'
+                                variant="standard"
+                                size='small'
+                                name='title'
+                                {...titleProps}
+                                sx={{ width: '100%' }}
+                            />
+                        </div>
+                        <div className='portfolio-input'>
+                            תיאור: <TextField
+                                type='text'
+                                hiddenLabel
+                                variant="standard"
+                                size='small'
+                                name='description'
+                                {...descriptionProps}
+                                sx={{ width: '100%' }}
+                            />
+                        </div>
+                        <div className='portfolio-input'>
+                            לינק לפרויקט: <TextField
+                                type='text'
+                                hiddenLabel
+                                variant="standard"
+                                size='small'
+                                name='url'
+                                {...urlProps}
+                                sx={{ width: '100%' }}
+                            />
+                        </div>
                     </div>
-                    <div className='portfolio-input'>
-                        תיאור: <TextField
-                            type='text'
-                            hiddenLabel
-                            variant="filled"
-                            size='small'
-                            name='description'
-                            {...descriptionProps}
-                            sx={{ width: '100%' }}
-                        />
+                </DialogContent>
+                <DialogActions>
+                    <div style={{display: 'flex', width: '100%', justifyContent: 'center'}}>
+                        <Button variant="contained" onClick={handleCreate} >צור</Button>
                     </div>
-                    <div className='portfolio-input'>
-                        לינק לפרויקט: <TextField
-                            type='text'
-                            hiddenLabel
-                            variant="filled"
-                            size='small'
-                            name='url'
-                            {...urlProps}
-                            sx={{ width: '100%' }}
-                        />
-                    </div>
-                    <Button onClick={handleCreate} >צור</Button>
-                </div>
-            }
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import GetImage from '../GetImage'
 import './portfolios.css'
 
-function PortfolioImages({ portfolio, handleDelete }) {
+function PortfolioImages({ portfolio, handleDelete, isPersonalArea }) {
   const imageCodes = portfolio.imageCodes?.split(',')
   const imageIds = portfolio.imageIds?.split(',')
 
@@ -15,7 +15,11 @@ function PortfolioImages({ portfolio, handleDelete }) {
           width={150}
           className='portfolio-image'
         />
-        <button onClick={() => handleDelete(portfolio.portfolioId, index, imageIds[index])}>del</button>
+        {isPersonalArea &&
+          <button 
+            onClick={() => handleDelete(portfolio.portfolioId, index, imageIds[index])}>
+              del
+          </button>}
       </div>
       )}
     </>
