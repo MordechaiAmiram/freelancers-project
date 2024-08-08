@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import './navbar.css'
 import SearchField from '../searchField/SearchField'
@@ -9,8 +9,8 @@ import { useLogout } from '../../hooks/useLogout'
 
 function Navbar() {
     const { currentUser } = useContext(userContext)
+    const [anchorElUser, setAnchorElUser] = useState(null);
     const logout = useLogout()
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenUserMenu = (event) => {
       setAnchorElUser(event.currentTarget);
