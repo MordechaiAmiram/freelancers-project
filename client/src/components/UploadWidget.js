@@ -3,7 +3,7 @@ import AddToPhotosOutlinedIcon from '@mui/icons-material/AddToPhotosOutlined';
 import { Chip, IconButton } from "@mui/material";
 
 
-const UploadWidget = ({ handleAddImage, portfolioId }) => {
+const UploadWidget = ({ handleImageId = null, handleAddImage = null, portfolioId = null }) => {
   const cloudinaryRef = useRef()
   const widgetRef = useRef()
 
@@ -14,7 +14,8 @@ const UploadWidget = ({ handleAddImage, portfolioId }) => {
       uploadPreset: 'gzqr6cgn',
     }, function (err, res) {
       if (res?.info?.public_id)
-        handleAddImage(portfolioId, res.info.public_id)
+        if(handleImageId) handleImageId(res.info.public_id)
+        else handleAddImage(portfolioId, res.info.public_id)
     })
   }, [])
   return (

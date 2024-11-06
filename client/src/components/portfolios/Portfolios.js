@@ -55,6 +55,7 @@ export default function Portfolios({ portfolios, isEdit, handleAddImage, handleD
               {isEdit &&
                 <div className='add-image-btn'>
                     <UploadWidget 
+                      handleImageId={null}
                       portfolioId={portfolio.portfolioId} 
                       handleAddImage={handleAddImage} 
                     />
