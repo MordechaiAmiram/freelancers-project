@@ -5,7 +5,7 @@ import { userContext } from '../../App'
 import Portfolios from '../portfolios/Portfolios'
 import api from '../../services/BaseURL'
 
-function PortfolioManagement() {
+function PortfolioManagement() {    
     const { currentUser } = useContext(userContext)
     const [portfolios, setPortfolios] = useFetch(`/portfolios/${currentUser.freelanceId}`)
     const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,7 @@ function PortfolioManagement() {
         setIsOpen(false);
     };
 
-    const handleDeleteImage = async (portfolioId, imageIndex, imageId) => {
+    const handleDeleteImage = async (portfolioId, imageIndex, imageId) => {        
         setPortfolios(prev => {
             const portfolioIndex = prev.findIndex(el => el.portfolioId === portfolioId);
             if (portfolioIndex === -1) return prev; 
@@ -46,7 +46,7 @@ function PortfolioManagement() {
         }
     }
 
-    const handleAddImage = async (portfolioId, imageCode) => {
+    const handleAddImage = async (portfolioId, imageCode) => {        
         try {
             const body = {
                 portfolioId: portfolioId,
@@ -57,9 +57,11 @@ function PortfolioManagement() {
                 setPortfolios(prev => {
                     const portfolioIndex = prev.findIndex(el => el.portfolioId === portfolioId);
                     const updatedPortfolio = { ...prev[portfolioIndex] };
+
+                    console.log("updatedPortfolio", updatedPortfolio);
                     
-                    const imageCodes = updatedPortfolio.imageCodes.split(',');
-                    const imageIds = updatedPortfolio.imageIds.split(',');
+                    const imageCodes = updatedPortfolio.imageCodes?.split(',') || [];
+                    const imageIds = updatedPortfolio.imageIds?.split(',') || [];
                     
                     imageCodes.push(imageCode)   
                     imageIds.push(data.insertedId)
